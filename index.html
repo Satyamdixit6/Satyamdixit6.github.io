@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Researcher | Deep Learning Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Deep Learning Portfolio</h1>
+            <p>Showcasing AI/ML projects with interactive demos</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#demos">Live Demos</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a deep learning enthusiast specializing in:</p>
+                <ul>
+                    <li>Computer Vision (CNNs, Transformers)</li>
+                    <li>Natural Language Processing (LLMs, RNNs)</li>
+                    <li>Generative Models (GANs, Diffusion Models)</li>
+                </ul>
+                <p>This website runs completely client-side with interactive AI demos.</p>
+            </div>
+            <div class="skills-chart">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid" id="projectsContainer">
+            <!-- Projects will be loaded dynamically from projects.json -->
+        </div>
+    </section>
+
+    <section id="demos" class="container">
+        <h2>Interactive Demos</h2>
+        
+        <div class="demo-card">
+            <h3>Image Classification</h3>
+            <div class="demo-container">
+                <input type="file" id="imageUpload" accept="image/*">
+                <canvas id="imageCanvas" width="224" height="224"></canvas>
+                <div id="imageResults"></div>
+            </div>
+            <p>Try uploading an image to see classification results</p>
+        </div>
+        
+        <div class="demo-card">
+            <h3>Sentiment Analysis</h3>
+            <textarea id="sentimentText" placeholder="Enter text for sentiment analysis..."></textarea>
+            <button onclick="analyzeSentiment()">Analyze</button>
+            <div id="sentimentResult"></div>
+        </div>
+    </section>
+
+    <section id="blog" class="container">
+        <h2>Latest Articles</h2>
+        <div class="blog-posts" id="blogContainer">
+            <!-- Blog posts will be loaded dynamically -->
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
