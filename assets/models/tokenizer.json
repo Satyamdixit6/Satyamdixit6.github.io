@@ -1,0 +1,11 @@
+{
+    "max_length": 512,
+    "special_tokens": {
+        "[PAD]": 0,
+        "[UNK]": 1,
+        "[CLS]": 2,
+        "[SEP]": 3,
+        "[MASK]": 4
+    },
+    "do_lower_case": true
+}
