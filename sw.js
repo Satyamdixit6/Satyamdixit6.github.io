@@ -1,11 +1,13 @@
-const CACHE_NAME = 'portfolio-cache-v3';
+const CACHE_NAME = 'portfolio-cache-v4';
 const urlsToCache = [
     '/',
     '/index.html',
     '/assets/images/profile.jpg',
     '/assets/images/classification.jpg',
     '/assets/images/summarization.jpg',
+    '/assets/images/segmentation.jpg',
     '/assets/models/classification.onnx',
+    '/assets/models/segmenter.onnx',
     'https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js',
     'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2'
 ];
