@@ -3,95 +3,345 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Researcher | Deep Learning Portfolio</title>
+    <title>Deep Learning Engineer | Satyam Dixit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #3b82f6;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3b82f6; }
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Deep Learning Portfolio</h1>
-            <p>Showcasing AI/ML projects with interactive demos</p>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-gray-900">Satyam <span class="gradient-text">Dixit</span></span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition-colors">Skills</a>
+                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition-colors">Projects</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#demos">Live Demos</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
     </nav>
 
-    <section id="about" class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I'm a deep learning enthusiast specializing in:</p>
-                <ul>
-                    <li>Computer Vision (CNNs, Transformers)</li>
-                    <li>Natural Language Processing (LLMs, RNNs)</li>
-                    <li>Generative Models (GANs, Diffusion Models)</li>
-                </ul>
-                <p>This website runs completely client-side with interactive AI demos.</p>
+    <!-- Hero Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
+                        Hi, I'm <span class="gradient-text">Satyam Dixit</span>
+                    </h1>
+                    <div class="typewriter text-2xl md:text-3xl font-medium text-gray-700 mb-8">
+                        Deep Learning Engineer | CUDA Specialist
+                    </div>
+                    <p class="text-lg text-gray-600 mb-8">
+                        I specialize in high-performance AI solutions with expertise in PyTorch, CUDA optimization, and deploying scalable deep learning models.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all">
+                            Get In Touch
+                        </a>
+                        <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all">
+                            View My Work
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-64 h-64 md:w-80 md:h-80">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 blur-xl"></div>
+                        <div class="relative w-full h-full flex items-center justify-center">
+                            <div class="w-56 h-56 md:w-72 md:h-72 bg-white rounded-full shadow-xl overflow-hidden border-4 border-white">
+                                <!-- Replace with your actual image -->
+                                <img src="your-photo.jpg" alt="Satyam Dixit" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="skills-chart">
-                <canvas id="skillsChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Technical Expertise</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Core Skills</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>▸ Python & CUDA C++ Development</li>
+                        <li>▸ PyTorch & TensorFlow Implementation</li>
+                        <li>▸ Model Quantization & Optimization</li>
+                        <li>▸ Docker/Kubernetes Deployment</li>
+                        <li>▸ Real-time Computer Vision Systems</li>
+                    </ul>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Tools & Frameworks</h3>
+                    <div class="flex flex-wrap gap-4 mt-4">
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">PyTorch</span>
+                        <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full">CUDA</span>
+                        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full">TensorFlow</span>
+                        <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full">Docker</span>
+                        <span class="px-4 py-2 bg-red-100 text-red-800 rounded-full">Kubernetes</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 card-hover">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Performance Metrics</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>✓ 50% latency reduction in Transformers</li>
+                        <li>✓ 45% faster Diffusion Model inference</li>
+                        <li>✓ 96% edge CNN accuracy at 70ms latency</li>
+                        <li>✓ Real-time 30 FPS object detection</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="container">
-        <h2>Featured Projects</h2>
-        <div class="projects-grid" id="projectsContainer">
-            <!-- Projects will be loaded dynamically from projects.json -->
-        </div>
-    </section>
-
-    <section id="demos" class="container">
-        <h2>Interactive Demos</h2>
-        
-        <div class="demo-card">
-            <h3>Image Classification</h3>
-            <div class="demo-container">
-                <input type="file" id="imageUpload" accept="image/*">
-                <canvas id="imageCanvas" width="224" height="224"></canvas>
-                <div id="imageResults"></div>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Featured Projects</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
             </div>
-            <p>Try uploading an image to see classification results</p>
-        </div>
-        
-        <div class="demo-card">
-            <h3>Sentiment Analysis</h3>
-            <textarea id="sentimentText" placeholder="Enter text for sentiment analysis..."></textarea>
-            <button onclick="analyzeSentiment()">Analyze</button>
-            <div id="sentimentResult"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-microchip text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">FlashAttention for LLMs</h3>
+                        <p class="text-gray-600 mb-4">
+                            Optimized Transformer inference with custom CUDA kernels, achieving 2.78 TFLOPS on GTX 1650 and 50% latency reduction.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">PyTorch</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">CUDA</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
+                        <i class="fas fa-brush text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Diffusion Model Acceleration</h3>
+                        <p class="text-gray-600 mb-4">
+                            Cut 256x256 image generation time by 45% using mixed precision training and kernel fusion techniques.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">PyTorch</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">CUDA</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
+                        <i class="fas fa-table-tennis text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Badminton Player Detection</h3>
+                        <p class="text-gray-600 mb-4">
+                            Real-time tracking system with 95% accuracy at 30 FPS using YOLOv8 and custom data augmentation.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">YOLOv8</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">OpenCV</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">PyTorch</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover">
+                    <div class="h-48 bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center">
+                        <i class="fas fa-memory text-6xl text-white opacity-80"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Custom KV Cache for LLMs</h3>
+                        <p class="text-gray-600 mb-4">
+                            Memory-efficient key-value cache design boosting inference throughput by 20% with 30% latency reduction.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">CUDA</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">PyTorch</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="blog" class="container">
-        <h2>Latest Articles</h2>
-        <div class="blog-posts" id="blogContainer">
-            <!-- Blog posts will be loaded dynamically -->
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Get In Touch</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-gradient-to-br from-blue-500 to-purple-600 p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
+                        <p class="mb-6">Let's discuss your AI/ML needs or potential collaborations!</p>
+                        <div class="flex items-start mb-4">
+                            <div class="flex-shrink-0 mr-4">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p>satyamdixit6666@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start mb-4">
+                            <div class="flex-shrink-0 mr-4">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p>+91-8743962966</p>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-4">Connect With Me</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/Satyamdixit6" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8">
+                        <form>
+                            <div class="mb-4">
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <footer id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="mailto:your@email.com"><i class="fas fa-envelope"></i></a>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <span class="text-xl font-bold">Satyam <span class="gradient-text">Dixit</span></span>
+                    <p class="text-gray-400 mt-1">Deep Learning Engineer</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://github.com/Satyamdixit6" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/your-profile" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Satyam Dixit. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            const mobileMenu = document.querySelector('.md\\:hidden + .md\\:hidden');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
