@@ -3,426 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Learning Specialist | Satyam Dixit</title>
+    <title>AI Specialist | Satyam Dixit</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Light Gray Background */
-        }
-        
-        .highlight-text {
-            color: #2563eb; /* Blue 600 */
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        .typewriter {
-            overflow: hidden;
-            border-right: .15em solid #2563eb; /* Blue 600 */
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .1em; /* Adjusted letter spacing */
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #2563eb; } /* Blue 600 */
-        }
+        /* Light Theme CSS */
+        body { font-family: 'Inter', sans-serif; background-color: #f9fafb; /* Gray 50 */ color: #111827; /* Gray 900 */ }
+        .highlight-text { color: #4f46e5; /* Indigo 600 */ }
+        .mono-tag { font-family: 'Roboto Mono', monospace; background-color: #eef2ff; /* Indigo 50 */ color: #4338ca; /* Indigo 700 */ padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-size: 0.8rem; }
+        input:focus, textarea:focus, button:focus, select:focus { outline: none; box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5); border-color: #6366f1; }
+        input[type="text"], input[type="email"], textarea, select, input[type="password"], input[type="url"] { border: 1px solid #d1d5db; background-color: #ffffff; border-radius: 0.375rem; padding: 0.5rem 0.75rem; color: #111827; }
+        input[type="file"] { border-radius: 0.375rem; border: 1px solid #d1d5db; background-color: #ffffff; color: #4b5563; }
+        input[type="file"]::file-selector-button { padding: 0.5rem 1rem; border-radius: 0.375rem 0 0 0.375rem; border: none; border-right: 1px solid #d1d5db; background-color: #f3f4f6; color: #374151; cursor: pointer; transition: background-color 0.2s ease-in-out; font-weight: 500; margin-right: 1rem; }
+        input[type="file"]::file-selector-button:hover { background-color: #e5e7eb; }
+        .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; }
+        .result-box { background-color: #f3f4f6; border: 1px solid #e5e7eb; color: #1f2937; min-height: 6rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.25rem; white-space: pre-wrap; font-size: 0.8rem; }
+        canvas { max-width: 100%; border: 1px solid #d1d5db; background-color: #e5e7eb; }
+        .card { background-color: white; border: 1px solid #e5e7eb; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.07), 0 1px 2px 0 rgba(0,0,0,0.05); transition: box-shadow 0.2s ease-in-out; }
+        .card:hover { box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1), 0 2px 4px 0 rgba(0,0,0,0.06); }
+        .info-box { background-color: #eef2ff; border: 1px solid #c7d2fe; color: #3730a3; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
+        .info-box a { color: #4338ca; font-weight: 500; text-decoration: underline; }
+         /* Scrollbar styles */
+        .scrollable::-webkit-scrollbar { width: 6px; }
+        .scrollable::-webkit-scrollbar-track { background: #f1f5f9; }
+        .scrollable::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .scrollable::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .scrollable { scrollbar-width: thin; scrollbar-color: #cbd5e1 #f1f5f9; }
     </style>
 </head>
-<body class="min-h-screen bg-gray-100">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+<body class="min-h-screen bg-gray-50">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <span class="text-xl font-bold text-gray-900">Satyam<span class="highlight-text">Dixit</span></span>
-                </div>
+                <div class="flex items-center"><span class="text-xl font-bold text-gray-900">Satyam<span class="highlight-text">Dixit</span></span></div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition-colors">Skills</a>
-                    <a href="#projects" class="text-gray-700 hover:text-blue-600 transition-colors">Projects</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                    <a href="#about" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">About</a>
+                    <a href="#skills" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Skills</a>
+                    <a href="#projects" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Demos</a>
+                    {/* <a href="#image-gen" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Image Gen</a> */}
+                    <a href="#contact" class="text-gray-600 hover:text-indigo-600 transition-colors font-medium">Contact</a>
                 </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
+                <div class="md:hidden flex items-center"><button class="text-gray-500 hover:text-gray-900 focus:outline-none"><i class="fas fa-bars text-xl"></i></button></div>
             </div>
         </div>
     </nav>
 
-    <section class="py-20 px-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
-                    <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-                        Hi, I'm <span class="highlight-text">Satyam Dixit</span>
-                    </h1>
-                    <div class="typewriter text-2xl md:text-3xl font-medium text-gray-700 mb-8 mx-auto md:mx-0" style="width: fit-content;">
-                        Deep Learning Specialist
-                    </div>
-                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
-                        I design and build intelligent systems leveraging deep learning, specializing in Computer Vision, NLP, Generative AI, and high-performance computing with PyTorch and CUDA.
-                    </p>
-                    <div class="flex space-x-4 justify-center md:justify-start">
-                        <a href="#contact" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-all">
-                            Get In Touch
-                        </a>
-                        <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition-all">
-                            View My Projects
-                        </a>
-                    </div>
-                </div>
-                <div class="md:w-1/2 flex justify-center">
-                     <div class="relative w-64 h-64 md:w-80 md:h-80">
-                         <div class="absolute inset-0 bg-blue-200 rounded-full opacity-30 blur-2xl"></div>
-                         <div class="relative w-full h-full flex items-center justify-center">
-                            <div class="w-56 h-56 md:w-72 md:h-72 bg-white rounded-full shadow-lg overflow-hidden border-4 border-white">
-                                <img src="assets/images/profile.jpg" alt="Satyam Dixit" class="w-full h-full object-cover">
-                            </div>
-                         </div>
-                    </div>
-                </div>
+    <section class="py-24 px-4 bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-8 inline-block rounded-full border-2 border-indigo-200 shadow-md overflow-hidden">
+                <img src="assets/images/profile.jpg" alt="Satyam Dixit" class="w-32 h-32 md:w-40 md:h-40 object-cover">
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4"> Hi, I'm <span class="highlight-text">Satyam Dixit</span> </h1>
+            <p class="text-xl md:text-2xl font-medium text-gray-700 mb-8"> AI Specialist | Building Intelligent Solutions </p>
+            <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto"> Passionate about leveraging cutting-edge AI, particularly large language models and computer vision, to solve complex problems and create impactful applications. </p>
+            <div class="flex space-x-4 justify-center">
+                <a href="#projects" class="px-8 py-3 bg-indigo-600 text-white rounded-md shadow-lg hover:bg-indigo-700 transition-all text-base font-semibold"> View Demos </a>
+                <a href="#contact" class="px-8 py-3 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-100 hover:border-gray-400 transition-all text-base font-semibold"> Get In Touch </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-16 bg-white">
+    <section id="about" class="py-20 bg-white">
+       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-16"> <h2 class="text-3xl font-bold text-gray-900 mb-3">About Me</h2> <div class="w-24 h-1 bg-indigo-500 mx-auto"></div> </div> <div class="text-left"> <p class="text-lg text-gray-700 mb-6"> I am an AI Specialist with a deep focus on developing and deploying robust machine learning models. My primary areas of expertise include Natural Language Processing (NLP), particularly working with Large Language Models (LLMs), and Computer Vision (CV). </p> <p class="text-lg text-gray-700 mb-6"> My journey involves exploring everything from foundational concepts to state-of-the-art architectures like Transformers. I enjoy the challenge of optimizing models for performance (including work with PyTorch and CUDA) and building end-to-end AI systems that deliver real-world value. I'm constantly learning and experimenting with new techniques in this rapidly evolving field. </p> <p class="text-lg text-gray-700"> Let's connect and discuss how AI can drive innovation! </p> </div> </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-16"> <h2 class="text-3xl font-bold text-gray-900 mb-3">Core Skills</h2> <div class="w-24 h-1 bg-indigo-500 mx-auto"></div> </div> <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 text-center"> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-brain text-3xl md:text-4xl text-indigo-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">LLMs / NLP</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-eye text-3xl md:text-4xl text-purple-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">Computer Vision</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fab fa-python text-3xl md:text-4xl text-yellow-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">Python</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-layer-group text-3xl md:text-4xl text-red-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">PyTorch</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-microchip text-3xl md:text-4xl text-green-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">CUDA</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-network-wired text-3xl md:text-4xl text-blue-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">API Development</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-server text-3xl md:text-4xl text-gray-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">Model Deployment</h4> </div> <div class="p-5 md:p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"> <i class="fas fa-cogs text-3xl md:text-4xl text-teal-500 mb-3 md:mb-4"></i> <h4 class="text-base md:text-lg font-semibold text-gray-800">MLOps Concepts</h4> </div> </div> </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-white border-t border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">About Me</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-3">AI Demonstrations</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore different ways to interact with AI models, from lightweight browser demos to powerful cloud APIs.</p>
+                 <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div>
             </div>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                     <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
-                        <img src="assets/images/profile.jpg" alt="Satyam Dixit" class="w-full h-full object-cover">
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Tier 1: In-Browser Demos (Client-Side)</h3>
+                <p class="text-center text-sm text-gray-500 mb-8 max-w-xl mx-auto">These basic demos run small ONNX models directly in your browser using WebAssembly or WebGPU. Quality is limited, but they work offline after the first load.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6 flex flex-col">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2"><i class="fas fa-camera mr-2 text-indigo-500"></i>Vision (Captioning)</h4>
+                        <p class="text-gray-600 text-xs mb-3 flex-grow">Model: <code class="mono-tag !text-xs">vit-gpt2-img-cap</code><br/>Runs entirely in browser.</p>
+                        <div class="border border-gray-200 rounded-lg p-3 mt-auto bg-gray-50 space-y-3">
+                             <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-sm"></div>
+                             <div class="w-full h-32 bg-gray-200 rounded border border-gray-300 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-400 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
+                             <button id="p1_generateCaptionBtn" class="w-full px-3 py-1.5 bg-indigo-500 text-white rounded text-sm hover:bg-indigo-600 disabled:opacity-50">Generate</button>
+                             <div id="p1_status" class="demo-status text-gray-500"></div><div id="p1_captionResult" class="w-full p-1.5 result-box text-xs !min-h-[2rem]"></div>
+                        </div>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2"><i class="fas fa-comment-dots mr-2 text-purple-500"></i>Language (Generation)</h4>
+                        <p class="text-gray-600 text-xs mb-3 flex-grow">Model: <code class="mono-tag !text-xs">flan-t5-small</code><br/>Runs entirely in browser.</p>
+                        <div class="border border-gray-200 rounded-lg p-3 mt-auto bg-gray-50 space-y-3">
+                             <div><label for="p2_textPrompt" class="block text-gray-700 text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-sm placeholder-gray-400" placeholder="Translate..."></textarea></div>
+                             <button id="p2_generateTextBtn" class="w-full px-3 py-1.5 bg-indigo-500 text-white rounded text-sm hover:bg-indigo-600 disabled:opacity-50">Generate</button>
+                            <div id="p2_status" class="demo-status text-gray-500"></div><div id="p2_generationResult" class="w-full p-1.5 result-box text-xs !min-h-[4rem]"></div>
+                        </div>
+                    </div>
+                    <div class="card p-6 flex flex-col">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-2"><i class="fas fa-code mr-2 text-green-500"></i>Coding (Generation)</h4>
+                        <p class="text-gray-600 text-xs mb-3 flex-grow">Model: <code class="mono-tag !text-xs">flan-t5-small</code><br/>(Small general model - basic code style)</p>
+                        <div class="border border-gray-200 rounded-lg p-3 mt-auto bg-gray-50 space-y-3">
+                            <div><label for="p3_codePrompt" class="block text-gray-700 text-xs font-medium mb-1">Code Prompt:</label><textarea id="p3_codePrompt" rows="2" class="w-full p-1.5 text-sm font-mono placeholder-gray-400" placeholder="def example():"></textarea></div>
+                            <button id="p3_generateCodeBtn" class="w-full px-3 py-1.5 bg-indigo-500 text-white rounded text-sm hover:bg-indigo-600 disabled:opacity-50">Generate</button>
+                            <div id="p3_status" class="demo-status text-gray-500"></div><div id="p3_codeResult" class="w-full p-1.5 result-box text-xs font-mono !min-h-[4rem]"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <p class="text-lg text-gray-600 mb-6">
-                        I'm Satyam Dixit, a passionate Deep Learning Specialist focused on building and deploying robust machine learning models. My core expertise lies in Computer Vision, Natural Language Processing, and Generative AI.
-                    </p>
-                    <p class="text-lg text-gray-600 mb-6">
-                        I thrive on tackling complex challenges and creating innovative solutions using state-of-the-art neural networks. My experience ranges from foundational CNNs and RNNs to advanced Transformers and custom architectures, often optimized using PyTorch and CUDA.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">PyTorch</span>
-                        <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">CUDA</span>
-                        <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">TensorFlow</span>
-                        <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">Python</span>
-                        <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Computer Vision</span>
-                        <span class="px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium">NLP</span>
-                         <span class="px-4 py-2 bg-pink-100 text-pink-800 rounded-full text-sm font-medium">Generative AI</span>
-                    </div>
-                </div>
             </div>
+
+            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-200">
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Tier 2: Powerful Models via Cloud API</h3>
+                <p class="text-center text-sm text-gray-500 mb-6 max-w-xl mx-auto">Interact with larger, higher-quality models hosted on Hugging Face's Inference API.</p>
+                <div class="max-w-xl mx-auto mb-8 p-4 info-box">
+                     <label for="hf_api_token" class="block font-medium mb-2 text-sm">Enter HF API Token (Optional):</label>
+                     <input type="password" id="hf_api_token" class="w-full p-2 text-sm placeholder-gray-500 bg-white" placeholder="Paste your READ token (hf_...)">
+                     <p class="text-xs mt-1">A Hugging Face token is needed to use these API demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. It's used only by your browser.</p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                     <div class="card p-6"> <h4 class="text-lg font-semibold text-gray-800 mb-4 text-center">Vision Models (API)</h4> <div class="space-y-4"> <div> <label for="p4_imageUrl" class="block text-gray-700 text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm placeholder-gray-400" placeholder="https://... image url ...jpg"> </div> <div> <label for="p4_vlmModelSelect" class="block text-gray-700 text-xs font-medium mb-1">Model:</label> <select id="p4_vlmModelSelect" class="w-full p-2 text-sm"> <option value="Salesforce/blip-image-captioning-large">BLIP Large (Caption)</option> <option value="llava-hf/llava-1.5-7b-hf">LLaVA 1.5 7B (VQA)</option> <option value="Salesforce/blip-vqa-base">BLIP VQA Base</option> </select> </div> <div id="p4_vqaPromptDiv" class="hidden"> <label for="p4_vqaPrompt" class="block text-gray-700 text-xs font-medium mb-1">Question (for VQA):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm placeholder-gray-400" placeholder="What is in the image?"> </div> <button id="p4_runVlmBtn" class="w-full px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 disabled:opacity-50">Run via API</button> <div id="p4_vlmStatus" class="demo-status text-gray-500"></div> <div id="p4_vlmResult" class="w-full p-2 result-box text-xs"></div> </div> </div>
+                     <div class="card p-6"> <h4 class="text-lg font-semibold text-gray-800 mb-4 text-center">Language Models (API)</h4> <div class="space-y-4"> <div> <label for="p5_lmPrompt" class="block text-gray-700 text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm placeholder-gray-400" placeholder="Explain quantum computing..."></textarea> </div> <div> <label for="p5_lmModelSelect" class="block text-gray-700 text-xs font-medium mb-1">Model:</label> <select id="p5_lmModelSelect" class="w-full p-2 text-sm"> <option value="microsoft/Phi-3-mini-4k-instruct">Phi-3 Mini</option> <option value="deepseek-ai/deepseek-llm-7b-chat">DeepSeek LLM 7B</option> <option value="mistralai/Mistral-7B-Instruct-v0.2">Mistral 7B</option> <option value="meta-llama/Meta-Llama-3-8B-Instruct">Llama 3 8B</option> </select> </div> <button id="p5_runLmBtn" class="w-full px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 disabled:opacity-50">Run via API</button> <div id="p5_lmStatus" class="demo-status text-gray-500"></div> <div id="p5_lmResult" class="w-full p-2 result-box text-xs"></div> </div> </div>
+                     <div class="card p-6"> <h4 class="text-lg font-semibold text-gray-800 mb-4 text-center">Coding Assistants (API)</h4> <div class="space-y-4"> <div> <label for="p6_codePrompt" class="block text-gray-700 text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono placeholder-gray-400" placeholder="Write python function..."></textarea> </div> <div> <label for="p6_coderModelSelect" class="block text-gray-700 text-xs font-medium mb-1">Model:</label> <select id="p6_coderModelSelect" class="w-full p-2 text-sm"> <option value="deepseek-ai/deepseek-coder-1.3b-instruct">DeepSeek Coder 1.3B</option> <option value="codellama/CodeLlama-7b-Instruct-hf">CodeLlama 7B</option> <option value="microsoft/Phi-3-mini-4k-instruct">Phi-3 Mini</option> </select> </div> <button id="p6_runCoderBtn" class="w-full px-4 py-2 bg-green-600 text-white rounded-md text-sm hover:bg-green-700 disabled:opacity-50">Run via API</button> <div id="p6_coderStatus" class="demo-status text-gray-500"></div> <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono"></div> </div> </div>
+                 </div>
+            </div>
+
+             <div id="local-run" class="mb-16 pt-10 border-t border-gray-200">
+                 <h3 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Tier 3: Running Models Locally on Your PC</h3>
+                 <p class="text-center text-sm text-gray-500 mb-8 max-w-2xl mx-auto">For the best performance, privacy, and access to the most powerful models (like large DeepSeek, Llama 3, CodeLlama, BitNet variants etc.), you need to run them directly on your own computer using dedicated tools. This webpage cannot run them directly for you.</p>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                     <div class="info-box text-center">
+                         <h4 class="font-semibold mb-2">Recommended Tools:</h4>
+                         <ul class="list-disc list-inside text-left space-y-1">
+                             <li><a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a> (Easy CLI/API)</li>
+                             <li><a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer">LM Studio</a> (GUI)</li>
+                             <li><a href="https://jan.ai/" target="_blank" rel="noopener noreferrer">Jan</a> (GUI, Open Source)</li>
+                             <li><a href="https://github.com/ggerganov/llama.cpp" target="_blank" rel="noopener noreferrer">llama.cpp</a> (Core Engine)</li>
+                             <li><a href="https://pinokio.computer/" target="_blank" rel="noopener noreferrer">Pinokio</a> (Browser for AI apps)</li>
+                         </ul>
+                         <p class="mt-3 text-xs">Install one of these, then download models (often in GGUF format) within the tool or from Hugging Face.</p>
+                     </div>
+                      <div class="info-box text-center">
+                          <h4 class="font-semibold mb-2">Example Models to Try Locally:</h4>
+                          <p class="text-xs">(Check compatibility with your chosen tool & hardware)</p>
+                         <ul class="list-disc list-inside text-left space-y-1 mt-2">
+                             <li>DeepSeek (LLM & Coder versions)</li>
+                             <li>Llama 3 (8B, 70B)</li>
+                             <li>Mistral / Mixtral</li>
+                             <li>Phi-3 (Mini, Small, Medium)</li>
+                             <li>CodeLlama</li>
+                         </ul>
+                     </div>
+                      <div class="info-box text-center">
+                           <h4 class="font-semibold mb-2">Why Use These Tools?</h4>
+                            <ul class="list-disc list-inside text-left space-y-1 mt-2">
+                               <li>Run much larger models.</li>
+                               <li>Better performance (uses your GPU/CPU fully).</li>
+                               <li>Offline usage possible.</li>
+                               <li>Full data privacy.</li>
+                               <li>More customization options.</li>
+                           </ul>
+                      </div>
+                 </div>
+            </div>
+
+            <div id="image-gen" class="pt-10 border-t border-gray-200">
+                 <h3 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Image Generation</h3>
+                 <p class="text-center text-sm text-gray-500 mb-8 max-w-xl mx-auto">Area for future image generation demos (e.g., Stable Diffusion). This might use cloud APIs or require local tools like Automatic1111/ComfyUI.</p>
+                 <div class="text-center p-10 bg-gray-100 rounded-lg border border-dashed border-gray-300">
+                     <i class="fas fa-image text-4xl text-gray-400"></i>
+                     <p class="mt-2 text-gray-500">Image Generation Demo Coming Soon...</p>
+                 </div>
+            </div>
+
         </div>
     </section>
 
-    <section id="skills" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Core Skills & Expertise</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-layer-group text-2xl text-blue-600"></i> </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">PyTorch Development</h3>
-                    <p class="text-gray-600">
-                        Extensive experience in building, training, and deploying complex deep learning models using PyTorch's ecosystem.
-                    </p>
-                </div>
-                 <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-microchip text-2xl text-green-600"></i> </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">CUDA & GPU Acceleration</h3>
-                    <p class="text-gray-600">
-                        Proficient in optimizing deep learning workflows using CUDA for high-performance GPU computing.
-                    </p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-brain text-2xl text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Neural Network Architectures</h3>
-                    <p class="text-gray-600">
-                         Deep understanding of CNNs, RNNs, Transformers, VLMs, and other architectures for diverse AI tasks.
-                    </p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-6 mx-auto">
-                         <i class="fas fa-eye text-2xl text-yellow-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Computer Vision</h3>
-                    <p class="text-gray-600">
-                        Developing systems for image/video analysis, including classification, detection, segmentation, and generation.
-                    </p>
-                </div>
-                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-language text-2xl text-red-600"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Natural Language Processing</h3>
-                    <p class="text-gray-600">
-                        Building models for text understanding, generation, summarization, sentiment analysis, and conversational AI.
-                    </p>
-                </div>
-                 <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-6 mx-auto">
-                        <i class="fas fa-server text-2xl text-indigo-600"></i> </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Model Deployment & MLOps</h3>
-                    <p class="text-gray-600">
-                        Experience in deploying models to production environments and understanding MLOps principles.
-                    </p>
-                </div>
-            </div>
-        </div>
+
+    <section id="contact" class="py-20 bg-gray-50 border-t border-gray-200">
+       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-12"> <h2 class="text-3xl font-bold text-gray-900 mb-3">Contact Me</h2> <p class="text-gray-600">Let's discuss AI, potential collaborations, or just connect!</p> <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div> </div> <div class="bg-white p-8 rounded-lg shadow-md border border-gray-200"> <form action="#" method="POST"> <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"> <div> <label for="name" class="block text-gray-700 font-medium mb-2 text-sm">Name</label> <input type="text" id="name" name="name" required class="w-full"> </div> <div> <label for="email" class="block text-gray-700 font-medium mb-2 text-sm">Email</label> <input type="email" id="email" name="email" required class="w-full"> </div> </div> <div class="mb-6"> <label for="subject" class="block text-gray-700 font-medium mb-2 text-sm">Subject</label> <input type="text" id="subject" name="subject" class="w-full"> </div> <div class="mb-6"> <label for="message" class="block text-gray-700 font-medium mb-2 text-sm">Message</label> <textarea id="message" name="message" rows="5" required class="w-full"></textarea> </div> <div class="text-center"> <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-indigo-600 text-white rounded-md shadow-lg hover:bg-indigo-700 transition-all duration-300 font-semibold"> Send Message </button> </div> </form> <div class="mt-8 pt-6 border-t border-gray-200 text-center"> <p class="text-sm text-gray-600 mb-3">Or reach out directly:</p> <p class="text-sm text-gray-800 font-medium"> <i class="fas fa-envelope mr-2 text-indigo-600"></i> satyam.dixit@example.com </p> </div> </div> </div>
     </section>
 
-    <section id="projects" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Featured Projects</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <img src="assets/images/vlm_placeholder.jpg" alt="Vision LLM Project" class="w-full h-full object-cover">
-                         </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Vision Language Model (VLM)</h3>
-                        <p class="text-gray-600 mb-4">
-                            Developed a multi-modal model capable of understanding visual input (images/videos) and generating relevant textual descriptions or answers.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
-                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">Computer Vision</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
-                        </div>
-                        <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
-                         </div>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                        <img src="assets/images/lm_placeholder.jpg" alt="Language Model Project" class="w-full h-full object-cover">
-                         </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Language Model</h3>
-                        <p class="text-gray-600 mb-4">
-                            Built and fine-tuned a large language model tailored for specific downstream tasks such as advanced text generation, summarization, and domain-specific Q&A.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
-                             <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">Generative AI</span>
-                        </div>
-                         <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
-                    </div>
-                </div>
-
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center">
-                         <img src="assets/images/coding_assistant_placeholder.jpg" alt="Coding Assistant Project" class="w-full h-full object-cover">
-                         </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">AI Coding Assistant</h3>
-                        <p class="text-gray-600 mb-4">
-                            Created an intelligent coding assistant using LLMs to provide contextual code suggestions, automated debugging help, and natural language documentation lookup.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
-                             <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
-                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium">Developer Tools</span>
-                         </div>
-                         <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
-                    </div>
-                </div>
-
-            </div>
-            <div class="text-center mt-12">
-                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition-all">
-                    View All Projects on GitHub <i class="fab fa-github ml-2"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">Get In Touch</h2>
-                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
-            </div>
-            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-                <div class="md:flex">
-                    <div class="md:w-1/2 bg-blue-600 p-8 text-white">
-                        <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
-                        <p class="mb-6 opacity-90">Interested in collaborating or discussing AI innovations? Feel free to reach out!</p>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i class="fas fa-envelope text-xl mr-4 mt-1 flex-shrink-0"></i>
-                                <div>
-                                    <h4 class="font-medium">Email</h4>
-                                    <p class="opacity-90">satyam.dixit@example.com</p> </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-phone-alt text-xl mr-4 mt-1 flex-shrink-0"></i>
-                                <div>
-                                    <h4 class="font-medium">Phone</h4>
-                                    <p class="opacity-90">+1 (123) 456-7890</p> </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-xl mr-4 mt-1 flex-shrink-0"></i>
-                                <div>
-                                    <h4 class="font-medium">Location</h4>
-                                    <p class="opacity-90">India</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-8">
-                            <h4 class="font-medium mb-4">Connect With Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
-                                     <i class="fab fa-twitter"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2 p-8">
-                        <form action="#" method="POST"> <div class="mb-4">
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div class="mb-4">
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div class="mb-4">
-                                <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            </div>
-                            <div class="mb-6">
-                                <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                            </div>
-                            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0 text-center md:text-left">
-                     <span class="text-xl font-bold">Satyam<span class="text-blue-400">Dixit</span></span>
-                    <p class="text-gray-400 mt-1 text-sm">Deep Learning Specialist</p>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-linkedin-in text-xl"></i>
-                    </a>
-                    <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-github text-xl"></i>
-                    </a>
-                    <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
-                <p>&copy; 2025 Satyam Dixit. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="bg-gray-800 text-white py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <div class="mb-4"> <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-linkedin-in text-xl"></i> </a> <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-github text-xl"></i> </a> <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-twitter text-xl"></i> </a> </div> <p class="text-gray-400 text-sm"> &copy; <span id="footerYear"></span> Satyam Dixit. All rights reserved. </p> </div>
     </footer>
 
-    <script>
-        // Mobile menu toggle placeholder
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.querySelector('.md\\:hidden button');
-            const navLinks = document.querySelector('.hidden.md\\:flex'); // Get the desktop links container
+    <script type="module">
+      // Import the pipeline function from Transformers.js CDN
+      import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
 
-            if (mobileMenuButton) {
-                mobileMenuButton.addEventListener('click', function() {
-                    // Basic toggle - you might want a more sophisticated implementation
-                    // This example doesn't create a dropdown, just alerts.
-                     alert('Mobile menu needs implementation: Toggle visibility of navigation links.');
-                    // Example of how you *might* toggle a mobile menu element if it existed:
-                    // const mobileMenu = document.getElementById('mobile-menu');
-                    // if (mobileMenu) {
-                    //    mobileMenu.classList.toggle('hidden');
-                    // }
+      // --- Configuration ---
+      console.log("Initializing Transformers.js v2.17.1...");
+      // Set initial statuses
+      ['p1_status', 'p2_status', 'p3_status', 'p4_vlmStatus', 'p5_lmStatus', 'p6_coderStatus'].forEach(id => setStatus(id, 'Ready.'));
+
+      env.allowLocalModels = false;
+      env.backends.onnx.executionProviders = ['webgpu', 'wasm'];
+
+      // --- Model Pipeline Instances (for browser demos) ---
+      let p1_captioner = null;
+      let p2_generator = null;
+      let p3_code_generator = null;
+
+       // --- Constants for Browser Model Names ---
+      const P1_MODEL_BROWSER = 'Xenova/vit-gpt2-image-captioning'; // Smallest reliable captioner
+      const P2_MODEL_BROWSER = 'Xenova/flan-t5-small'; // Smallest reliable text/code gen
+      const P3_MODEL_BROWSER = 'Xenova/flan-t5-small';
+
+      // --- Helper Functions ---
+      function setStatus(elementId, text, isError = false) { const element = document.getElementById(elementId); if (element) { element.textContent = text; element.className = `demo-status text-xs text-center ${isError ? 'text-red-500' : 'text-gray-500'}`; if(isError) console.error(`[${elementId}] ${text}`); else console.log(`[${elementId}] ${text}`); } else { /* Ignore */ } }
+      function clearStatusDelay(elementId, delay = 4000) { setTimeout(() => { const element = document.getElementById(elementId); if (element && !element.textContent.toLowerCase().includes('error') && !element.textContent.toLowerCase().includes('loading') && !element.textContent.toLowerCase().includes('downloading')) { setStatus(elementId, 'Ready.'); } }, delay); }
+      function handleProgress(elementId, data) { let statusText = 'Loading model...'; try { const filename = data.file ? data.file.split(/[\\/]/).pop() : 'model file'; if (data.status === 'progress') { const percentage = data.total ? ((data.downloaded / data.total) * 100).toFixed(1) : (data.downloaded / 1024 / 1024).toFixed(1) + 'MB'; statusText = `Downloading ${filename} (${percentage}${data.total ? '%' : ''})`; } else if (data.status === 'ready' || data.status === 'loaded') { statusText = `Model ready: ${filename}`; } else if (data.status === 'initiate') { statusText = `Initiating: ${filename}`; } else { statusText = `Model status: ${data.status} (${filename})`; } } catch (e) { console.warn("Error processing progress data:", data, e); statusText = `Model status: ${data?.status || 'loading...'}`; } setStatus(elementId, statusText); }
+
+       // --- Initialize Browser Demo Pipelines Lazily ---
+      async function getCaptioner() { if (!p1_captioner) { setStatus('p1_status', 'Loading pipeline...'); p1_captioner = await pipeline('image-to-text', P1_MODEL_BROWSER, { progress_callback: data => handleProgress('p1_status', data) }); } return p1_captioner; }
+      async function getTextGenerator(statusId = 'p2_status', modelName = P2_MODEL_BROWSER) {
+           let pipelineInstance = statusId === 'p2_status' ? p2_generator : p3_code_generator;
+           if (!pipelineInstance) {
+                setStatus(statusId, 'Loading pipeline...');
+                // T5 models work best with text2text-generation or summarization tasks
+                // Let's default to text2text-generation for flan-t5
+                try {
+                     pipelineInstance = await pipeline('text2text-generation', modelName, { progress_callback: data => handleProgress(statusId, data) });
+                } catch (e) {
+                    console.error(`Failed to load ${modelName} as text2text, trying translation...`, e);
+                    setStatus(statusId, 'Trying translation pipeline...'); // Fallback for T5
+                    pipelineInstance = await pipeline('translation', modelName, { progress_callback: data => handleProgress(statusId, data) });
+                }
+
+                if (statusId === 'p2_status') p2_generator = pipelineInstance;
+                else p3_code_generator = pipelineInstance;
+           }
+           return pipelineInstance;
+      }
+
+      // --- Project 1: Image Captioning (Browser Demo) ---
+      const p1_imageUpload = document.getElementById('p1_imageUpload');
+      const p1_imagePreview = document.getElementById('p1_imagePreview');
+      const p1_previewText = document.getElementById('p1_previewText');
+      const p1_generateCaptionBtn = document.getElementById('p1_generateCaptionBtn');
+      const p1_captionResult = document.getElementById('p1_captionResult');
+      const P1_STATUS_ID = 'p1_status';
+      let p1_imageDataUrl = null;
+
+      if (p1_imageUpload) { p1_imageUpload.addEventListener('change', (event) => { /* file reading same */ const file = event.target.files[0]; p1_imageDataUrl = null; p1_imagePreview.classList.add('hidden'); p1_previewText.classList.remove('hidden'); p1_captionResult.textContent = ''; setStatus(P1_STATUS_ID, 'Ready.'); if (file && file.type.startsWith('image/')) { const reader = new FileReader(); reader.onload = (e) => { p1_imageDataUrl = e.target.result; p1_imagePreview.src = p1_imageDataUrl; p1_imagePreview.classList.remove('hidden'); p1_previewText.classList.add('hidden'); setStatus(P1_STATUS_ID, 'Image loaded, ready.'); }; reader.onerror = (e) => { setStatus(P1_STATUS_ID, 'Error reading file.', true); console.error("FileReader error:", e); }; reader.readAsDataURL(file); } else if (file) { setStatus(P1_STATUS_ID, 'Error: Please select image.', true); event.target.value = ''; } }); }
+      if (p1_generateCaptionBtn) {
+          p1_generateCaptionBtn.addEventListener('click', async () => { /* caption generation same */ if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Select image first.', true); return; } p1_generateCaptionBtn.disabled = true; p1_captionResult.textContent = ''; setStatus(P1_STATUS_ID, `Initializing ${P1_MODEL_BROWSER.split('/').pop()}...`); try { const captioner = await getCaptioner(); setStatus(P1_STATUS_ID, 'Generating caption...'); if (!captioner) throw new Error("Pipeline init failed."); const output = await captioner(p1_imageDataUrl); console.log('Raw P1 output:', output); if (output && Array.isArray(output) && output.length > 0 && typeof output[0].generated_text === 'string') { p1_captionResult.textContent = output[0].generated_text; setStatus(P1_STATUS_ID, 'Caption generated (basic).'); clearStatusDelay(P1_STATUS_ID); } else { throw new Error('Unexpected output format.'); } } catch (error) { console.error('P1 Error:', error); setStatus(P1_STATUS_ID, `Error: ${error.message || 'Failed.'}`, true); p1_captionResult.textContent = `Error. Check console (F12).`; } finally { p1_generateCaptionBtn.disabled = false; } });
+      }
+
+       // --- Project 2: Text Generation (Browser Demo - flan-t5-small) ---
+      const p2_textPrompt = document.getElementById('p2_textPrompt');
+      const p2_generateTextBtn = document.getElementById('p2_generateTextBtn');
+      const p2_generationResult = document.getElementById('p2_generationResult');
+      const P2_STATUS_ID = 'p2_status';
+
+       if (p2_generateTextBtn) {
+          p2_generateTextBtn.addEventListener('click', async () => { /* T5 generation same */ const promptText = p2_textPrompt.value.trim(); if (!promptText) { setStatus(P2_STATUS_ID, 'Enter prompt.', true); return; } p2_generateTextBtn.disabled = true; p2_generationResult.textContent = ''; setStatus(P2_STATUS_ID, `Initializing ${P2_MODEL_BROWSER.split('/').pop()}...`); try { const generator = await getTextGenerator(P2_STATUS_ID, P2_MODEL_BROWSER); setStatus(P2_STATUS_ID, 'Generating text...'); if (!generator) throw new Error("Pipeline init failed."); const generationParams = { max_new_tokens: 75, /* T5 often doesn't need beams */ }; const output = await generator(promptText, generationParams); console.log('Raw P2 output:', output); let resultText = ''; if (output && Array.isArray(output) && output.length > 0) { resultText = output[0].generated_text || output[0].translation_text || output[0].summary_text; } if (resultText && typeof resultText === 'string') { p2_generationResult.textContent = resultText; setStatus(P2_STATUS_ID, 'Text generated (basic).'); clearStatusDelay(P2_STATUS_ID); } else { throw new Error('Unexpected output format.'); } } catch (error) { console.error('P2 Error:', error); setStatus(P2_STATUS_ID, `Error: ${error.message || 'Failed.'}`, true); } finally { p2_generateTextBtn.disabled = false; } });
+      }
+
+     // --- Project 3: Code-Style Text Generation (Browser Demo - flan-t5-small) ---
+      const p3_codePrompt = document.getElementById('p3_codePrompt');
+      const p3_generateCodeBtn = document.getElementById('p3_generateCodeBtn');
+      const p3_codeResult = document.getElementById('p3_codeResult');
+      const P3_STATUS_ID = 'p3_status';
+
+      if (p3_generateCodeBtn) {
+          p3_generateCodeBtn.addEventListener('click', async () => { /* T5 code-gen same */ const promptText = p3_codePrompt.value.trim(); if (!promptText) { setStatus(P3_STATUS_ID, 'Enter code prompt.', true); return; } p3_generateCodeBtn.disabled = true; p3_codeResult.textContent = ''; setStatus(P3_STATUS_ID, `Initializing ${P3_MODEL_BROWSER.split('/').pop()}...`); try { const generator = await getTextGenerator(P3_STATUS_ID, P3_MODEL_BROWSER); setStatus(P3_STATUS_ID, 'Generating completion...'); if (!generator) throw new Error("Pipeline init failed."); const generationParams = { max_new_tokens: 80 }; const output = await generator(promptText, generationParams); console.log('Raw P3 output:', output); let resultText = ''; if (output && Array.isArray(output) && output.length > 0) { resultText = output[0].generated_text || output[0].translation_text || output[0].summary_text; } if (resultText && typeof resultText === 'string') { p3_codeResult.textContent = resultText; setStatus(P3_STATUS_ID, 'Completion generated (basic).'); clearStatusDelay(P3_STATUS_ID); } else { throw new Error('Unexpected output format.'); } } catch (error) { console.error('P3 Error:', error); setStatus(P3_STATUS_ID, `Error: ${error.message || 'Failed.'}`, true); } finally { p3_generateCodeBtn.disabled = false; } });
+      }
+
+      // --- Powerful Model Section Logic (Using Hugging Face API) ---
+      const hfApiTokenInput = document.getElementById('hf_api_token');
+      const p4_imageUrl = document.getElementById('p4_imageUrl');
+      const p4_vlmModelSelect = document.getElementById('p4_vlmModelSelect');
+      const p4_runVlmBtn = document.getElementById('p4_runVlmBtn');
+      const p4_vlmStatus = document.getElementById('p4_vlmStatus');
+      const p4_vlmResult = document.getElementById('p4_vlmResult');
+      const p4_vqaPromptDiv = document.getElementById('p4_vqaPromptDiv');
+      const p4_vqaPrompt = document.getElementById('p4_vqaPrompt');
+      const P4_STATUS_ID = 'p4_vlmStatus';
+      const p5_lmPrompt = document.getElementById('p5_lmPrompt');
+      const p5_lmModelSelect = document.getElementById('p5_lmModelSelect');
+      const p5_runLmBtn = document.getElementById('p5_runLmBtn');
+      const p5_lmStatus = document.getElementById('p5_lmStatus');
+      const p5_lmResult = document.getElementById('p5_lmResult');
+      const P5_STATUS_ID = 'p5_lmStatus';
+      const p6_codePrompt = document.getElementById('p6_codePrompt');
+      const p6_coderModelSelect = document.getElementById('p6_coderModelSelect');
+      const p6_runCoderBtn = document.getElementById('p6_runCoderBtn');
+      const p6_coderStatus = document.getElementById('p6_coderStatus');
+      const p6_coderResult = document.getElementById('p6_coderResult');
+      const P6_STATUS_ID = 'p6_coderStatus';
+
+      // Toggle VQA prompt visibility
+      if (p4_vlmModelSelect) { p4_vlmModelSelect.addEventListener('change', () => { const selectedModel = p4_vlmModelSelect.value.toLowerCase(); p4_vqaPromptDiv.classList.toggle('hidden', !(selectedModel.includes('vqa') || selectedModel.includes('llava'))); }); /* Trigger change once on load */ p4_vlmModelSelect.dispatchEvent(new Event('change')); }
+
+      // Generic function to call HF Inference API
+      async function callHfInferenceApi(modelId, inputs, taskType, statusId, resultElement, buttonElement) {
+           const apiToken = hfApiTokenInput.value.trim();
+           if (!apiToken) { setStatus(statusId, 'Hugging Face API Token required.', true); return; }
+           setStatus(statusId, `Calling ${modelId.split('/').pop()} API...`);
+           if (buttonElement) buttonElement.disabled = true;
+            if (resultElement) resultElement.textContent = '';
+           const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
+           console.log(`Calling HF API: ${apiUrl} with inputs:`, inputs);
+           try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' },
+                    // Body structure depends on task type!
+                    body: JSON.stringify({
+                        inputs: inputs,
+                        options: { wait_for_model: true, use_cache: false } // Don't use cache for interactive demos
+                    })
                 });
-            }
-            
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        const offset = 80; // Adjust offset based on your fixed header height
-                        const bodyRect = document.body.getBoundingClientRect().top;
-                        const elementRect = targetElement.getBoundingClientRect().top;
-                        const elementPosition = elementRect - bodyRect;
-                        const offsetPosition = elementPosition - offset;
+                if (!response.ok) { let errorText = `API Error ${response.status}: ${response.statusText}`; try { const errorData = await response.json(); errorText += ` - ${errorData.error || JSON.stringify(errorData)}`; } catch (e) {} throw new Error(errorText); }
+                const result = await response.json();
+                console.log(`Raw API Response (${modelId}):`, result);
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
+                // --- Process Result (Simplified - needs refinement per model) ---
+                let displayText = 'Error processing response format.'; // Default error
+                 if (Array.isArray(result)) {
+                    if (result.length > 0) {
+                        if (taskType === 'vision-caption') displayText = result[0].generated_text || JSON.stringify(result[0]);
+                        else if (taskType === 'vision-vqa') displayText = result[0].answer || JSON.stringify(result[0]);
+                        else if (taskType === 'language' || taskType === 'coding') displayText = result[0].generated_text || JSON.stringify(result[0]);
+                        else displayText = JSON.stringify(result[0], null, 2); // fallback
+                    } else { displayText = "(Empty response array)"; }
+                 } else if (typeof result === 'object' && result !== null) { // Handle single object response (less common now)
+                     displayText = result.generated_text || result.answer || JSON.stringify(result, null, 2);
+                 } else { displayText = JSON.stringify(result, null, 2); } // Unexpected format
+                // --- End Result Processing ---
+
+                if (resultElement) resultElement.textContent = displayText;
+                setStatus(statusId, 'Result received from API.'); clearStatusDelay(statusId);
+           } catch (error) { console.error(`API Call Error (${modelId}):`, error); setStatus(statusId, `API Error: ${error.message}`, true); if (resultElement) resultElement.textContent = `Error calling API. Check console (F12).`; }
+           finally { if (buttonElement) buttonElement.disabled = false; }
+      }
+
+       // --- Event Listeners for Powerful Model Buttons ---
+       if (p4_runVlmBtn) {
+           p4_runVlmBtn.addEventListener('click', () => {
+                const imageUrl = p4_imageUrl.value.trim();
+                const selectedModel = p4_vlmModelSelect.value;
+                const isVqa = selectedModel.toLowerCase().includes('vqa') || selectedModel.toLowerCase().includes('llava');
+                const vqaPrompt = p4_vqaPrompt.value.trim();
+                if (!imageUrl) { setStatus(P4_STATUS_ID, 'Enter Image URL.', true); return; }
+                if (isVqa && !vqaPrompt) { setStatus(P4_STATUS_ID, 'Enter VQA Question.', true); return; }
+                // Input structure differs for HF API image tasks
+                // Captioning often just needs URL string, VQA needs structured input
+                let apiInputs = imageUrl; // Default for captioning
+                let taskType = 'vision-caption';
+                if (isVqa) {
+                    apiInputs = { image: imageUrl, question: vqaPrompt }; // Common structure for VQA
+                    taskType = 'vision-vqa';
+                     // LLaVA API structure is more complex, often requires specific prompt format
+                     // or direct image data, might fail with simple URL + question via std API.
+                     if (selectedModel.toLowerCase().includes('llava')) {
+                         console.warn("LLaVA API might require specific input handling not fully implemented here.");
+                         // Example prompt structure - might not work perfectly via JSON input
+                         apiInputs = `USER: <image>\n${vqaPrompt}\nASSISTANT:`;
+                         taskType = 'language'; // Treat LLaVA often as text-gen with image context (API dependent)
                     }
-                });
-            });
+                }
+                callHfInferenceApi(selectedModel, apiInputs, taskType, P4_STATUS_ID, p4_vlmResult, p4_runVlmBtn);
+           });
+       }
+       if (p5_runLmBtn) {
+           p5_runLmBtn.addEventListener('click', () => {
+                const prompt = p5_lmPrompt.value.trim();
+                const selectedModel = p5_lmModelSelect.value;
+                if (!prompt) { setStatus(P5_STATUS_ID, 'Enter Prompt.', true); return; }
+                callHfInferenceApi(selectedModel, prompt, 'language', P5_STATUS_ID, p5_lmResult, p5_runLmBtn);
+           });
+       }
+       if (p6_runCoderBtn) {
+            p6_runCoderBtn.addEventListener('click', () => {
+                const prompt = p6_codePrompt.value.trim();
+                const selectedModel = p6_coderModelSelect.value;
+                if (!prompt) { setStatus(P6_STATUS_ID, 'Enter Code Prompt.', true); return; }
+                callHfInferenceApi(selectedModel, prompt, 'coding', P6_STATUS_ID, p6_coderResult, p6_runCoderBtn);
+           });
+       }
 
-            // Optional: Service Worker Registration (keep if you plan to use PWA features)
-            // if ('serviceWorker' in navigator) {
-            //     navigator.serviceWorker.register('/sw.js').then(reg => {
-            //         console.log('Service Worker registered:', reg);
-            //     }).catch(err => {
-            //         console.error('Service Worker registration failed:', err);
-            //     });
-            // }
-        });
+      // --- General Purpose Scripts ---
+      document.addEventListener('DOMContentLoaded', function() { /* ... Smooth scroll, mobile menu placeholder ... */ console.log("DOM fully loaded. Initializing listeners."); const mobileMenuButton = document.querySelector('.md\\:hidden button'); if (mobileMenuButton) { mobileMenuButton.addEventListener('click', function() { alert('Mobile menu needs implementation.'); }); } else { console.warn("Mobile menu button not found."); } document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const targetId = this.getAttribute('href'); const targetElement = document.querySelector(targetId); if (targetElement) { const offset = 64; const bodyRect = document.body.getBoundingClientRect().top; const elementRect = targetElement.getBoundingClientRect().top; const elementPosition = elementRect - bodyRect; const offsetPosition = elementPosition - offset; window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); } else { console.warn(`Smooth scroll target not found: ${targetId}`); } }); }); });
 
-        // Removed classifyImage, summarizeText, segmentMedia, and toggleDemo functions
-        // as the corresponding projects and interactive elements were removed.
     </script>
+
 </body>
 </html>
