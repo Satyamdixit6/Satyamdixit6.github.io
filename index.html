@@ -11,31 +11,24 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
+            background-color: #f3f4f6; /* Light Gray Background */
         }
         
-        .gradient-text {
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+        .highlight-text {
+            color: #2563eb; /* Blue 600 */
         }
         
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .neon-glow {
-            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         .typewriter {
             overflow: hidden;
-            border-right: .15em solid #3b82f6;
+            border-right: .15em solid #2563eb; /* Blue 600 */
             white-space: nowrap;
             margin: 0 auto;
-            letter-spacing: .15em;
+            letter-spacing: .1em; /* Adjusted letter spacing */
             animation: 
                 typing 3.5s steps(40, end),
                 blink-caret .75s step-end infinite;
@@ -48,21 +41,20 @@
         
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #3b82f6; }
+            50% { border-color: #2563eb; } /* Blue 600 */
         }
     </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
-    <!-- Navigation -->
+<body class="min-h-screen bg-gray-100">
     <nav class="bg-white shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <span class="text-xl font-bold text-gray-900">Satyam<span class="gradient-text">Dixit</span></span>
+                    <span class="text-xl font-bold text-gray-900">Satyam<span class="highlight-text">Dixit</span></span>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#about" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                    <a href="#work" class="text-gray-700 hover:text-blue-600 transition-colors">Work</a>
+                    <a href="#skills" class="text-gray-700 hover:text-blue-600 transition-colors">Skills</a>
                     <a href="#projects" class="text-gray-700 hover:text-blue-600 transition-colors">Projects</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
                 </div>
@@ -75,284 +67,276 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="py-20 px-4">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-12 md:mb-0">
+                <div class="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
                     <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-4">
-                        Hi, I'm <span class="gradient-text">Satyam Dixit</span>
+                        Hi, I'm <span class="highlight-text">Satyam Dixit</span>
                     </h1>
-                    <div class="typewriter text-2xl md:text-3xl font-medium text-gray-700 mb-8">
+                    <div class="typewriter text-2xl md:text-3xl font-medium text-gray-700 mb-8 mx-auto md:mx-0" style="width: fit-content;">
                         Deep Learning Specialist
                     </div>
-                    <p class="text-lg text-gray-600 mb-8">
-                        I create intelligent systems that learn from data, specializing in Computer Vision, 
-                        Natural Language Processing, and Generative Models to solve real-world challenges.
+                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
+                        I design and build intelligent systems leveraging deep learning, specializing in Computer Vision, NLP, Generative AI, and high-performance computing with PyTorch and CUDA.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md hover:shadow-lg transition-all">
+                    <div class="flex space-x-4 justify-center md:justify-start">
+                        <a href="#contact" class="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition-all">
                             Get In Touch
                         </a>
-                        <a href="#work" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all">
-                            View My Work
+                        <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition-all">
+                            View My Projects
                         </a>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-64 h-64 md:w-80 md:h-80">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 blur-xl"></div>
-                        <div class="relative w-full h-full flex items-center justify-center">
-                            <div class="w-56 h-56 md:w-72 md:h-72 bg-white rounded-full shadow-xl overflow-hidden border-4 border-white">
+                     <div class="relative w-64 h-64 md:w-80 md:h-80">
+                         <div class="absolute inset-0 bg-blue-200 rounded-full opacity-30 blur-2xl"></div>
+                         <div class="relative w-full h-full flex items-center justify-center">
+                            <div class="w-56 h-56 md:w-72 md:h-72 bg-white rounded-full shadow-lg overflow-hidden border-4 border-white">
                                 <img src="assets/images/profile.jpg" alt="Satyam Dixit" class="w-full h-full object-cover">
                             </div>
-                        </div>
+                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">About Me</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                     <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-gray-200 shadow-md">
                         <img src="assets/images/profile.jpg" alt="Satyam Dixit" class="w-full h-full object-cover">
                     </div>
                 </div>
                 <div class="md:w-2/3 md:pl-12">
                     <p class="text-lg text-gray-600 mb-6">
-                        I'm Satyam Dixit, a Deep Learning enthusiast with expertise in building and deploying 
-                        machine learning models for Computer Vision, NLP, and Generative AI. My passion lies 
-                        in leveraging neural networks to create innovative solutions.
+                        I'm Satyam Dixit, a passionate Deep Learning Specialist focused on building and deploying robust machine learning models. My core expertise lies in Computer Vision, Natural Language Processing, and Generative AI.
                     </p>
                     <p class="text-lg text-gray-600 mb-6">
-                        My journey began with exploring CNNs for image recognition, leading to projects in 
-                        transformer-based NLP, segmentation, and GAN-based generative models.
+                        I thrive on tackling complex challenges and creating innovative solutions using state-of-the-art neural networks. My experience ranges from foundational CNNs and RNNs to advanced Transformers and custom architectures, often optimized using PyTorch and CUDA.
                     </p>
-                    <div class="flex flex-wrap gap-4">
+                    <div class="flex flex-wrap gap-3">
                         <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">PyTorch</span>
+                        <span class="px-4 py-2 bg-indigo-100 text-indigo-800 rounded-full text-sm font-medium">CUDA</span>
                         <span class="px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">TensorFlow</span>
                         <span class="px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">Python</span>
                         <span class="px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">Computer Vision</span>
                         <span class="px-4 py-2 bg-red-100 text-red-800 rounded-full text-sm font-medium">NLP</span>
-                        <span class="px-4 py-2 bg-pink-100 text-pink-800 rounded-full text-sm font-medium">Segmentation</span>
+                         <span class="px-4 py-2 bg-pink-100 text-pink-800 rounded-full text-sm font-medium">Generative AI</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Work Section -->
-    <section id="work" class="py-16 bg-gray-50">
+    <section id="skills" class="py-16 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-2">My Expertise</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-2">Core Skills & Expertise</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover neon-glow">
-                    <div class="p-8">
-                        <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
-                            <i class="fas fa-brain text-2xl text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Neural Networks</h3>
-                        <p class="text-gray-600">
-                            Expertise in CNNs, RNNs, Transformers, and U-Nets for classification, segmentation, and text generation.
-                        </p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-layer-group text-2xl text-blue-600"></i> </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">PyTorch Development</h3>
+                    <p class="text-gray-600">
+                        Extensive experience in building, training, and deploying complex deep learning models using PyTorch's ecosystem.
+                    </p>
                 </div>
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover neon-glow">
-                    <div class="p-8">
-                        <div class="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6">
-                            <i class="fas fa-eye text-2xl text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">Computer Vision</h3>
-                        <p class="text-gray-600">
-                            Building systems for classification, object detection, and segmentation of images and videos.
-                        </p>
-                    </div>
+                 <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-microchip text-2xl text-green-600"></i> </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">CUDA & GPU Acceleration</h3>
+                    <p class="text-gray-600">
+                        Proficient in optimizing deep learning workflows using CUDA for high-performance GPU computing.
+                    </p>
                 </div>
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 card-hover neon-glow">
-                    <div class="p-8">
-                        <div class="flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-6">
-                            <i class="fas fa-language text-2xl text-green-600"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mb-3">NLP</h3>
-                        <p class="text-gray-600">
-                            Developing models for summarization, sentiment analysis, and chatbots using transformers.
-                        </p>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-purple-100 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-brain text-2xl text-purple-600"></i>
                     </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Neural Network Architectures</h3>
+                    <p class="text-gray-600">
+                         Deep understanding of CNNs, RNNs, Transformers, VLMs, and other architectures for diverse AI tasks.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-6 mx-auto">
+                         <i class="fas fa-eye text-2xl text-yellow-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Computer Vision</h3>
+                    <p class="text-gray-600">
+                        Developing systems for image/video analysis, including classification, detection, segmentation, and generation.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-language text-2xl text-red-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Natural Language Processing</h3>
+                    <p class="text-gray-600">
+                        Building models for text understanding, generation, summarization, sentiment analysis, and conversational AI.
+                    </p>
+                </div>
+                 <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 card-hover p-8 text-center">
+                    <div class="flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-6 mx-auto">
+                        <i class="fas fa-server text-2xl text-indigo-600"></i> </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Model Deployment & MLOps</h3>
+                    <p class="text-gray-600">
+                        Experience in deploying models to production environments and understanding MLOps principles.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">Featured Projects</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Project 1: Image Classification -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
-                    <div class="h-48 bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center">
-                        <img src="assets/images/classification.jpg" alt="Image Classification" class="w-full h-full object-cover">
-                    </div>
+                
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <img src="assets/images/vlm_placeholder.jpg" alt="Vision LLM Project" class="w-full h-full object-cover">
+                         </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Image Classification System</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Vision Language Model (VLM)</h3>
                         <p class="text-gray-600 mb-4">
-                            A CNN-based system trained on CIFAR-10 for real-time image classification.
+                            Developed a multi-modal model capable of understanding visual input (images/videos) and generating relevant textual descriptions or answers.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">ONNX</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-medium">Computer Vision</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
                         </div>
-                        <button onclick="toggleDemo('imageClassificationDemo')" class="px-4 py-2 bg-blue-500 text-white rounded-lg mb-4">View Project</button>
-                        <div id="imageClassificationDemo" class="hidden mt-4">
-                            <input type="file" accept="image/*" id="imageInput" class="mb-2">
-                            <button onclick="classifyImage()" class="px-4 py-2 bg-blue-600 text-white rounded-lg">Classify Image</button>
-                            <div id="classificationResult" class="mt-2 text-gray-700"></div>
-                        </div>
-                    </div>
+                        <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
+                         </div>
                 </div>
-                <!-- Project 2: Text Summarization -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
-                    <div class="h-48 bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center">
-                        <img src="assets/images/summarization.jpg" alt="Text Summarization" class="w-full h-full object-cover">
-                    </div>
+
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <img src="assets/images/lm_placeholder.jpg" alt="Language Model Project" class="w-full h-full object-cover">
+                         </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Text Summarization API</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Language Model</h3>
                         <p class="text-gray-600 mb-4">
-                            A transformer-based model for summarizing articles with high coherence.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">TensorFlow</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">HuggingFace</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">JavaScript</span>
-                        </div>
-                        <button onclick="toggleDemo('textSummarizationDemo')" class="px-4 py-2 bg-purple-500 text-white rounded-lg mb-4">View Project</button>
-                        <div id="textSummarizationDemo" class="hidden mt-4">
-                            <textarea id="textInput" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2" placeholder="Enter text to summarize..."></textarea>
-                            <button onclick="summarizeText()" class="px-4 py-2 bg-purple-600 text-white rounded-lg">Summarize</button>
-                            <div id="summarizationResult" class="mt-2 text-gray-700"></div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3: Image and Video Segmenter -->
-                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md transition-all duration-300 card-hover">
-                    <div class="h-48 bg-gradient-to-r from-green-400 to-teal-500 flex items-center justify-center">
-                        <img src="assets/images/segmentation.jpg" alt="Image and Video Segmenter" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Image & Video Segmenter</h3>
-                        <p class="text-gray-600 mb-4">
-                            A U-Net model for segmenting objects in images and videos.
+                            Built and fine-tuned a large language model tailored for specific downstream tasks such as advanced text generation, summarization, and domain-specific Q&A.
                         </p>
                         <div class="flex flex-wrap gap-2 mb-4">
                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">ONNX</span>
-                            <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">JavaScript</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
+                             <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-xs font-medium">Generative AI</span>
                         </div>
-                        <button onclick="toggleDemo('segmentationDemo')" class="px-4 py-2 bg-green-500 text-white rounded-lg mb-4">View Project</button>
-                        <div id="segmentationDemo" class="hidden mt-4">
-                            <input type="file" accept="image/*,video/*" id="segmentInput" class="mb-2">
-                            <button onclick="segmentMedia()" class="px-4 py-2 bg-green-600 text-white rounded-lg">Segment</button>
-                            <canvas id="segmentationResult" class="mt-2 border border-gray-300"></canvas>
-                        </div>
+                         <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
                     </div>
                 </div>
+
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow transition-all duration-300 card-hover border border-gray-200">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                         <img src="assets/images/coding_assistant_placeholder.jpg" alt="Coding Assistant Project" class="w-full h-full object-cover">
+                         </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">AI Coding Assistant</h3>
+                        <p class="text-gray-600 mb-4">
+                            Created an intelligent coding assistant using LLMs to provide contextual code suggestions, automated debugging help, and natural language documentation lookup.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                             <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">PyTorch</span>
+                             <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Transformers</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-medium">NLP</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-xs font-medium">Developer Tools</span>
+                         </div>
+                         <a href="#" class="inline-block px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition">View Details</a>
+                    </div>
+                </div>
+
             </div>
             <div class="text-center mt-12">
-                <a href="https://github.com/Satyamdixit6" class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-all">
-                    View All Projects <i class="fas fa-chevron-right ml-2"></i>
+                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-200 transition-all">
+                    View All Projects on GitHub <i class="fab fa-github ml-2"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="contact" class="py-16 bg-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-900 mb-2">Get In Touch</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto"></div>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
             </div>
-            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="md:flex">
-                    <div class="md:w-1/2 bg-gradient-to-br from-blue-500 to-purple-600 p-8 text-white">
-                        <h3 class="text-2xl font-bold mb-4">Contact Information</h3>
-                        <p class="mb-6">Reach out for collaborations or to discuss AI innovations!</p>
-                        <div class="flex items-start mb-4">
-                            <div class="flex-shrink-0 mr-4">
-                                <i class="fas fa-envelope text-xl"></i>
+                    <div class="md:w-1/2 bg-blue-600 p-8 text-white">
+                        <h3 class="text-2xl font-semibold mb-4">Contact Information</h3>
+                        <p class="mb-6 opacity-90">Interested in collaborating or discussing AI innovations? Feel free to reach out!</p>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-xl mr-4 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-medium">Email</h4>
+                                    <p class="opacity-90">satyam.dixit@example.com</p> </div>
                             </div>
-                            <div>
-                                <h4 class="font-medium">Email</h4>
-                                <p>satyam.dixit@example.com</p>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt text-xl mr-4 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-medium">Phone</h4>
+                                    <p class="opacity-90">+1 (123) 456-7890</p> </div>
                             </div>
-                        </div>
-                        <div class="flex items-start mb-4">
-                            <div class="flex-shrink-0 mr-4">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Phone</h4>
-                                <p>+1 (123) 456-7890</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 mr-4">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-medium">Location</h4>
-                                <p>India</p>
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-xl mr-4 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p class="opacity-90">India</p>
+                                </div>
                             </div>
                         </div>
                         <div class="mt-8">
                             <h4 class="font-medium mb-4">Connect With Me</h4>
                             <div class="flex space-x-4">
-                                <a href="https://linkedin.com/in/satyamdixit" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="https://github.com/Satyamdixit6" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all">
+                                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
                                     <i class="fab fa-github"></i>
                                 </a>
-                                <a href="https://twitter.com/satyamdixit" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center hover:bg-opacity-30 transition-all">
-                                    <i class="fab fa-twitter"></i>
+                                <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center text-white hover:bg-opacity-30 transition-all">
+                                     <i class="fab fa-twitter"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="md:w-1/2 p-8">
-                        <form>
-                            <div class="mb-4">
+                        <form action="#" method="POST"> <div class="mb-4">
                                 <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
                             <div class="mb-4">
                                 <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
                             <div class="mb-4">
                                 <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                                <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                             </div>
                             <div class="mb-6">
                                 <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                                <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                                <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
                             </div>
-                            <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all">
+                            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all">
                                 Send Message
                             </button>
                         </form>
@@ -362,42 +346,47 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8">
+    <footer class="bg-gray-800 text-white py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <span class="text-xl font-bold">Satyam<span class="gradient-text">Dixit</span></span>
-                    <p class="text-gray-400 mt-1">Deep Learning Specialist</p>
+                <div class="mb-4 md:mb-0 text-center md:text-left">
+                     <span class="text-xl font-bold">Satyam<span class="text-blue-400">Dixit</span></span>
+                    <p class="text-gray-400 mt-1 text-sm">Deep Learning Specialist</p>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://linkedin.com/in/satyamdixit" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-linkedin-in text-xl"></i>
                     </a>
-                    <a href="https://github.com/Satyamdixit6" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-github text-xl"></i>
                     </a>
-                    <a href="https://twitter.com/satyamdixit" class="text-gray-400 hover:text-white transition-colors">
+                    <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors">
                         <i class="fab fa-twitter text-xl"></i>
                     </a>
                 </div>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>© 2025 Satyam Dixit. All rights reserved.</p>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Satyam Dixit. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"></script>
     <script>
-        // Mobile menu toggle
+        // Mobile menu toggle placeholder
         document.addEventListener('DOMContentLoaded', function() {
             const mobileMenuButton = document.querySelector('.md\\:hidden button');
+            const navLinks = document.querySelector('.hidden.md\\:flex'); // Get the desktop links container
+
             if (mobileMenuButton) {
                 mobileMenuButton.addEventListener('click', function() {
-                    alert('Mobile menu toggle not fully implemented. Add links as needed.');
+                    // Basic toggle - you might want a more sophisticated implementation
+                    // This example doesn't create a dropdown, just alerts.
+                     alert('Mobile menu needs implementation: Toggle visibility of navigation links.');
+                    // Example of how you *might* toggle a mobile menu element if it existed:
+                    // const mobileMenu = document.getElementById('mobile-menu');
+                    // if (mobileMenu) {
+                    //    mobileMenu.classList.toggle('hidden');
+                    // }
                 });
             }
             
@@ -408,213 +397,32 @@
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
+                        const offset = 80; // Adjust offset based on your fixed header height
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = targetElement.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
                         window.scrollTo({
-                            top: targetElement.offsetTop - 80,
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
                     }
                 });
             });
 
-            // Register Service Worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js').then(reg => {
-                    console.log('Service Worker registered:', reg);
-                }).catch(err => {
-                    console.error('Service Worker registration failed:', err);
-                });
-            }
+            // Optional: Service Worker Registration (keep if you plan to use PWA features)
+            // if ('serviceWorker' in navigator) {
+            //     navigator.serviceWorker.register('/sw.js').then(reg => {
+            //         console.log('Service Worker registered:', reg);
+            //     }).catch(err => {
+            //         console.error('Service Worker registration failed:', err);
+            //     });
+            // }
         });
 
-        // Toggle demo visibility
-        function toggleDemo(demoId) {
-            const demo = document.getElementById(demoId);
-            demo.classList.toggle('hidden');
-        }
-
-        // Image Classification Function
-        async function classifyImage() {
-            const input = document.getElementById('imageInput');
-            const resultDiv = document.getElementById('classificationResult');
-            
-            if (!input.files[0]) {
-                resultDiv.innerHTML = '<span class="text-red-600">Please select an image.</span>';
-                return;
-            }
-
-            try {
-                resultDiv.innerHTML = '<span class="text-gray-500">Loading model...</span>';
-                const session = await ort.InferenceSession.create('assets/models/classification.onnx', {
-                    executionProviders: ['webgl']
-                });
-                
-                const img = new Image();
-                img.src = URL.createObjectURL(input.files[0]);
-                await new Promise(resolve => img.onload = resolve);
-
-                const canvas = document.createElement('canvas');
-                canvas.width = 32;
-                canvas.height = 32;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0, 32, 32);
-                
-                const imageData = ctx.getImageData(0, 0, 32, 32).data;
-                const floatData = new Float32Array(32 * 32 * 3);
-                for (let i = 0, j = 0; i < imageData.length; i += 4, j += 3) {
-                    floatData[j] = (imageData[i] / 255 - 0.5) / 0.5;
-                    floatData[j + 1] = (imageData[i + 1] / 255 - 0.5) / 0.5;
-                    floatData[j + 2] = (imageData[i + 2] / 255 - 0.5) / 0.5;
-                }
-
-                const tensor = new ort.Tensor('float32', floatData, [1, 3, 32, 32]);
-                const feeds = { input: tensor };
-                const results = await session.run(feeds);
-                
-                const output = results.output.data;
-                const labels = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck'];
-                const maxIndex = output.indexOf(Math.max(...output));
-                
-                resultDiv.innerHTML = `Prediction: <span class="font-bold">${labels[maxIndex]}</span> (Confidence: ${(output[maxIndex] * 100).toFixed(2)}%)`;
-            } catch (e) {
-                console.error('Classification Error:', e);
-                resultDiv.innerHTML = '<span class="text-red-600">Error classifying image.</span>';
-            }
-        }
-
-        // Text Summarization Function
-        async function summarizeText() {
-            const input = document.getElementById('textInput').value;
-            const resultDiv = document.getElementById('summarizationResult');
-            
-            if (!input.trim()) {
-                resultDiv.innerHTML = '<span class="text-red-600">Please enter text to summarize.</span>';
-                return;
-            }
-
-            try {
-                resultDiv.innerHTML = '<span class="text-gray-500">Generating summary...</span>';
-                const { pipeline } = await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
-                const summarizer = await pipeline('summarization', 'Xenova/distilbart-cnn-6-6');
-                
-                const output = await summarizer(input, {
-                    max_length: 100,
-                    min_length: 30,
-                    do_sample: false
-                });
-                
-                resultDiv.innerHTML = `Summary: <span class="font-bold">${output[0].summary_text}</span>`;
-            } catch (e) {
-                console.error('Summarization Error:', e);
-                resultDiv.innerHTML = '<span class="text-red-600">Error generating summary.</span>';
-            }
-        }
-
-        // Image and Video Segmentation Function
-        async function segmentMedia() {
-            const input = document.getElementById('segmentInput');
-            const canvas = document.getElementById('segmentationResult');
-            const ctx = canvas.getContext('2d');
-            
-            if (!input.files[0]) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                canvas.width = 256;
-                canvas.height = 50;
-                ctx.fillText('Please select an image or video.', 10, 30);
-                return;
-            }
-
-            try {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillText('Loading model...', 10, 30);
-                const session = await ort.InferenceSession.create('assets/models/segmenter.onnx', {
-                    executionProviders: ['webgl']
-                });
-
-                const file = input.files[0];
-                if (file.type.startsWith('image/')) {
-                    const img = new Image();
-                    img.src = URL.createObjectURL(file);
-                    await new Promise(resolve => img.onload = resolve);
-
-                    canvas.width = 256;
-                    canvas.height = 256;
-                    ctx.drawImage(img, 0, 0, 256, 256);
-                    
-                    const imageData = ctx.getImageData(0, 0, 256, 256).data;
-                    const floatData = new Float32Array(256 * 256 * 3);
-                    for (let i = 0, j = 0; i < imageData.length; i += 4, j += 3) {
-                        floatData[j] = imageData[i] / 255;
-                        floatData[j + 1] = imageData[i + 1] / 255;
-                        floatData[j + 2] = imageData[i + 2] / 255;
-                    }
-
-                    const tensor = new ort.Tensor('float32', floatData, [1, 3, 256, 256]);
-                    const feeds = { input: tensor };
-                    const results = await session.run(feeds);
-                    
-                    const output = results.output.data;
-                    const mask = new Uint8ClampedArray(256 * 256 * 4);
-                    for (let i = 0, j = 0; i < 256 * 256; i++, j += 4) {
-                        const fgProb = output[i * 2 + 1];
-                        mask[j] = 0;
-                        mask[j + 1] = fgProb > 0.5 ? 255 : 0;
-                        mask[j + 2] = 0;
-                        mask[j + 3] = fgProb > 0.5 ? 128 : 0;
-                    }
-
-                    const maskData = new ImageData(mask, 256, 256);
-                    ctx.putImageData(maskData, 0, 0);
-                } else if (file.type.startsWith('video/')) {
-                    const video = document.createElement('video');
-                    video.src = URL.createObjectURL(file);
-                    await new Promise(resolve => video.onloadeddata = resolve);
-                    
-                    canvas.width = 256;
-                    canvas.height = 256;
-                    
-                    let frameCount = 0;
-                    const processFrame = async () => {
-                        if (video.ended || frameCount > 30) return; // Limit to 30 frames
-                        video.currentTime = frameCount / 30; // Assume 30 FPS
-                        ctx.drawImage(video, 0, 0, 256, 256);
-                        
-                        const imageData = ctx.getImageData(0, 0, 256, 256).data;
-                        const floatData = new Float32Array(256 * 256 * 3);
-                        for (let i = 0, j = 0; i < imageData.length; i += 4, j += 3) {
-                            floatData[j] = imageData[i] / 255;
-                            floatData[j + 1] = imageData[i + 1] / 255;
-                            floatData[j + 2] = imageData[i + 2] / 255;
-                        }
-
-                        const tensor = new ort.Tensor('float32', floatData, [1, 3, 256, 256]);
-                        const feeds = { input: tensor };
-                        const results = await session.run(feeds);
-                        
-                        const output = results.output.data;
-                        const mask = new Uint8ClampedArray(256 * 256 * 4);
-                        for (let i = 0, j = 0; i < 256 * 256; i++, j += 4) {
-                            const fgProb = output[i * 2 + 1];
-                            mask[j] = 0;
-                            mask[j + 1] = fgProb > 0.5 ? 255 : 0;
-                            mask[j + 2] = 0;
-                            mask[j + 3] = fgProb > 0.5 ? 128 : 0;
-                        }
-
-                        const maskData = new ImageData(mask, 256, 256);
-                        ctx.putImageData(maskData, 0, 0);
-                        
-                        frameCount++;
-                        requestAnimationFrame(processFrame);
-                    };
-                    processFrame();
-                }
-            } catch (e) {
-                console.error('Segmentation Error:', e);
-                canvas.width = 256;
-                canvas.height = 50;
-                ctx.fillText('Error segmenting media.', 10, 30);
-            }
-        }
+        // Removed classifyImage, summarizeText, segmentMedia, and toggleDemo functions
+        // as the corresponding projects and interactive elements were removed.
     </script>
 </body>
 </html>
