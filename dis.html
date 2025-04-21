@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Run Large AI Models Locally | Satyam Dixit Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1f2937; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 2rem; background-color: white; border-radius: 0.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e5e7eb; }
+        h1, h2 { color: #111827; font-weight: 600; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; margin-bottom: 1rem;}
+        h1 { font-size: 1.875rem; /* text-3xl */ }
+        h2 { font-size: 1.5rem; /* text-2xl */ margin-top: 2.5rem; }
+        p { margin-bottom: 1rem; line-height: 1.6; color: #374151; font-size: 0.95rem; }
+        code.inline-code { font-family: 'Roboto Mono', monospace; background-color: #f3f4f6; color: #1f2937; padding: 0.15rem 0.4rem; border-radius: 0.25rem; font-size: 0.9em; border: 1px solid #e5e7eb; }
+        pre { background-color: #1f2937; /* Gray 800 */ color: #d1d5db; /* Gray 300 */ padding: 1rem; border-radius: 0.375rem; overflow-x: auto; font-family: 'Roboto Mono', monospace; font-size: 0.875rem; margin-bottom: 1rem; }
+        pre code { background-color: transparent; color: inherit; padding: 0; border: none; font-size: inherit; } /* Reset code style inside pre */
+        a { color: #4f46e5; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        ul { list-style: disc; margin-left: 1.5rem; margin-bottom: 1rem; color: #374151; font-size: 0.95rem; }
+        li { margin-bottom: 0.5rem; }
+        strong { font-weight: 600; color: #111827; }
+        .note { background-color: #f0f9ff; border: 1px solid #bae6fd; color: #0369a1; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; margin-top: 1.5rem;}
+        .note strong { color: #0284c7; }
+        .back-link { font-size: 0.875rem; color: #4f46e5; display: inline-block; margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link hover:underline">&larr; Back to Portfolio</a>
+
+        <h1>How to Run Large AI Models Locally</h1>
+        <p>Modern AI models, especially Large Language Models (LLMs) like DeepSeek, Llama 3, or Phi-3, and advanced Vision Models like YOLOv10, require significant computational resources (RAM, VRAM, CPU/GPU power). While the simple demos on the main portfolio page run directly in your browser using highly optimized, smaller models (with limited quality), running these truly powerful models effectively requires executing them **directly on your own computer** using specialized tools and your local hardware.</p>
+        <p>This approach offers several benefits:</p>
+        <ul>
+            <li><strong>Performance:</strong> Models run much faster using your dedicated CPU or (especially) GPU power.</li>
+            <li><strong>Privacy:</strong> Your data and prompts stay entirely on your machine.</li>
+            <li><strong>Offline Access:</strong> Once downloaded, models can run without an internet connection.</li>
+            <li><strong>No API Keys/Costs:</strong> You don't typically need API keys or face usage costs (beyond your electricity!).</li>
+            <li><strong>Customization:</strong> More control over model parameters and usage.</li>
+        </ul>
+        <p>Here are some popular methods to run models locally:</p>
+
+        <h2>Method 1: Using Python + Transformers (Native)</h2>
+        <p>This is the standard approach for developers wanting direct control via code.</p>
+        <ul>
+            <li><strong>Prerequisites:</strong> Python 3.8+, pip, sufficient RAM (often 16GB+, more for larger models), potentially a powerful GPU (NVIDIA recommended for CUDA support), and installing libraries like <code class="inline-code">transformers</code>, <code class="inline-code">torch</code> (with correct CUDA version if using GPU), and <code class="inline-code">accelerate</code>.</li>
+            <li><strong>Concept:</strong> Write Python scripts to download models from Hugging Face Hub, load them using the <code class="inline-code">transformers</code> library, and run inference.</li>
+            <li><strong>Pros:</strong> Full flexibility, access to almost any model on Hugging Face, fine-grained control.</li>
+            <li><strong>Cons:</strong> Requires programming, careful environment setup (Python versions, CUDA, dependencies can be tricky), managing large model files manually.</li>
+        </ul>
+        <p><strong>Example Python Snippet (Conceptual - loading Phi-3):</strong></p>
+        <pre><code class="language-python">
+# Requires: pip install transformers torch accelerate
+# Make sure torch is installed with CUDA support if using GPU
+
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
+
+model_id = "microsoft/Phi-3-mini-4k-instruct"
+device = "cuda" if torch.cuda.is_available() else "cpu"
+print(f"Loading {model_id} on {device}...")
+
+try:
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        device_map=device,
+        torch_dtype="auto", # Use bfloat16 on GPU if possible
+        trust_remote_code=True,
+    )
+    print("Model loaded!")
+
+    # Simple chat prompt structure for Phi-3
+    messages = [
+        {"role": "user", "content": "Explain what Ollama is in one sentence."},
+    ]
+    prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    inputs = tokenizer(prompt, return_tensors="pt").to(device)
+
+    # Ensure pad_token_id is set
+    if tokenizer.pad_token_id is None: tokenizer.pad_token_id = tokenizer.eos_token_id
+
+    print("Generating...")
+    outputs = model.generate(**inputs, max_new_tokens=100, pad_token_id=tokenizer.eos_token_id)
+    response = tokenizer.decode(outputs[0][inputs['input_ids'].shape[-1]:], skip_special_tokens=True)
+
+    print("\nResponse:", response)
+
+except Exception as e:
+    print(f"Error: {e}")
+    print("Ensure libraries are installed and you have sufficient RAM/VRAM.")
+
+        </code></pre>
+
+        <h2>Method 2: Using Ollama</h2>
+        <p><a href="https://ollama.com/" target="_blank" rel="noopener noreferrer">Ollama</a> is a fantastic tool that simplifies running many open-source LLMs locally via the command line.</p>
+        <ul>
+            <li><strong>Prerequisites:</strong> Download and install Ollama for your OS (macOS, Linux, Windows).</li>
+            <li><strong>Concept:</strong> Use simple terminal commands to download, manage, and run models like Llama 3, Mistral, Phi-3, DeepSeek Coder, etc. It also provides a local API.</li>
+            <li><strong>Pros:</strong> Very easy setup, manages model downloads well, great for quick experimentation and local API use.</li>
+            <li><strong>Cons:</strong> Primarily command-line (though community GUIs exist), model availability depends on Ollama library support (but it supports many popular ones).</li>
+        </ul>
+        <p><strong>Example Ollama Commands (Run in Terminal):</strong></p>
+        <pre><code class="language-bash">
+# Download and run Llama 3 8B Instruct
+ollama run llama3:8b-instruct
+
+# Download and run DeepSeek Coder 6.7B Instruct
+ollama run deepseek-coder:6.7b-instruct
+
+# Download and run Phi-3 Mini Instruct (check ollama.com/library for exact tags)
+ollama run phi3:mini
+
+# List models you've already downloaded
+ollama list
+
+# Remove a downloaded model
+ollama rm llama3:8b-instruct
+
+# (Once running a model, type your prompts directly)
+>>> What is the capital of France?
+        </code></pre>
+
+        <h2>Method 3: Using GUI Applications (LM Studio, Jan, etc.)</h2>
+        <p>For a more visual approach without using the terminal, several desktop apps provide a graphical interface.</p>
+        <ul>
+            <li><strong>Prerequisites:</strong> Download and install the application, e.g., <a href="https://lmstudio.ai/" target="_blank" rel="noopener noreferrer">LM Studio</a>, <a href="https://jan.ai/" target="_blank" rel="noopener noreferrer">Jan</a>, <a href="https://pinokio.computer/" target="_blank" rel="noopener noreferrer">Pinokio</a>.</li>
+            <li><strong>Concept:</strong> These apps usually provide a UI to search/discover models (often in GGUF format, compatible with llama.cpp), download them, configure settings (like GPU layers), and chat directly. Many also offer a local server compatible with OpenAI's API format.</li>
+            <li><strong>Pros:</strong> User-friendly, no coding needed, good model management features.</li>
+            <li><strong>Cons:</strong> Can be resource-intensive themselves, compatibility depends on the app's underlying engine (often llama.cpp).</li>
+        </ul>
+        <p>Installation is typically straightforward – download the installer for your OS and follow the prompts. Then use the application's interface to find and download models.</p>
+
+        <h2>Vision Models (YOLO, etc.)</h2>
+        <p>Running advanced Computer Vision models like YOLOv8 or YOLOv10 locally typically involves using Python with libraries like:</p>
+        <ul>
+            <li><strong>Ultralytics:** The official library (<a href="https://docs.ultralytics.com/" target="_blank" rel="noopener noreferrer">docs.ultralytics.com</a>) makes it easy to load pre-trained YOLO models (including v8, v9, v10) and run inference (detection, segmentation, pose) with just a few lines of Python code. Requires <code class="inline-code">pip install ultralytics</code>.
+            ```python
+            # Example using ultralytics
+            from ultralytics import YOLO
+            model = YOLO('yolov8n-seg.pt') # Or yolov10n.pt etc.
+            results = model.predict('your_image.jpg', save=True)
+            print("Results saved.")
+            ```
+            </li>
+            <li><strong>ONNX Runtime (Python):** If you have a YOLO model exported to ONNX format, you can run it using <code class="inline-code">onnxruntime</code> in Python, but you'll likely need to handle the image pre-processing and output post-processing (like Non-Max Suppression) manually unless using libraries that abstract this.</li>
+        </ul>
+
+
+        <h2>Note on Self-Hosting Backend API</h2>
+        <div class="note">
+            <p><i class="fab fa-docker mr-2"></i>If you prefer to host models yourself and provide an API (as an alternative to using Cloud APIs like Hugging Face's), you can often package a Python backend (using frameworks like FastAPI or Flask, along with `transformers` or `ultralytics`) into a Docker container.</p>
+            <p>A Dockerfile for such a backend solution might be available in the project's source repository (check for a `backend` folder). For example, you might find images on Docker Hub under: <code class="inline-code">satyamdixit6666/...</code> (Replace with your actual Docker Hub username/repo if applicable).</p>
+            <p>This allows for consistent deployment but requires knowledge of Docker and a place to host the running container.</p>
+        </div>
+
+        <a href="index.html" class="back-link hover:underline mt-8 block">&larr; Back to Portfolio</a>
+    </div>
+</body>
+</html>
