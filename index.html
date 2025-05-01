@@ -10,351 +10,1094 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Elegant Dark Theme - Refined */
-        body { font-family: 'Inter', sans-serif; background-color: #111827; color: #e5e7eb; line-height: 1.7; } /* Dark background, light text */
-        .highlight-text { color: #6366f1; } /* Indigo 500 - usually visible on dark */
-        .mono-tag { font-family: 'Roboto Mono', monospace; background-color: #374151; color: #d1d5db; padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; display: inline-block; margin-top: 0.25rem; margin-right: 0.25rem; line-height: 1.2; border: 1px solid #4b5563; } /* Darker bg, lighter text for tags */
-        input:focus, textarea:focus, button:focus, select:focus { outline: none; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); border-color: #818cf8; } /* Focus ring adjusted slightly */
-        input[type="text"], input[type="email"], textarea, select, input[type="password"], input[type="url"] { border: 1px solid #4b5563; background-color: #1f2937; border-radius: 0.375rem; padding: 0.6rem 0.8rem; color: #f3f4f6; transition: border-color 0.2s ease; font-size: 0.875rem; } /* Dark inputs */
-        input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder, input[type="password"]::placeholder, input[type="url"]::placeholder { color: #6b7280; } /* Lighter placeholder */
-        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus, input[type="password"]:focus, input[type="url"]:focus { border-color: #818cf8; background-color: #374151; } /* Focus state */
-        input[type="file"] { border-radius: 0.375rem; border: 1px solid #4b5563; background-color: #1f2937; color: #d1d5db; padding: 0.2rem; font-size: 0.875rem;}
-        input[type="file"]::file-selector-button { padding: 0.5rem 1rem; border-radius: 0.25rem 0 0 0.25rem; border: none; border-right: 1px solid #4b5563; background-color: #374151; color: #f3f4f6; cursor: pointer; transition: background-color 0.2s ease-in-out; font-weight: 500; margin-right: 1rem; } /* Dark file button */
-        input[type="file"]::file-selector-button:hover { background-color: #4b5563; }
-        .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; color: #9ca3af; margin-top: 0.5rem; } /* Lighter gray for status */
-        .result-box { background-color: #374151; border: 1px solid #4b5563; color: #e5e7eb; min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; } /* Dark result box */
-        canvas { max-width: 100%; border: 1px solid #4b5563; background-color: #374151; border-radius: 0.25rem;}
-        .card { background-color: #1f2937; border: 1px solid #374151; border-radius: 0.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.2); transition: all 0.3s ease; display: flex; flex-direction: column; height: 100%; } /* Dark card */
-        .card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.3); border-color: #4b5563; }
-        .card-content { flex-grow: 1; }
-        .card-footer { margin-top: auto; }
-        .info-box { background-color: #1e3a8a; border: 1px solid #3b82f6; color: #bfdbfe; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; } /* Dark blue info box */
-        .info-box a { color: #93c5fd; font-weight: 500; } /* Lighter link */
-        .info-box a:hover { text-decoration: underline; color: #ffffff; }
-        .scrollable { scrollbar-width: thin; scrollbar-color: #4b5563 #374151; } /* Dark scrollbar */
-        .scrollable::-webkit-scrollbar { width: 6px; } .scrollable::-webkit-scrollbar-track { background: #374151; } .scrollable::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; } .scrollable::-webkit-scrollbar-thumb:hover { background: #6b7280; }
-        h2 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #f9fafb; } /* Light headings */
-        h3 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; margin-bottom: 1rem; color: #f3f4f6; } /* Light headings */
-        h4 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; color: #e5e7eb;} /* Light headings */
-        section { scroll-margin-top: 80px; padding-top: 5rem; padding-bottom: 5rem; }
-        nav { height: 4rem; } nav a { padding-top: 0.25rem; padding-bottom: 0.25rem; font-size: 0.875rem; } nav a:hover { color: #818cf8; } /* Adjust nav hover */
-        button { transition: all 0.2s ease-in-out; }
-        .warning-text { color: #fb7185; /* Rose 400 - lighter red for dark bg */}
+        /* Elegant Dark Theme - Refined & Cooler */
+        :root {
+            --bg-primary: #111827; /* Gray 900 */
+            --bg-secondary: #1f2937; /* Gray 800 */
+            --bg-tertiary: #374151; /* Gray 700 */
+            --border-color: #4b5563; /* Gray 600 */
+            --text-primary: #f3f4f6; /* Gray 100 */
+            --text-secondary: #d1d5db; /* Gray 300 */
+            --text-muted: #9ca3af; /* Gray 400 */
+            --accent-primary: #6366f1; /* Indigo 500 */
+            --accent-secondary: #818cf8; /* Indigo 400 */
+            --accent-dark: #4f46e5; /* Indigo 600 */
+            --accent-hover: #4338ca; /* Indigo 700 */
+            --success-primary: #10b981; /* Emerald 500 */
+            --success-dark: #059669; /* Emerald 600 */
+            --warning-text: #fb7185; /* Rose 400 */
+            --error-text: #f43f5e; /* Rose 500 */
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        /* --- Typography --- */
+        h1, h2, h3, h4, h5, h6 { color: var(--text-primary); font-weight: 600; }
+        h2 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+        h3 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; margin-bottom: 1rem; }
+        h4 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+        p { color: var(--text-secondary); }
+
+        /* --- Navigation --- */
+        nav {
+            height: 4rem; /* 64px */
+            background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800 with opacity */
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+        nav a {
+            padding-top: 0.25rem; padding-bottom: 0.25rem;
+            font-size: 0.875rem; /* text-sm */
+            color: var(--text-secondary);
+            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            position: relative; /* For pseudo-element */
+        }
+        nav a::after { /* Underline effect */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px; /* Position below text */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-secondary);
+            transition: width 0.3s ease;
+        }
+        nav a:hover {
+            color: var(--accent-secondary);
+            transform: translateY(-1px); /* Slight lift */
+        }
+        nav a:hover::after { width: 80%; } /* Animate underline */
+        #mobile-menu { background-color: var(--bg-secondary); border-top-color: var(--border-color); }
+        #mobile-menu a:hover { background-color: var(--bg-tertiary); color: var(--accent-secondary); }
+
+        /* --- Hero Section --- */
+        #hero {
+            padding-top: 5rem; /* Increased padding */
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        #hero h1 { color: var(--text-primary); }
+        #hero p.subtitle { color: var(--accent-secondary); } /* Specific style for subtitle */
+
+        /* --- Sections --- */
+        section {
+            scroll-margin-top: 70px; /* Adjust for sticky nav */
+            padding-top: 5rem; /* 80px */
+            padding-bottom: 5rem; /* 80px */
+        }
+        section:nth-of-type(odd) { background-color: var(--bg-primary); }
+        section:nth-of-type(even) { background-color: var(--bg-secondary); }
+        .section-divider {
+            width: 3rem; /* 48px */
+            height: 3px; /* Increased thickness */
+            background-color: var(--accent-primary);
+            margin-left: auto; margin-right: auto;
+            margin-top: 1rem; /* 16px */
+            border-radius: 999px;
+        }
+
+        /* --- Cards --- */
+        .card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem; /* Larger radius */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            overflow: hidden; /* Ensure content stays within rounded corners */
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-secondary);
+        }
+        .card-content { flex-grow: 1; padding: 1.5rem; /* p-6 */ }
+        .card-footer {
+            margin-top: auto;
+            padding: 1rem 1.5rem; /* px-6 py-4 */
+            border-top: 1px solid var(--border-color);
+            background-color: rgba(55, 65, 81, 0.3); /* Slightly different bg for footer */
+        }
+
+        /* --- Tags --- */
+        .mono-tag {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.25rem 0.6rem; /* Adjusted padding */
+            border-radius: 0.375rem; /* rounded-md */
+            font-size: 0.75rem; /* text-xs */
+            display: inline-block;
+            margin: 0.15rem; /* Adjusted margin */
+            line-height: 1.3;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .mono-tag:hover {
+             background-color: var(--accent-primary);
+             color: var(--text-primary);
+             border-color: var(--accent-secondary);
+        }
+
+        /* --- Buttons --- */
+        button, .button-like { /* Apply to buttons and styled links */
+            transition: all 0.2s ease-in-out;
+            border-radius: 0.375rem; /* rounded-md */
+            font-weight: 500; /* medium */
+            text-align: center;
+            cursor: pointer;
+            display: inline-block; /* Ensure proper layout for links */
+        }
+        button:focus, .button-like:focus { outline: none; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); }
+        button:disabled { opacity: 0.5; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); } /* More distinct disabled style */
+
+        /* Primary Button Style (e.g., Card links, Client-side demos) */
+        .btn-primary {
+            padding: 0.6rem 1rem; /* Adjusted padding */
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
+            color: var(--text-primary);
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover:not(:disabled) {
+            background: linear-gradient(to right, var(--accent-dark), var(--accent-hover));
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Success Button Style (e.g., API Run) */
+        .btn-success {
+            padding: 0.6rem 1rem;
+            background: linear-gradient(to right, var(--success-primary), var(--success-dark));
+            color: var(--text-primary);
+            border: 1px solid transparent;
+        }
+        .btn-success:hover:not(:disabled) {
+            background: linear-gradient(to right, var(--success-dark), #047857); /* Emerald 700 */
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            transform: translateY(-1px);
+        }
+
+        /* Send Message Button (Contact Form) */
+        #contact-form button[type="submit"] { /* Specific selector */
+            padding: 0.75rem 2rem; /* py-3 px-8 */
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
+            color: white;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+        }
+        #contact-form button[type="submit"]:hover {
+            background: linear-gradient(to right, var(--accent-dark), var(--accent-hover));
+            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- Forms & Inputs --- */
+        input:focus, textarea:focus, button:focus, select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
+            border-color: var(--accent-secondary);
+        }
+        input[type="text"], input[type="email"], textarea, select, input[type="password"], input[type="url"] {
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            border-radius: 0.375rem;
+            padding: 0.7rem 0.9rem; /* Slightly more padding */
+            color: var(--text-primary);
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            font-size: 0.875rem;
+            width: 100%; /* Ensure full width */
+        }
+        input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder, input[type="password"]::placeholder, input[type="url"]::placeholder {
+            color: var(--text-muted);
+        }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus, input[type="password"]:focus, input[type="url"]:focus {
+            border-color: var(--accent-secondary);
+            background-color: var(--bg-tertiary);
+        }
+        input[type="file"] {
+            border-radius: 0.375rem; border: 1px solid var(--border-color);
+            background-color: var(--bg-secondary); color: var(--text-secondary);
+            padding: 0.2rem; font-size: 0.875rem;
+        }
+        input[type="file"]::file-selector-button {
+            padding: 0.5rem 1rem; border-radius: 0.25rem 0 0 0.25rem;
+            border: none; border-right: 1px solid var(--border-color);
+            background-color: var(--bg-tertiary); color: var(--text-primary);
+            cursor: pointer; transition: background-color 0.2s ease-in-out;
+            font-weight: 500; margin-right: 1rem;
+        }
+        input[type="file"]::file-selector-button:hover { background-color: var(--border-color); }
+
+        /* --- Demo Specific --- */
+        .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem; transition: color 0.3s ease; }
+        .result-box { background-color: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-secondary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
+        .image-result-box { /* For image generation */
+             background-color: var(--bg-tertiary); border: 1px solid var(--border-color);
+             min-height: 12rem; /* Taller for image */
+             max-height: 20rem;
+             display: flex; align-items: center; justify-content: center;
+             padding: 0.5rem; border-radius: 0.375rem; margin-top: 0.5rem;
+             overflow: hidden; /* Hide potential overflow */
+        }
+        .image-result-box img {
+            max-width: 100%; max-height: 100%; object-fit: contain; display: block;
+            border-radius: 0.25rem; /* Slightly rounded corners for image */
+        }
+        .image-result-box span { /* Placeholder text */
+            color: var(--text-muted); font-size: 0.8rem;
+        }
+        canvas { max-width: 100%; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); border-radius: 0.25rem;}
+        .warning-text { color: var(--warning-text); }
+        .error-text { color: var(--error-text); } /* For critical errors */
+
+        /* --- Info Box --- */
+        .info-box { background-color: #1e3a8a; border: 1px solid #3b82f6; color: #bfdbfe; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
+        .info-box a { color: #93c5fd; font-weight: 500; text-decoration: underline; }
+        .info-box a:hover { color: #ffffff; }
+        .info-box input[type="password"] { background-color: #1d4ed8; border-color: #2563eb; color: #e0f2fe; } /* Adjusted for blue box */
+        .info-box input[type="password"]::placeholder { color: #93c5fd; }
+
+        /* --- Scrollbar --- */
+        .scrollable { scrollbar-width: thin; scrollbar-color: var(--border-color) var(--bg-tertiary); }
+        .scrollable::-webkit-scrollbar { width: 8px; }
+        .scrollable::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 4px; }
+        .scrollable::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; border: 2px solid var(--bg-tertiary); }
+        .scrollable::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* Gray 500 */
+
+        /* --- Footer --- */
+        footer { border-top: 1px solid var(--border-color); background-color: var(--bg-secondary); }
+        footer a { color: var(--text-muted); transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
+        footer a:hover { color: var(--accent-secondary); transform: scale(1.1); }
+        footer p { color: var(--text-muted); }
+
+        /* --- Utilities --- */
+        .highlight-text { color: var(--accent-primary); }
+
     </style>
 </head>
-<body class="min-h-screen bg-gray-900"> <nav class="bg-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-700 h-16 flex items-center"> <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex justify-between items-center"> <a href="#" class="text-base font-semibold text-gray-100 hover:text-indigo-400 transition-colors">SD<span class="text-indigo-500">.</span>AI</a> <div class="hidden md:flex items-center space-x-6 lg:space-x-8"> <a href="#skills" class="text-sm text-gray-300 hover:text-indigo-400 transition-colors font-medium">Projects/Code</a> <a href="#demos" class="text-sm text-gray-300 hover:text-indigo-400 transition-colors font-medium">AI Demos</a> <a href="#contact" class="text-sm text-gray-300 hover:text-indigo-400 transition-colors font-medium">Contact</a> </div> <div class="md:hidden flex items-center"> <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none"> <i class="fas fa-bars text-xl"></i> </button> </div> </div> </div>
-         <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 w-full bg-gray-800 shadow-lg border-t border-gray-700 py-3 z-40"> <a href="#skills" class="mobile-nav-link block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-indigo-400">Projects & Code</a> <a href="#demos" class="mobile-nav-link block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-indigo-400">AI Demos</a> <a href="#contact" class="mobile-nav-link block px-4 py-2 text-base text-gray-300 hover:bg-gray-700 hover:text-indigo-400">Contact</a> </div>
+<body class="min-h-screen"> <nav class="sticky top-0 z-50">
+        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16"> <a href="#" class="text-lg font-bold text-gray-100 hover:text-indigo-400 transition-colors">SD<span class="text-indigo-500">.</span>AI</a>
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#skills">Projects & Code</a>
+                    <a href="#demos">AI Demos</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none p-2 rounded-md hover:bg-gray-700 transition">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 w-full shadow-lg py-3 z-40">
+            <a href="#skills" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">Projects & Code</a>
+            <a href="#demos" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">AI Demos</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">Contact</a>
+        </div>
     </nav>
 
-    <section id="hero" class="pt-16 pb-12 px-4 bg-gray-800 text-center border-b border-gray-700"> <div class="max-w-4xl mx-auto">
-            <h1 class="text-2xl md:text-3xl font-semibold text-gray-200">AI & Deep Learning Portfolio</h1>
-            <p class="text-sm text-gray-400 mt-2">Showcasing projects and interactive AI demonstrations by Satyam Dixit.</p> </div>
-    </section>
-
-    <section id="skills" class="py-20 bg-gray-900 border-t border-gray-700"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16"> <h2 class="text-3xl font-bold text-gray-100 mb-3">Featured Projects & Code Examples</h2> <p class="text-gray-400 max-w-xl mx-auto mt-2">Highlights of technical implementations and solutions.</p> <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div> </div>
-             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                 <div class="card p-6">
-                     <div class="card-content space-y-4">
-                         <div class="flex items-start space-x-3">
-                             <i class="fas fa-microchip text-3xl text-green-400 pt-1"></i>
-                             <h4 class="text-lg font-semibold text-gray-100">CUDA Optimizations</h4>
-                         </div>
-                         <p class="text-gray-400 text-sm">
-                             Examples of accelerating deep learning components using NVIDIA CUDA. Includes kernel implementations and performance analysis.
-                         </p>
-                     </div>
-                     <div class="card-footer pt-4 mt-4 border-t border-gray-700">
-                         <div>
-                             <span class="mono-tag">CUDA</span><span class="mono-tag">C++</span><span class="mono-tag">Python</span><span class="mono-tag">PyTorch</span>
-                         </div>
-                         <a href="cuda-projects.html" class="mt-4 inline-block w-full text-center px-4 py-2 bg-indigo-700 text-indigo-100 rounded-md text-sm hover:bg-indigo-600 transition font-medium">
-                             View Details &rarr;
-                         </a>
-                     </div>
-                 </div>
-                 <div class="card p-6"> <div class="card-content space-y-4"> <div class="flex items-start space-x-3"> <i class="fas fa-brain text-3xl text-indigo-400 pt-1"></i> <h4 class="text-lg font-semibold text-gray-100">LLM Fine-Tuning & RAG</h4> </div> <p class="text-gray-400 text-sm"> Projects involving fine-tuning LLMs for specific tasks and implementing Retrieval-Augmented Generation pipelines. </p> </div> <div class="card-footer pt-4 mt-4 border-t border-gray-700"> <div> <span class="mono-tag">LLM</span><span class="mono-tag">PyTorch</span><span class="mono-tag">Transformers</span><span class="mono-tag">RAG</span> </div> <a href="https://github.com/Satyamdixit6/RAG" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center px-4 py-2 bg-indigo-700 text-indigo-100 rounded-md text-sm hover:bg-indigo-600 transition font-medium"> View Details &rarr; </a> </div> </div>
-                 <div class="card p-6"> <div class="card-content space-y-4"> <div class="flex items-start space-x-3"> <i class="fas fa-eye text-3xl text-purple-400 pt-1"></i> <h4 class="text-lg font-semibold text-gray-100">Computer Vision Systems</h4> </div> <p class="text-gray-400 text-sm"> Developing systems for image classification, object detection (YOLO), and segmentation. Includes data handling and evaluation. </p> </div> <div class="card-footer pt-4 mt-4 border-t border-gray-700"> <div> <span class="mono-tag">CV</span><span class="mono-tag">PyTorch</span><span class="mono-tag">CNN</span><span class="mono-tag">YOLO</span> </div> <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block w-full text-center px-4 py-2 bg-indigo-700 text-indigo-100 rounded-md text-sm hover:bg-indigo-600 transition font-medium"> View Details &rarr; </a> </div> </div>
-                 <div class="card p-6"> <div class="card-content space-y-4"> <div class="flex items-start space-x-3"> <i class="fas fa-server text-3xl text-gray-400 pt-1"></i> <h4 class="text-lg font-semibold text-gray-100">API & Deployment</h4> </div> <p class="text-gray-400 text-sm"> Building and deploying ML models as scalable APIs (FastAPI/Flask), containerization (Docker), and cloud deployment concepts. </p> </div> <div class="card-footer pt-4 mt-4 border-t border-gray-700"> <div><span class="mono-tag">API</span><span class="mono-tag">FastAPI</span><span class="mono-tag">Docker</span><span class="mono-tag">Cloud</span></div> <a href="api-deployment-projects.html" class="mt-4 inline-block w-full text-center px-4 py-2 bg-indigo-700 text-indigo-100 rounded-md text-sm hover:bg-indigo-600 transition font-medium"> View Details &rarr; </a> </div> </div>
+    <section id="hero" class="text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-4">Satyam Dixit</h1>
+            <p class="subtitle text-lg md:text-xl font-medium mb-6">AI & Deep Learning Portfolio</p>
             </div>
-        </div>
     </section>
 
-    <section id="demos" class="py-20 bg-gray-800 border-t border-gray-700"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                 <h2 class="text-3xl font-bold text-gray-100 mb-3">AI Demonstrations</h2>
-                 <p class="text-gray-400 max-w-2xl mx-auto">Explore different AI interaction methods and their trade-offs.</p>
-                 <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div>
-             </div>
-
-             <div class="mb-16">
-                 <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Client-Side Demos (Experimental / Basic Quality)</h3>
-                 <p class="text-center text-sm text-gray-400 mb-8 max-w-xl mx-auto">These demos run small ONNX models in your browser using WebAssembly or WebGPU. Quality is very limited & may be unreliable. Models download on first use and should work offline after that. <strong class="text-red-400">Check Console (F12) for errors.</strong></p>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <div class="card p-5">
-                        <div class="card-content space-y-3"> <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-camera mr-2 text-indigo-400"></i>Vision (Captioning)</h4> <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs">vit-gpt2-img-cap</code></p> <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-xs"></div> <div class="w-full h-28 bg-gray-700 rounded border border-gray-600 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div> </div>
-                        <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2"> <button id="p1_generateCaptionBtn" class="w-full px-3 py-1.5 bg-indigo-600 text-white rounded text-xs hover:bg-indigo-700 disabled:opacity-50">Generate</button> <div id="p1_status" class="demo-status text-gray-400"></div><div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem] scrollable"></div> </div>
-                    </div>
-                    <div class="card p-5">
-                         <div class="card-content space-y-3"> <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-comment-dots mr-2 text-purple-400"></i>Language (Text2Text)</h4> <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic and may be repetitive/nonsensical.</strong></p> <div><label for="p2_textPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div> </div>
-                         <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2"> <button id="p2_generateTextBtn" class="w-full px-3 py-1.5 bg-indigo-600 text-white rounded text-xs hover:bg-indigo-700 disabled:opacity-50">Generate</button> <div id="p2_status" class="demo-status text-gray-400"></div><div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem] scrollable"></div> </div>
-                    </div>
-                    </div>
-                 <p class="text-xs text-gray-500 text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
+                <h2 class="text-3xl font-bold mb-3">Featured Projects & Code</h2>
+                <p class="text-gray-400 max-w-xl mx-auto">Highlights of technical implementations and solutions.</p>
+                <div class="section-divider"></div>
             </div>
 
-             <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-700">
-                 <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Cloud API Demos (High Quality)</h3>
-                 <p class="text-center text-sm text-gray-400 mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
-                 <div class="max-w-xl mx-auto mb-8 p-4 info-box"> <label for="hf_api_token" class="block font-medium mb-2 text-sm text-blue-200">Enter HF API Token (Optional):</label>
-                      <input type="password" id="hf_api_token" class="w-full p-2 text-sm placeholder-gray-400 bg-gray-700 border-gray-600" placeholder="Paste your READ token (hf_...)">
-                      <p class="text-xs mt-1 text-blue-300">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
-                 </div>
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                     <div class="card p-6">
-                          <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-indigo-400"></i>Vision (API)</h4>
-                          <div class="space-y-4">
-                              <div> <label for="p4_imageUrl" class="block text-gray-300 text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
-                              <div> <label for="p4_vlmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" placeholder="e.g., Salesforce/blip-image-captioning-large"> </div>
-                              <div id="p4_vqaPromptDiv"> <label for="p4_vqaPrompt" class="block text-gray-300 text-xs font-medium mb-1">Question (Optional - for VQA models):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="What is in the image?"> </div>
-                              <button id="p4_runVlmBtn" class="w-full px-4 py-2 bg-green-700 text-white rounded-md text-sm hover:bg-green-800 disabled:opacity-50">Run via API</button>
-                              <div id="p4_vlmStatus" class="demo-status text-gray-400"></div>
-                              <div id="p4_vlmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                              <p class="text-xs text-gray-500 mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
-                          </div>
-                     </div>
-                      <div class="card p-6">
-                         <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-400"></i>Language (API)</h4>
-                         <div class="space-y-4">
-                             <div> <label for="p5_lmPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
-                             <div> <label for="p5_lmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" placeholder="e.g., microsoft/Phi-3-mini-4k-instruct"></div>
-                             <button id="p5_runLmBtn" class="w-full px-4 py-2 bg-green-700 text-white rounded-md text-sm hover:bg-green-800 disabled:opacity-50">Run via API</button>
-                             <div id="p5_lmStatus" class="demo-status text-gray-400"></div>
-                             <div id="p5_lmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                              <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
-                         </div>
-                     </div>
-                      <div class="card p-6">
-                         <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-400"></i>Coding (API)</h4>
-                         <div class="space-y-4">
-                             <div> <label for="p6_codePrompt" class="block text-gray-300 text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
-                              <div> <label for="p6_coderModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" placeholder="e.g., deepseek-ai/deepseek-coder-1.3b-instruct"> </div>
-                             <button id="p6_runCoderBtn" class="w-full px-4 py-2 bg-green-700 text-white rounded-md text-sm hover:bg-green-800 disabled:opacity-50">Run via API</button>
-                             <div id="p6_coderStatus" class="demo-status text-gray-400"></div>
-                             <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono scrollable"></div>
-                              <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' (code-focused) available on Inference API.</p>
-                         </div>
-                     </div>
-                 </div>
-            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="card-content space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-microchip text-3xl text-green-400 pt-1"></i>
+                            <h4 class="text-lg font-semibold">CUDA Optimizations</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            Examples of accelerating deep learning components using NVIDIA CUDA. Includes kernel implementations and performance analysis.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="mono-tag">CUDA</span><span class="mono-tag">C++</span><span class="mono-tag">Python</span><span class="mono-tag">PyTorch</span>
+                        </div>
+                        <a href="https://github.com/Satyamdixit6/cuddly-octo-spoon" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                </div>
 
-             <div id="local-run" class="mb-16 pt-10 border-t border-gray-700">
-                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 3: Running Powerful Models Locally</h3> <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p> <div class="info-box max-w-xl mx-auto text-center"> <p class="mb-3 text-blue-200">These tools let you download and run various models easily:</p> <a href="how-to-run-locally.html" class="inline-block px-6 py-2 bg-sky-700 text-white rounded-md hover:bg-sky-800 transition font-medium text-sm"> <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally &rarr; </a> <p class="text-xs mt-3 text-blue-300"> (Includes info on Ollama, LM Studio, etc.)</p> <p class="text-xs mt-3 border-t border-sky-700 pt-2 text-blue-300"> <i class="fab fa-docker"></i> Note: A Dockerfile for self-hosting a backend API (alternative to cloud APIs) may be available in the project repo (Docker Hub: satyamdixit6666). </p> </div>
-             </div>
-             <div id="image-gen" class="pt-10 border-t border-gray-700">
-                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 4: Image Generation</h3> <p class="text-center text-sm text-gray-400 mb-8 max-w-xl mx-auto">High-quality image generation requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p> <div class="text-center p-10 bg-gray-700 rounded-lg border border-dashed border-gray-600 max-w-md mx-auto"> <i class="fas fa-image text-4xl text-gray-500"></i> <p class="mt-2 text-gray-400">Image Generation Demo (Placeholder)</p> </div>
+                <div class="card">
+                    <div class="card-content space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-book-open-reader text-3xl text-indigo-400 pt-1"></i>
+                            <h4 class="text-lg font-semibold">RAG Implementation</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            Implementing Retrieval-Augmented Generation pipelines to enhance LLM responses with external knowledge. Explores vector databases and prompt engineering.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="mono-tag">RAG</span><span class="mono-tag">LLM</span><span class="mono-tag">PyTorch</span><span class="mono-tag">Transformers</span><span class="mono-tag">VectorDB</span>
+                        </div>
+                        <a href="https://github.com/Satyamdixit6/RAG" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
+                            View on GitHub &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-eye text-3xl text-purple-400 pt-1"></i>
+                            <h4 class="text-lg font-semibold">Computer Vision Systems</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            Developing systems for image classification, object detection (YOLO), and segmentation. Includes data handling and evaluation.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div>
+                            <span class="mono-tag">CV</span><span class="mono-tag">PyTorch</span><span class="mono-tag">CNN</span><span class="mono-tag">YOLO</span>
+                        </div>
+                        <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
+                            View on Docker Hub &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-content space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-server text-3xl text-gray-400 pt-1"></i>
+                            <h4 class="text-lg font-semibold">API & Deployment</h4>
+                        </div>
+                        <p class="text-gray-400 text-sm">
+                            Building and deploying ML models as scalable APIs (FastAPI/Flask), containerization (Docker), and cloud deployment concepts.
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div><span class="mono-tag">API</span><span class="mono-tag">FastAPI</span><span class="mono-tag">Docker</span><span class="mono-tag">Cloud</span></div>
+                         <a href="#" class="button-like btn-primary mt-4 w-full text-sm opacity-70 cursor-not-allowed" title="Link TBD">
+                            Details Coming Soon
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-20 bg-gray-900 border-t border-gray-700"> <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="text-center mb-12"> <h2 class="text-3xl font-bold text-gray-100 mb-3">Contact Me</h2> <p class="text-gray-400">Let's discuss AI, potential collaborations, or just connect!</p> <div class="w-24 h-1 bg-indigo-500 mx-auto mt-4"></div> </div> <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700"> <form action="#" method="POST"> <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6"> <div> <label for="name" class="block text-gray-300 font-medium mb-2 text-sm">Name</label> <input type="text" id="name" name="name" required class="w-full"> </div> <div> <label for="email" class="block text-gray-300 font-medium mb-2 text-sm">Email</label> <input type="email" id="email" name="email" required class="w-full"> </div> </div> <div class="mb-6"> <label for="subject" class="block text-gray-300 font-medium mb-2 text-sm">Subject</label> <input type="text" id="subject" name="subject" class="w-full"> </div> <div class="mb-6"> <label for="message" class="block text-gray-300 font-medium mb-2 text-sm">Message</label> <textarea id="message" name="message" rows="5" required class="w-full"></textarea> </div> <div class="text-center"> <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-indigo-600 text-white rounded-md shadow-lg hover:bg-indigo-700 transition-all duration-300 font-semibold"> Send Message </button> </div> </form> <div class="mt-8 pt-6 border-t border-gray-700 text-center"> <p class="text-sm text-gray-400 mb-3">Or reach out directly:</p> <p class="text-sm text-gray-200 font-medium"> <i class="fas fa-envelope mr-2 text-indigo-400"></i> satyamdixit6666@gmail.com </p> </div> </div> </div> </section>
+    <section id="demos">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-3">AI Demonstrations</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Explore different AI interaction methods and their trade-offs.</p>
+                <div class="section-divider"></div>
+            </div>
 
-    <footer class="bg-gray-900 text-white py-10 border-t border-gray-700"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"> <div class="mb-4">
-                 <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-linkedin-in text-xl"></i> </a>
-                 <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-github text-xl"></i> </a>
-                 <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-twitter text-xl"></i> </a>
-                 <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-indigo-400 transition-colors mx-3"> <i class="fab fa-docker text-xl"></i> </a> </div> <p class="text-gray-500 text-sm"> &copy; <span id="footerYear"></span> Satyam Dixit. All rights reserved. </p> </div> </footer>
+            <div class="mb-16">
+                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Client-Side Demos (Experimental)</h3>
+                <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">These demos run ONNX models directly in your browser using WebAssembly or WebGPU. Quality/speed varies. Models download on first use. <strong class="warning-text">Check Console (F12) for errors. Image generation is very resource intensive!</strong></p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"> <div class="card p-5">
+                        <div class="card-content space-y-3">
+                            <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-camera mr-2 text-indigo-400"></i>Vision (Captioning)</h4>
+                            <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
+                            <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-xs"></div>
+                            <div class="w-full h-28 bg-gray-700 rounded border border-gray-600 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
+                        </div>
+                        <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                            <button id="p1_generateCaptionBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
+                            <div id="p1_status" class="demo-status text-gray-400"></div>
+                            <div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem] scrollable"></div>
+                        </div>
+                    </div>
+                    <div class="card p-5">
+                          <div class="card-content space-y-3">
+                              <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-comment-dots mr-2 text-purple-400"></i>Language (Text2Text)</h4>
+                              <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
+                              <div><label for="p2_textPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div>
+                          </div>
+                          <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                              <button id="p2_generateTextBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
+                              <div id="p2_status" class="demo-status text-gray-400"></div>
+                              <div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem] scrollable"></div>
+                          </div>
+                    </div>
+                    <div class="card p-5">
+                          <div class="card-content space-y-3">
+                              <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-image mr-2 text-teal-400"></i>Image Generation</h4>
+                              <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
+                              <div><label for="p7_imagePrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label><textarea id="p7_imagePrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="A photo of an astronaut riding a horse on the moon"></textarea></div>
+                          </div>
+                          <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                              <button id="p7_generateImageBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate Image</button>
+                              <div id="p7_status" class="demo-status text-gray-400"></div>
+                              <div id="p7_imageResultContainer" class="image-result-box"> <span id="p7_imagePlaceholder">Result will appear here</span>
+                                  <img id="p7_imageResult" src="#" alt="Generated Image" class="hidden"/>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-500 text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
+            </div>
+
+            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Cloud API Demos (High Quality)</h3>
+                <p class="text-center text-sm text-gray-400 mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
+                <div class="max-w-xl mx-auto mb-8 p-4 info-box">
+                    <label for="hf_api_token" class="block font-medium mb-2 text-sm text-blue-200">Enter HF API Token (Required):</label>
+                    <input type="password" id="hf_api_token" class="w-full p-2 text-sm placeholder-gray-300" placeholder="Paste your READ token (hf_...)">
+                    <p class="text-xs mt-1 text-blue-300">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card p-6">
+                        <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-indigo-400"></i>Vision (API)</h4>
+                        <div class="space-y-4">
+                            <div> <label for="p4_imageUrl" class="block text-gray-300 text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
+                            <div> <label for="p4_vlmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" placeholder="e.g., Salesforce/blip-image-captioning-large"> </div>
+                            <div id="p4_vqaPromptDiv"> <label for="p4_vqaPrompt" class="block text-gray-300 text-xs font-medium mb-1">Question (Optional - for VQA models):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="What is in the image?"> </div>
+                            <button id="p4_runVlmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                            <div id="p4_vlmStatus" class="demo-status text-gray-400"></div>
+                            <div id="p4_vlmResult" class="w-full p-2 result-box text-xs scrollable"></div>
+                            <p class="text-xs text-gray-500 mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                       <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-400"></i>Language (API)</h4>
+                       <div class="space-y-4">
+                           <div> <label for="p5_lmPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
+                           <div> <label for="p5_lmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" placeholder="e.g., microsoft/Phi-3-mini-4k-instruct"></div>
+                           <button id="p5_runLmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                           <div id="p5_lmStatus" class="demo-status text-gray-400"></div>
+                           <div id="p5_lmResult" class="w-full p-2 result-box text-xs scrollable"></div>
+                           <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
+                       </div>
+                    </div>
+                    <div class="card p-6">
+                       <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-400"></i>Coding (API)</h4>
+                       <div class="space-y-4">
+                           <div> <label for="p6_codePrompt" class="block text-gray-300 text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
+                           <div> <label for="p6_coderModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" placeholder="e.g., deepseek-ai/deepseek-coder-1.3b-instruct"> </div>
+                           <button id="p6_runCoderBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                           <div id="p6_coderStatus" class="demo-status text-gray-400"></div>
+                           <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono scrollable"></div>
+                           <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' (code-focused) available on Inference API.</p>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="local-run" class="mb-16 pt-10 border-t border-gray-700">
+                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 3: Running Powerful Models Locally</h3>
+                <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p>
+                <div class="info-box max-w-xl mx-auto text-center">
+                    <p class="mb-3 text-blue-200">These tools let you download and run various models easily:</p>
+                    <a href="#" class="button-like inline-block px-6 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 transition font-medium text-sm" title="Guide Coming Soon">
+                        <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally &rarr;
+                    </a>
+                    <p class="text-xs mt-3 text-blue-300"> (Includes info on Ollama, LM Studio, etc.)</p>
+                    <p class="text-xs mt-3 border-t border-sky-700 pt-2 text-blue-300">
+                        <i class="fab fa-docker"></i> Note: A Dockerfile for self-hosting a backend API (alternative to cloud APIs) may be available in the project repo (Docker Hub: satyamdixit6666).
+                    </p>
+                </div>
+             </div>
+
+            <div id="image-gen-cloud" class="pt-10 border-t border-gray-700"> <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
+                <p class="text-center text-sm text-gray-400 mb-8 max-w-xl mx-auto">Top-tier image generation typically requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p>
+                <div class="text-center p-10 bg-gray-700 rounded-lg border border-dashed border-gray-600 max-w-md mx-auto">
+                    <i class="fas fa-palette text-4xl text-gray-500"></i> <p class="mt-2 text-gray-400">Cloud/Local Image Generation</p>
+                    <p class="text-xs text-gray-500 mt-1">Requires dedicated setup or API key.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-3">Contact Me</h2>
+                <p class="text-gray-400">Let's discuss AI, potential collaborations, or just connect!</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
+                <form id="contact-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-300 font-medium mb-2 text-sm">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-300 font-medium mb-2 text-sm">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-300 font-medium mb-2 text-sm">Subject</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-300 font-medium mb-2 text-sm">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="button-like w-full sm:w-auto font-semibold">
+                            Send Message via Email
+                        </button>
+                    </div>
+                </form>
+                <div id="contact-status" class="mt-4 text-center text-sm text-green-400"></div> <div class="mt-8 pt-6 border-t border-gray-700 text-center">
+                    <p class="text-sm text-gray-400 mb-3">Or reach out directly:</p>
+                    <p class="text-sm text-gray-200 font-medium">
+                        <i class="fas fa-envelope mr-2 text-indigo-400"></i> satyamdixit6666@gmail.com
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4 space-x-6">
+                <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" title="GitHub">
+                    <i class="fab fa-github text-xl"></i>
+                </a>
+                <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" title="Twitter">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" title="Docker Hub">
+                    <i class="fab fa-docker text-xl"></i>
+                </a>
+            </div>
+            <p class="text-sm">
+                &copy; <span id="footerYear"></span> Satyam Dixit. All rights reserved.
+            </p>
+        </div>
+    </footer>
 
     <script type="module">
-        // Import the pipeline function from Transformers.js CDN
+        // Import the pipeline function and env object from Transformers.js CDN
         import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.1';
 
         // --- Configuration & Initial Status ---
         console.log("Initializing Transformers.js v2.17.1...");
-        ['p1_status', 'p2_status', /* p3 removed */ 'p4_vlmStatus', 'p5_lmStatus', 'p6_coderStatus'].forEach(id => setStatus(id, 'Ready.'));
-        env.allowLocalModels = false;
-        env.backends.onnx.executionProviders = ['webgpu', 'wasm'];
+        // Set initial status for all demo areas
+        ['p1_status', 'p2_status', 'p7_status', 'p4_vlmStatus', 'p5_lmStatus', 'p6_coderStatus'].forEach(id => setStatus(id, 'Ready.'));
+        // Configure environment settings for Transformers.js
+        env.allowLocalModels = false; // Disallow loading models from local cache initially
+        env.backends.onnx.executionProviders = ['webgpu', 'wasm']; // Prioritize WebGPU, fallback to WASM
+        // Optional: Increase logging level for debugging
+        // env.logLevel = 'info';
 
-        // --- Model Pipeline Instances ---
-        let p1_captioner = null; let p2_generator = null;
+        // --- Model Pipeline Instances (Lazy Loaded) ---
+        let p1_captioner = null;       // For Vision (Captioning) demo
+        let p2_generator = null;       // For Language (Text2Text) demo
+        let p7_imageGenerator = null; // NEW: For Image Generation demo
 
         // --- Constants for Browser Model Names ---
         const P1_MODEL_BROWSER = 'Xenova/vit-gpt2-image-captioning';
-        const P2_MODEL_BROWSER = 'Xenova/flan-t5-small';
+        const P2_MODEL_BROWSER = 'Xenova/flan-t5-small'; // Basic text model
+        const P7_MODEL_BROWSER = 'Xenova/stable-diffusion-turbo'; // Faster SD variant, still demanding!
 
-        // --- Helper Functions (Unchanged) ---
-        function setStatus(elementId, text, isError = false) { const element = document.getElementById(elementId); if (element) { element.textContent = text; element.className = `demo-status text-xs text-center ${isError ? 'text-red-400' : 'text-gray-400'}`; if(isError) console.error(`[${elementId}] ${text}`); else console.log(`[${elementId}] ${text}`); } } // Adjusted error color slightly for dark theme if needed
-        function clearStatusDelay(elementId, delay = 4000) { setTimeout(() => { const element = document.getElementById(elementId); if (element && !element.textContent.toLowerCase().includes('error') && !element.textContent.toLowerCase().includes('loading') && !element.textContent.toLowerCase().includes('downloading')) { setStatus(elementId, 'Ready.'); } }, delay); }
-        function handleProgress(elementId, data) { let statusText = 'Loading model...'; try { const filename = data.file ? data.file.split(/[\\/]/).pop() : 'model file'; if (data.status === 'progress') { const percentage = data.total ? ((data.downloaded / data.total) * 100).toFixed(1) : (data.downloaded / 1024 / 1024).toFixed(1) + 'MB'; statusText = `Downloading ${filename} (${percentage}${data.total ? '%' : ''})`; } else if (data.status === 'ready' || data.status === 'loaded') { statusText = `Model ready: ${filename}`; } else if (data.status === 'initiate') { statusText = `Initiating: ${filename}`; } else { statusText = `Model status: ${data.status} (${filename})`; } } catch (e) { console.warn("Progress Error:", data, e); statusText = `Model status: ${data?.status || 'loading...'}`; } setStatus(elementId, statusText); }
-
-        // --- Lazy Init Browser Pipelines ---
-        async function getCaptioner(statusId) { if (!p1_captioner) { setStatus(statusId, 'Loading pipeline...'); p1_captioner = await pipeline('image-to-text', P1_MODEL_BROWSER, { progress_callback: data => handleProgress(statusId, data) }); } return p1_captioner; }
-        async function getTextGenerator(statusId) { // Only P2 uses this
-             if (!p2_generator) { setStatus(statusId, 'Loading pipeline...'); try { p2_generator = await pipeline('text2text-generation', P2_MODEL_BROWSER, { progress_callback: data => handleProgress(statusId, data) }); } catch (e) { console.warn("text2text failed, trying translation", e); setStatus(statusId, 'Trying translation pipeline...'); p2_generator = await pipeline('translation', P2_MODEL_BROWSER, { progress_callback: data => handleProgress(statusId, data) }); } }
-             return p2_generator;
+        // --- Helper Functions ---
+        /**
+         * Updates the status text for a demo element.
+         * @param {string} elementId - The ID of the status display element.
+         * @param {string} text - The message to display.
+         * @param {('info'|'error'|'warning'|'success')} [level='info'] - Severity level for styling.
+         */
+        function setStatus(elementId, text, level = 'info') {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = text;
+                let colorVar = 'var(--text-muted)'; // Default info color
+                switch (level) {
+                    case 'error':
+                        colorVar = 'var(--error-text)';
+                        console.error(`[${elementId}] ${text}`);
+                        break;
+                    case 'warning':
+                        colorVar = 'var(--warning-text)';
+                        console.warn(`[${elementId}] ${text}`);
+                        break;
+                    case 'success':
+                         colorVar = 'var(--success-primary)';
+                         console.log(`[${elementId}] ${text}`);
+                         break;
+                    default: // info
+                        console.log(`[${elementId}] ${text}`);
+                }
+                element.style.color = colorVar;
+                element.className = `demo-status text-xs text-center`; // Keep base class
+            }
         }
+
+        /** Clears status after delay if not error/loading */
+        function clearStatusDelay(elementId, delay = 5000) { // Increased delay
+            setTimeout(() => {
+                const element = document.getElementById(elementId);
+                if (element && !element.textContent.toLowerCase().includes('error') && !element.textContent.toLowerCase().includes('loading') && !element.textContent.toLowerCase().includes('downloading') && !element.textContent.toLowerCase().includes('generating')) {
+                    setStatus(elementId, 'Ready.', 'info');
+                }
+            }, delay);
+        }
+
+        /** Handles model loading progress */
+        function handleProgress(elementId, data) {
+            let statusText = 'Loading model...';
+            let level = 'info';
+            try {
+                const filename = data.file ? data.file.split(/[\\/]/).pop() : 'model file';
+                switch (data.status) {
+                    case 'progress':
+                        const percentage = data.total ? ((data.downloaded / data.total) * 100).toFixed(1) : (data.downloaded / 1024 / 1024).toFixed(1) + 'MB';
+                        statusText = `Downloading ${filename} (${percentage}${data.total ? '%' : ''})`;
+                        break;
+                    case 'ready':
+                    case 'loaded':
+                        statusText = `Model ready: ${filename}`;
+                        level = 'success';
+                        break;
+                    case 'initiate':
+                        statusText = `Initiating: ${filename}`;
+                        break;
+                    default:
+                        statusText = `Model status: ${data.status} (${filename})`;
+                }
+            } catch (e) {
+                console.warn("Progress Handling Error:", data, e);
+                statusText = `Model status: ${data?.status || 'loading...'}`;
+                level = 'warning';
+            }
+            setStatus(elementId, statusText, level);
+        }
+
+        // --- Lazy Initialization for Browser Pipelines ---
+        /** Gets or initializes the image captioning pipeline. */
+        async function getCaptioner(statusId) {
+            if (!p1_captioner) {
+                setStatus(statusId, 'Loading captioning pipeline...', 'info');
+                try {
+                    p1_captioner = await pipeline('image-to-text', P1_MODEL_BROWSER, {
+                        progress_callback: data => handleProgress(statusId, data)
+                    });
+                    setStatus(statusId, 'Captioning pipeline ready.', 'success');
+                } catch (error) {
+                    console.error("Captioner pipeline init failed:", error);
+                    setStatus(statusId, `Error loading captioner: ${error.message}`, 'error');
+                    return null;
+                }
+            }
+            return p1_captioner;
+        }
+
+        /** Gets or initializes the text generation/translation pipeline. */
+        async function getTextGenerator(statusId) {
+            if (!p2_generator) {
+                setStatus(statusId, 'Loading text pipeline...', 'info');
+                try {
+                    p2_generator = await pipeline('text2text-generation', P2_MODEL_BROWSER, {
+                        progress_callback: data => handleProgress(statusId, data)
+                    });
+                     setStatus(statusId, 'Text pipeline ready.', 'success');
+                } catch (e) {
+                    console.warn("text2text-generation failed, trying translation task as fallback", e);
+                    setStatus(statusId, 'Trying translation pipeline...', 'warning');
+                    try {
+                        p2_generator = await pipeline('translation', P2_MODEL_BROWSER, {
+                            progress_callback: data => handleProgress(statusId, data)
+                        });
+                        setStatus(statusId, 'Translation pipeline ready.', 'success');
+                    } catch (error) {
+                         console.error("Text generator pipeline init failed:", error);
+                         setStatus(statusId, `Error loading text generator: ${error.message}`, 'error');
+                         return null;
+                    }
+                }
+            }
+            return p2_generator;
+        }
+
+        /** NEW: Gets or initializes the image generation pipeline. */
+        async function getImageGenerator(statusId) {
+            if (!p7_imageGenerator) {
+                setStatus(statusId, 'Loading image generation pipeline (this may take a while)...', 'warning');
+                try {
+                    p7_imageGenerator = await pipeline('text-to-image', P7_MODEL_BROWSER, {
+                        progress_callback: data => handleProgress(statusId, data),
+                        // Important: Specify WebGPU preference if available
+                        device: env.backends.onnx.executionProviders.includes('webgpu') ? 'webgpu' : 'cpu', // Prefer GPU, fallback to CPU (WASM)
+                        // dtype: 'fp16' // Maybe use float16 for lower memory, check model compatibility
+                    });
+                    setStatus(statusId, 'Image generation pipeline ready.', 'success');
+                } catch (error) {
+                    console.error("Image generator pipeline init failed:", error);
+                    setStatus(statusId, `Error loading image generator: ${error.message}. Ensure WebGPU is enabled/supported.`, 'error');
+                    return null;
+                }
+            }
+            return p7_imageGenerator;
+        }
+
 
         // --- Tier 1: In-Browser Demo Logic ---
-        // Project 1: Vision Captioning (Unchanged)
-        const p1_imageUpload = document.getElementById('p1_imageUpload'); const p1_imagePreview = document.getElementById('p1_imagePreview'); const p1_previewText = document.getElementById('p1_previewText'); const p1_generateCaptionBtn = document.getElementById('p1_generateCaptionBtn'); const p1_captionResult = document.getElementById('p1_captionResult'); const P1_STATUS_ID = 'p1_status'; let p1_imageDataUrl = null;
-        if (p1_imageUpload) { p1_imageUpload.addEventListener('change', (event) => { const file = event.target.files[0]; p1_imageDataUrl = null; p1_imagePreview.classList.add('hidden'); p1_previewText.classList.remove('hidden'); p1_captionResult.textContent = ''; setStatus(P1_STATUS_ID, 'Ready.'); if (file && file.type.startsWith('image/')) { const reader = new FileReader(); reader.onload = (e) => { p1_imageDataUrl = e.target.result; p1_imagePreview.src = p1_imageDataUrl; p1_imagePreview.classList.remove('hidden'); p1_previewText.classList.add('hidden'); setStatus(P1_STATUS_ID, 'Image loaded.'); }; reader.onerror = (e) => { setStatus(P1_STATUS_ID, 'Error reading file.', true); console.error("FileReader error:", e); }; reader.readAsDataURL(file); } else if (file) { setStatus(P1_STATUS_ID, 'Error: Select image file.', true); event.target.value = ''; } }); }
-        if (p1_generateCaptionBtn) { p1_generateCaptionBtn.addEventListener('click', async () => { if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Select image.', true); return; } p1_generateCaptionBtn.disabled = true; p1_captionResult.textContent = ''; setStatus(P1_STATUS_ID, `Loading ${P1_MODEL_BROWSER.split('/').pop()}...`); try { const captioner = await getCaptioner(P1_STATUS_ID); setStatus(P1_STATUS_ID, 'Generating...'); if (!captioner) throw new Error("Pipeline init failed."); const output = await captioner(p1_imageDataUrl); console.log('Raw P1 output:', output); if (output && Array.isArray(output) && output.length > 0 && typeof output[0].generated_text === 'string') { p1_captionResult.textContent = output[0].generated_text; setStatus(P1_STATUS_ID, 'Done (Basic).'); clearStatusDelay(P1_STATUS_ID); } else { throw new Error('Unexpected output.'); } } catch (error) { console.error('P1 Error:', error); setStatus(P1_STATUS_ID, `Error: ${error.message || 'Failed.'}`, true); p1_captionResult.textContent = `Error. Check console.`; } finally { p1_generateCaptionBtn.disabled = false; } }); }
 
-        // Project 2: Text Generation (Unchanged)
-        const p2_textPrompt = document.getElementById('p2_textPrompt'); const p2_generateTextBtn = document.getElementById('p2_generateTextBtn'); const p2_generationResult = document.getElementById('p2_generationResult'); const P2_STATUS_ID = 'p2_status';
-        if (p2_generateTextBtn) {
-             p2_generateTextBtn.addEventListener('click', async () => {
-                 const promptText = p2_textPrompt.value.trim();
-                 if (!promptText) { setStatus(P2_STATUS_ID, 'Enter prompt.', true); return; }
-                 p2_generateTextBtn.disabled = true; p2_generationResult.textContent = '';
-                 setStatus(P2_STATUS_ID, `Loading ${P2_MODEL_BROWSER.split('/').pop()}...`);
-                 try {
-                     const generator = await getTextGenerator(P2_STATUS_ID);
-                     setStatus(P2_STATUS_ID, 'Generating...');
-                     if (!generator) throw new Error("Pipeline init failed.");
+        // Project 1: Vision Captioning (Mostly Unchanged)
+        const p1_imageUpload = document.getElementById('p1_imageUpload');
+        const p1_imagePreview = document.getElementById('p1_imagePreview');
+        const p1_previewText = document.getElementById('p1_previewText');
+        const p1_generateCaptionBtn = document.getElementById('p1_generateCaptionBtn');
+        const p1_captionResult = document.getElementById('p1_captionResult');
+        const P1_STATUS_ID = 'p1_status';
+        let p1_imageDataUrl = null;
 
-                     const output = await generator(promptText, { max_new_tokens: 75 });
-                     console.log('Raw P2 output:', output);
-                     let resultText = '';
-                     if (output && Array.isArray(output) && output.length > 0) {
-                         // T5 output key depends on task pipeline loaded ('translation_text' or 'generated_text')
-                         resultText = output[0].generated_text || output[0].translation_text || output[0].summary_text || JSON.stringify(output[0]);
-                     }
-                     if (resultText && typeof resultText === 'string') {
-                         p2_generationResult.textContent = resultText;
-                         setStatus(P2_STATUS_ID, 'Done (Basic Model - Output maybe inaccurate/repetitive).');
-                         clearStatusDelay(P2_STATUS_ID);
-                     } else { throw new Error('Unexpected output format.'); }
-                 } catch (error) {
-                     console.error('P2 Error:', error);
-                     setStatus(P2_STATUS_ID, `Error: ${error.message || 'Failed.'}`, true);
-                     p2_generationResult.textContent = 'Error. Check console.';
-                 } finally {
-                     p2_generateTextBtn.disabled = false;
-                 }
-             });
+        if (p1_imageUpload) {
+            p1_imageUpload.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                p1_imageDataUrl = null;
+                p1_imagePreview.classList.add('hidden');
+                p1_previewText.classList.remove('hidden');
+                if(p1_captionResult) p1_captionResult.textContent = '';
+                setStatus(P1_STATUS_ID, 'Ready.', 'info');
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        p1_imageDataUrl = e.target.result;
+                        p1_imagePreview.src = p1_imageDataUrl;
+                        p1_imagePreview.classList.remove('hidden');
+                        p1_previewText.classList.add('hidden');
+                        setStatus(P1_STATUS_ID, 'Image loaded.', 'info');
+                    };
+                    reader.onerror = (e) => { setStatus(P1_STATUS_ID, 'Error reading file.', 'error'); console.error("FileReader error:", e); };
+                    reader.readAsDataURL(file);
+                } else if (file) { setStatus(P1_STATUS_ID, 'Error: Please select an image file.', 'error'); event.target.value = ''; }
+            });
+        }
+        if (p1_generateCaptionBtn) {
+            p1_generateCaptionBtn.addEventListener('click', async () => {
+                if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Please select an image first.', 'warning'); return; }
+                p1_generateCaptionBtn.disabled = true;
+                if(p1_captionResult) p1_captionResult.textContent = '';
+                setStatus(P1_STATUS_ID, `Loading model...`, 'info');
+                try {
+                    const captioner = await getCaptioner(P1_STATUS_ID);
+                    if (!captioner) throw new Error("Captioning pipeline failed to initialize.");
+                    setStatus(P1_STATUS_ID, 'Generating caption...', 'info');
+                    const output = await captioner(p1_imageDataUrl);
+                    console.log('Raw P1 output:', output);
+                    if (output && Array.isArray(output) && output.length > 0 && typeof output[0].generated_text === 'string') {
+                        if(p1_captionResult) p1_captionResult.textContent = output[0].generated_text;
+                        setStatus(P1_STATUS_ID, 'Done (Basic Model).', 'success');
+                        clearStatusDelay(P1_STATUS_ID);
+                    } else { throw new Error('Unexpected output format received.'); }
+                } catch (error) {
+                    console.error('P1 Captioning Error:', error);
+                    setStatus(P1_STATUS_ID, `Error: ${error.message || 'Caption generation failed.'}`, 'error');
+                    if(p1_captionResult) p1_captionResult.textContent = `Error. Check console (F12).`;
+                } finally { p1_generateCaptionBtn.disabled = false; }
+            });
         }
 
-        // Project 3: Web Search Assistant Removed from JS
+        // Project 2: Text Generation (Mostly Unchanged)
+        const p2_textPrompt = document.getElementById('p2_textPrompt');
+        const p2_generateTextBtn = document.getElementById('p2_generateTextBtn');
+        const p2_generationResult = document.getElementById('p2_generationResult');
+        const P2_STATUS_ID = 'p2_status';
+        if (p2_generateTextBtn) {
+            p2_generateTextBtn.addEventListener('click', async () => {
+                const promptText = p2_textPrompt.value.trim();
+                if (!promptText) { setStatus(P2_STATUS_ID, 'Please enter a prompt.', 'warning'); return; }
+                p2_generateTextBtn.disabled = true;
+                if(p2_generationResult) p2_generationResult.textContent = '';
+                setStatus(P2_STATUS_ID, `Loading model...`, 'info');
+                try {
+                    const generator = await getTextGenerator(P2_STATUS_ID);
+                    if (!generator) throw new Error("Text generation pipeline failed to initialize.");
+                    setStatus(P2_STATUS_ID, 'Generating text...', 'info');
+                    const output = await generator(promptText, { max_new_tokens: 75 });
+                    console.log('Raw P2 output:', output);
+                    let resultText = '';
+                    if (output && Array.isArray(output) && output.length > 0) { resultText = output[0].generated_text || output[0].translation_text || JSON.stringify(output[0]); }
+                    if (resultText && typeof resultText === 'string') {
+                        if(p2_generationResult) p2_generationResult.textContent = resultText;
+                        setStatus(P2_STATUS_ID, 'Done (Basic Model).', 'success');
+                        clearStatusDelay(P2_STATUS_ID);
+                    } else { throw new Error('Unexpected output format.'); }
+                } catch (error) {
+                    console.error('P2 Text Generation Error:', error);
+                    setStatus(P2_STATUS_ID, `Error: ${error.message || 'Text generation failed.'}`, 'error');
+                    if(p2_generationResult) p2_generationResult.textContent = 'Error. Check console (F12).';
+                } finally { p2_generateTextBtn.disabled = false; }
+            });
+        }
 
-        // --- Tier 2: Powerful Model Section Logic (HF API - Unchanged) ---
+        // NEW: Project 7: Image Generation
+        const p7_imagePrompt = document.getElementById('p7_imagePrompt');
+        const p7_generateImageBtn = document.getElementById('p7_generateImageBtn');
+        const p7_imageResult = document.getElementById('p7_imageResult');
+        const p7_imagePlaceholder = document.getElementById('p7_imagePlaceholder');
+        const P7_STATUS_ID = 'p7_status';
+
+        if (p7_generateImageBtn) {
+            p7_generateImageBtn.addEventListener('click', async () => {
+                const promptText = p7_imagePrompt.value.trim();
+                if (!promptText) {
+                    setStatus(P7_STATUS_ID, 'Please enter a prompt.', 'warning');
+                    return;
+                }
+                p7_generateImageBtn.disabled = true;
+                p7_imageResult.classList.add('hidden'); // Hide previous image
+                p7_imagePlaceholder.classList.remove('hidden'); // Show placeholder
+                p7_imagePlaceholder.textContent = 'Loading model...';
+                setStatus(P7_STATUS_ID, `Initializing Image Generator...`, 'info');
+
+                try {
+                    const generator = await getImageGenerator(P7_STATUS_ID);
+                    if (!generator) throw new Error("Image generation pipeline failed to initialize.");
+
+                    setStatus(P7_STATUS_ID, 'Generating image (this can take time & resources)...', 'warning');
+                    p7_imagePlaceholder.textContent = 'Generating... please wait.';
+
+                    // Parameters for SD Turbo (fewer steps)
+                    const generationOptions = {
+                        num_inference_steps: 4, // Turbo needs fewer steps
+                        guidance_scale: 0 // Turbo often works best with guidance 0
+                        // negative_prompt: 'low quality, blurry, deformed' // Optional
+                    };
+
+                    const output = await generator(promptText, generationOptions);
+                    console.log('Raw P7 output:', output);
+
+                    // The output is usually an object with an 'image' property containing a Tensor or similar
+                    // We need to convert this to a displayable format (Data URL)
+                    if (output && output.image) {
+                         // Transformers.js >= 2.17 has built-in toDataURL
+                        const dataUrl = await output.image.toDataURL();
+
+                        p7_imageResult.src = dataUrl;
+                        p7_imageResult.classList.remove('hidden');
+                        p7_imagePlaceholder.classList.add('hidden');
+                        setStatus(P7_STATUS_ID, 'Image generated successfully!', 'success');
+                        clearStatusDelay(P7_STATUS_ID);
+                    } else {
+                        throw new Error('Unexpected output format from image generator.');
+                    }
+                } catch (error) {
+                    console.error('P7 Image Generation Error:', error);
+                    setStatus(P7_STATUS_ID, `Error: ${error.message || 'Image generation failed.'}. Check console & resource usage.`, 'error');
+                    p7_imagePlaceholder.textContent = 'Error generating image. See console (F12).';
+                    p7_imagePlaceholder.classList.remove('hidden');
+                    p7_imageResult.classList.add('hidden');
+                } finally {
+                    p7_generateImageBtn.disabled = false; // Re-enable button
+                }
+            });
+        }
+
+
+        // --- Tier 2: Cloud API Demo Logic (Hugging Face Inference API) ---
         const hfApiTokenInput = document.getElementById('hf_api_token');
-        const p4_imageUrl = document.getElementById('p4_imageUrl'); const p4_vlmModelId = document.getElementById('p4_vlmModelId'); const p4_runVlmBtn = document.getElementById('p4_runVlmBtn'); const p4_vlmResult = document.getElementById('p4_vlmResult'); const p4_vqaPromptDiv = document.getElementById('p4_vqaPromptDiv'); const p4_vqaPrompt = document.getElementById('p4_vqaPrompt'); const P4_STATUS_ID = 'p4_vlmStatus';
-        const p5_lmPrompt = document.getElementById('p5_lmPrompt'); const p5_lmModelId = document.getElementById('p5_lmModelId'); const p5_runLmBtn = document.getElementById('p5_runLmBtn'); const p5_lmResult = document.getElementById('p5_lmResult'); const P5_STATUS_ID = 'p5_lmStatus';
-        const p6_codePrompt = document.getElementById('p6_codePrompt'); const p6_coderModelId = document.getElementById('p6_coderModelId'); const p6_runCoderBtn = document.getElementById('p6_runCoderBtn'); const p6_coderResult = document.getElementById('p6_coderResult'); const P6_STATUS_ID = 'p6_coderStatus';
+        // Vision API Elements
+        const p4_imageUrl = document.getElementById('p4_imageUrl');
+        const p4_vlmModelId = document.getElementById('p4_vlmModelId');
+        const p4_runVlmBtn = document.getElementById('p4_runVlmBtn');
+        const p4_vlmResult = document.getElementById('p4_vlmResult');
+        const p4_vqaPromptDiv = document.getElementById('p4_vqaPromptDiv');
+        const p4_vqaPrompt = document.getElementById('p4_vqaPrompt');
+        const P4_STATUS_ID = 'p4_vlmStatus';
+        // Language API Elements
+        const p5_lmPrompt = document.getElementById('p5_lmPrompt');
+        const p5_lmModelId = document.getElementById('p5_lmModelId');
+        const p5_runLmBtn = document.getElementById('p5_runLmBtn');
+        const p5_lmResult = document.getElementById('p5_lmResult');
+        const P5_STATUS_ID = 'p5_lmStatus';
+        // Coding API Elements
+        const p6_codePrompt = document.getElementById('p6_codePrompt');
+        const p6_coderModelId = document.getElementById('p6_coderModelId');
+        const p6_runCoderBtn = document.getElementById('p6_runCoderBtn');
+        const p6_coderResult = document.getElementById('p6_coderResult');
+        const P6_STATUS_ID = 'p6_coderStatus';
 
-         if (p4_vqaPromptDiv) p4_vqaPromptDiv.classList.remove('hidden'); // Ensure VQA prompt is visible
+        if (p4_vqaPromptDiv) p4_vqaPromptDiv.classList.remove('hidden');
 
-         async function callHfInferenceApi(modelId, inputs, taskHint, statusId, resultElement, buttonElement) {
-             const apiToken = hfApiTokenInput.value.trim();
-             if (!apiToken) { setStatus(statusId, 'Hugging Face API Token required.', true); return; }
-             if (!modelId) { setStatus(statusId, 'Please enter a Hugging Face Model ID.', true); return; } // Check if model ID is entered
+        /** Calls the Hugging Face Inference API. */
+        async function callHfInferenceApi(modelId, inputs, taskHint, statusId, resultElement, buttonElement) {
+            const apiToken = hfApiTokenInput.value.trim();
+            if (!apiToken) {
+                setStatus(statusId, 'Hugging Face API Token required.', 'error');
+                if (hfApiTokenInput) { hfApiTokenInput.focus(); hfApiTokenInput.style.borderColor = 'var(--warning-text)'; setTimeout(() => { hfApiTokenInput.style.borderColor = ''; }, 3000); }
+                return;
+            }
+            if (!modelId) {
+                setStatus(statusId, 'Please enter a Hugging Face Model ID.', 'error');
+                 const modelInputElement = document.getElementById(statusId.replace('_status', 'ModelId'));
+                 if (modelInputElement) { modelInputElement.focus(); modelInputElement.style.borderColor = 'var(--warning-text)'; setTimeout(() => { modelInputElement.style.borderColor = ''; }, 3000); }
+                return;
+            }
 
-             setStatus(statusId, `Calling ${modelId.split('/').pop()} API...`);
-             if (buttonElement) buttonElement.disabled = true;
-             if (resultElement) resultElement.textContent = '';
-             const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
-             console.log(`Calling HF API: ${apiUrl} with inputs:`, inputs);
+            setStatus(statusId, `Calling ${modelId.split('/').pop()} API...`, 'info');
+            if (buttonElement) buttonElement.disabled = true;
+            if (resultElement) resultElement.textContent = 'Processing...';
+            const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
+            console.log(`Calling HF API: ${apiUrl} with inputs:`, inputs);
 
-             try {
-                 const response = await fetch(apiUrl, {
-                     method: 'POST',
-                     headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' },
-                     body: JSON.stringify({ inputs: inputs, options: { wait_for_model: true, use_cache: false }, parameters: { max_new_tokens: 300 } }) // Keep max_new_tokens
-                 });
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ inputs: inputs, options: { wait_for_model: true, use_cache: false }, parameters: { max_new_tokens: 300 } })
+                });
 
-                 if (!response.ok) {
-                     let errorText = `API Error ${response.status}: ${response.statusText}`;
-                     try { const errorData = await response.json(); errorText += ` - ${errorData.error || JSON.stringify(errorData)}`; } catch (e) {}
-                     if(response.status === 401) errorText = "API Error 401: Invalid API Token?";
-                     if(response.status === 404) errorText = `API Error 404: Model ID '${modelId}' not found or invalid?`;
-                     if(response.status === 503) errorText = `API Error 503: Model '${modelId}' is loading, try again shortly.`;
-                     throw new Error(errorText);
-                 }
-                 const result = await response.json();
-                 console.log(`Raw API Response (${modelId}):`, result);
+                if (!response.ok) {
+                    let errorText = `API Error ${response.status}: ${response.statusText}`;
+                    try { const errorData = await response.json(); errorText += ` - ${errorData.error || JSON.stringify(errorData)}`; } catch (e) {}
+                    if (response.status === 401) errorText = "API Error 401: Invalid or missing API Token.";
+                    if (response.status === 404) errorText = `API Error 404: Model ID '${modelId}' not found or invalid?`;
+                    if (response.status === 503) errorText = `API Error 503: Model '${modelId}' is loading, please try again shortly.`;
+                    if (response.status === 429) errorText = `API Error 429: Rate limit exceeded. Please wait and try again.`;
+                    throw new Error(errorText);
+                }
 
-                 let displayText = '(No standard output field found in response)';
-                 if (Array.isArray(result)) {
-                     if (result.length > 0) {
-                         if ((taskHint === 'language' || taskHint === 'coding') && typeof result[0].generated_text === 'string') displayText = result[0].generated_text;
-                         else if (taskHint === 'vision-vqa' && typeof result[0].answer === 'string') displayText = result[0].answer;
-                         else if (taskHint === 'vision-caption' && typeof result[0].generated_text === 'string') displayText = result[0].generated_text;
-                         else displayText = JSON.stringify(result[0], null, 2);
-                     } else { displayText = "(Empty API response array)"; }
-                 } else if (typeof result === 'object' && result !== null) {
-                      if (typeof result.generated_text === 'string') displayText = result.generated_text;
-                      else if (typeof result.answer === 'string') displayText = result.answer;
-                      else displayText = JSON.stringify(result, null, 2);
-                 } else {
-                     displayText = JSON.stringify(result, null, 2);
-                 }
+                const result = await response.json();
+                console.log(`Raw API Response (${modelId}):`, result);
 
-                 if (resultElement) resultElement.textContent = displayText;
-                 setStatus(statusId, 'Result received from API.'); clearStatusDelay(statusId);
+                let displayText = '(No standard output field found)';
+                if (Array.isArray(result)) {
+                    if (result.length > 0) {
+                        const firstResult = result[0];
+                        if ((taskHint === 'language' || taskHint === 'coding' || taskHint === 'vision-caption') && typeof firstResult.generated_text === 'string') { displayText = firstResult.generated_text; }
+                        else if (taskHint === 'vision-vqa' && typeof firstResult.answer === 'string') { displayText = firstResult.answer; }
+                        else { displayText = JSON.stringify(firstResult, null, 2); }
+                    } else { displayText = "(Empty API response array)"; }
+                } else if (typeof result === 'object' && result !== null) {
+                     if (typeof result.generated_text === 'string') displayText = result.generated_text;
+                     else if (typeof result.answer === 'string') displayText = result.answer;
+                     else displayText = JSON.stringify(result, null, 2);
+                } else { displayText = JSON.stringify(result, null, 2); }
 
-             } catch (error) {
-                 console.error(`API Call Error (${modelId}):`, error);
-                 setStatus(statusId, `API Error: ${error.message}`, true);
-                 if (resultElement) resultElement.textContent = `Error calling API. Check console (F12).`;
-             } finally {
-                 if (buttonElement) buttonElement.disabled = false;
-             }
-         }
+                if (resultElement) resultElement.textContent = displayText.trim();
+                setStatus(statusId, 'Result received from API.', 'success'); clearStatusDelay(statusId);
 
-         // --- Event Listeners for Powerful Model Buttons (Unchanged) ---
-         if (p4_runVlmBtn) {
-             p4_runVlmBtn.addEventListener('click', () => {
-                 const imageUrl = p4_imageUrl.value.trim();
-                 const selectedModel = document.getElementById('p4_vlmModelId').value.trim();
-                 const vqaPrompt = p4_vqaPrompt.value.trim();
-                 const isVqaAttempt = vqaPrompt !== '';
+            } catch (error) {
+                console.error(`API Call Error (${modelId}):`, error);
+                setStatus(statusId, `API Error: ${error.message}`, 'error');
+                if (resultElement) resultElement.textContent = `Error calling API. Check console (F12).`;
+            } finally { if (buttonElement) buttonElement.disabled = false; }
+        }
 
-                 if (!imageUrl) { setStatus(P4_STATUS_ID, 'Enter Image URL.', true); return; }
-                 if (!selectedModel) { setStatus(P4_STATUS_ID, 'Enter Model ID.', true); return; }
+        // --- Event Listeners for Cloud API Buttons ---
+        if (p4_runVlmBtn) {
+            p4_runVlmBtn.addEventListener('click', () => {
+                const imageUrl = p4_imageUrl.value.trim();
+                const selectedModel = p4_vlmModelId.value.trim();
+                const vqaPrompt = p4_vqaPrompt.value.trim();
+                const isVqaAttempt = vqaPrompt !== '';
+                if (!imageUrl) { setStatus(P4_STATUS_ID, 'Please enter an Image URL.', 'warning'); return; }
+                let apiInputs, taskType;
+                if (isVqaAttempt) {
+                    apiInputs = { image: imageUrl, question: vqaPrompt }; taskType = 'vision-vqa';
+                    if (selectedModel.toLowerCase().includes('llava')) {
+                        apiInputs = `USER: <image>\n${vqaPrompt}\nASSISTANT:`; taskType = 'language';
+                        setStatus(P4_STATUS_ID, "Note: LLaVA model selected, using text-gen format.", 'info');
+                    }
+                } else { apiInputs = imageUrl; taskType = 'vision-caption'; }
+                callHfInferenceApi(selectedModel, apiInputs, taskType, P4_STATUS_ID, p4_vlmResult, p4_runVlmBtn);
+            });
+        }
+        if (p5_runLmBtn) {
+            p5_runLmBtn.addEventListener('click', () => {
+                const prompt = p5_lmPrompt.value.trim(); const selectedModel = p5_lmModelId.value.trim();
+                if (!prompt) { setStatus(P5_STATUS_ID, 'Please enter a Prompt.', 'warning'); return; }
+                callHfInferenceApi(selectedModel, prompt, 'language', P5_STATUS_ID, p5_lmResult, p5_runLmBtn);
+            });
+        }
+        if (p6_runCoderBtn) {
+            p6_runCoderBtn.addEventListener('click', () => {
+                const prompt = p6_codePrompt.value.trim(); const selectedModel = p6_coderModelId.value.trim();
+                if (!prompt) { setStatus(P6_STATUS_ID, 'Please enter a Code Prompt.', 'warning'); return; }
+                callHfInferenceApi(selectedModel, prompt, 'coding', P6_STATUS_ID, p6_coderResult, p6_runCoderBtn);
+            });
+        }
 
-                 let apiInputs = imageUrl;
-                 let taskType = 'vision-caption';
+        // --- Contact Form Logic (Mailto) ---
+        const contactForm = document.getElementById('contact-form');
+        const contactStatus = document.getElementById('contact-status');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+                setStatus('contact-status', 'Preparing email...', 'info'); // Use setStatus helper
 
-                 if (isVqaAttempt) {
-                     apiInputs = { image: imageUrl, question: vqaPrompt };
-                     taskType = 'vision-vqa';
-                     if (selectedModel.toLowerCase().includes('llava')) {
-                         apiInputs = `USER: <image>\n${vqaPrompt}\nASSISTANT:`; taskType = 'language';
-                         setStatus(P4_STATUS_ID, "Warn: LLaVA API may need specific setup.", true);
-                     }
-                 }
-                 callHfInferenceApi(selectedModel, apiInputs, taskType, P4_STATUS_ID, p4_vlmResult, p4_runVlmBtn);
-             });
-         }
+                try {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
 
-         if (p5_runLmBtn) {
-             p5_runLmBtn.addEventListener('click', () => {
-                 const prompt = p5_lmPrompt.value.trim();
-                 const selectedModel = document.getElementById('p5_lmModelId').value.trim();
-                 if (!prompt) { setStatus(P5_STATUS_ID, 'Enter Prompt.', true); return; }
-                 if (!selectedModel) { setStatus(P5_STATUS_ID, 'Enter Model ID.', true); return; }
-                 callHfInferenceApi(selectedModel, prompt, 'language', P5_STATUS_ID, p5_lmResult, p5_runLmBtn);
-             });
-         }
+                    // Basic validation
+                    if (!name || !email || !message) {
+                         setStatus('contact-status', 'Please fill in Name, Email, and Message fields.', 'warning');
+                        return;
+                    }
 
-         if (p6_runCoderBtn) {
-             p6_runCoderBtn.addEventListener('click', () => {
-                 const prompt = p6_codePrompt.value.trim();
-                 const selectedModel = document.getElementById('p6_coderModelId').value.trim();
-                 if (!prompt) { setStatus(P6_STATUS_ID, 'Enter Code Prompt.', true); return; }
-                 if (!selectedModel) { setStatus(P6_STATUS_ID, 'Enter Model ID.', true); return; }
-                 callHfInferenceApi(selectedModel, prompt, 'coding', P6_STATUS_ID, p6_coderResult, p6_runCoderBtn);
-             });
-         }
+                    const mailtoSubject = encodeURIComponent(subject || `Contact from Portfolio Page - ${name}`);
+                    const mailtoBody = encodeURIComponent(
+                        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+                    );
+
+                    // Your email address
+                    const recipientEmail = "satyamdixit6666@gmail.com";
+
+                    // Construct the mailto link
+                    const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+                    // Attempt to open the user's email client
+                    window.location.href = mailtoLink;
+
+                    setStatus('contact-status', 'Your email client should open now.', 'success');
+                    // Optionally clear the form after a delay
+                    setTimeout(() => {
+                        contactForm.reset();
+                        setStatus('contact-status', '', 'info'); // Clear status
+                    }, 4000);
+
+                } catch (error) {
+                    console.error("Mailto link creation failed:", error);
+                     setStatus('contact-status', 'Failed to prepare email. Please contact directly.', 'error');
+                }
+            });
+        }
 
 
-        // --- General Purpose Scripts (Unchanged) ---
+        // --- General Purpose Scripts (DOM Ready) ---
         document.addEventListener('DOMContentLoaded', function() {
-             console.log("DOM loaded.");
-             const footerYear = document.getElementById('footerYear'); if(footerYear) { footerYear.textContent = new Date().getFullYear(); }
-             const mobileMenuButton = document.getElementById('mobile-menu-button'); const mobileMenu = document.getElementById('mobile-menu'); if (mobileMenuButton && mobileMenu) { mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); }); mobileMenu.querySelectorAll('a.mobile-nav-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); }); }
-             document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { e.preventDefault(); const targetId = this.getAttribute('href'); const targetElement = document.querySelector(targetId); if (targetElement) { const offset = 64; /* Nav height */ const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset; const offsetPosition = elementPosition - offset; window.scrollTo({ top: offsetPosition, behavior: 'smooth' }); } else { console.warn(`Scroll target not found: ${targetId}`); } }); });
+            console.log("DOM fully loaded and parsed.");
+            const footerYear = document.getElementById('footerYear'); if (footerYear) { footerYear.textContent = new Date().getFullYear(); }
+            const mobileMenuButton = document.getElementById('mobile-menu-button'); const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); const isExpanded = !mobileMenu.classList.contains('hidden'); mobileMenuButton.setAttribute('aria-expanded', isExpanded); });
+                mobileMenu.querySelectorAll('a.mobile-nav-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenuButton.setAttribute('aria-expanded', 'false'); }); });
+            }
         }); // End DOMContentLoaded
     </script>
 
