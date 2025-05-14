@@ -37,6 +37,19 @@
             color: var(--text-secondary);
             line-height: 1.7;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            position: relative; /* Ensure canvas positioning */
+        }
+
+        /* Dynamic Background Canvas */
+        canvas#backgroundCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4; /* Subtle to avoid distraction */
+            pointer-events: none; /* Prevent interaction */
         }
 
         /* --- Typography --- */
@@ -164,7 +177,6 @@
         button:focus, .button-like:focus { outline: none; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); }
         button:disabled { opacity: 0.5; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); } /* More distinct disabled style */
 
-        /* Primary Button Style (e.g., Card links, Client-side demos) */
         .btn-primary {
             padding: 0.6rem 1rem; /* Adjusted padding */
             background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
@@ -177,7 +189,6 @@
             transform: translateY(-1px);
         }
 
-        /* Success Button Style (e.g., API Run) */
         .btn-success {
             padding: 0.6rem 1rem;
             background: linear-gradient(to right, var(--success-primary), var(--success-dark));
@@ -190,8 +201,7 @@
             transform: translateY(-1px);
         }
 
-        /* Send Message Button (Contact Form) */
-        #contact-form button[type="submit"] { /* Specific selector */
+        #contact-form button[type="submit"] {
             padding: 0.75rem 2rem; /* py-3 px-8 */
             background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
             color: white;
@@ -243,7 +253,7 @@
         /* --- Demo Specific --- */
         .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem; transition: color 0.3s ease; }
         .result-box { background-color: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-secondary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
-        .image-result-box { /* For image generation */
+        .image-result-box {
              background-color: var(--bg-tertiary); border: 1px solid var(--border-color);
              min-height: 12rem; /* Taller for image */
              max-height: 20rem;
@@ -266,7 +276,7 @@
         .info-box { background-color: #1e3a8a; border: 1px solid #3b82f6; color: #bfdbfe; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
         .info-box a { color: #93c5fd; font-weight: 500; text-decoration: underline; }
         .info-box a:hover { color: #ffffff; }
-        .info-box input[type="password"] { background-color: #1d4ed8; border-color: #2563eb; color: #e0f2fe; } /* Adjusted for blue box */
+        .info-box input[type="password"] { background-color: #1d4ed8; border-color: #2563eb; color: #e0f2fe; }
         .info-box input[type="password"]::placeholder { color: #93c5fd; }
 
         /* --- Scrollbar --- */
@@ -284,10 +294,89 @@
 
         /* --- Utilities --- */
         .highlight-text { color: var(--accent-primary); }
-
     </style>
 </head>
-<body class="min-h-screen"> <nav class="sticky top-0 z-50">
+<body class="min-h-screen">
+    <!-- Dynamic Background Canvas -->
+    <canvas id="backgroundCanvas"></canvas>
+
+    <!-- Background Animation Script -->
+    <script>
+        // Floating Orbs Animation
+        const bgCanvas = document.getElementById('backgroundCanvas');
+        const ctx = bgCanvas.getContext('2d');
+        let orbs = [];
+
+        // Resize canvas to fit window
+        function resizeCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Orb class for animation
+        class Orb {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.radius = Math.random() * 4 + 2; // 2-6px
+                this.opacity = Math.random() * 0.5 + 0.3; // 0.3-0.8
+                this.speedX = Math.random() * 0.3 - 0.15; // -0.15 to 0.15
+                this.speedY = Math.random() * 0.3 - 0.15;
+                // Randomly select color from portfolio palette
+                const colors = [
+                    'rgba(99, 102, 241, 0.6)', // --accent-primary
+                    'rgba(16, 185, 129, 0.6)', // --success-primary
+                    'rgba(255, 255, 255, 0.2)' // Soft white
+                ];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.pulseSpeed = Math.random() * 0.02 + 0.01; // Pulsing effect
+                this.pulsePhase = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                // Bounce off edges
+                if (this.x < this.radius || this.x > bgCanvas.width - this.radius) this.speedX *= -1;
+                if (this.y < this.radius || this.y > bgCanvas.height - this.radius) this.speedY *= -1;
+                // Pulse opacity
+                this.opacity = 0.3 + 0.5 * (Math.sin(Date.now() * this.pulseSpeed + this.pulsePhase) * 0.5 + 0.5);
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color.replace('0.6', this.opacity.toFixed(2));
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color.replace('0.6', '0.8');
+                ctx.fill();
+                ctx.shadowBlur = 0; // Reset to avoid affecting other drawings
+            }
+        }
+
+        // Initialize orbs
+        function initOrbs() {
+            orbs = [];
+            for (let i = 0; i < 50; i++) { // 50 orbs for performance
+                orbs.push(new Orb());
+            }
+        }
+        initOrbs();
+
+        // Animate orbs
+        function animateBackground() {
+            ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            orbs.forEach(orb => {
+                orb.update();
+                orb.draw();
+            });
+            requestAnimationFrame(animateBackground);
+        }
+        animateBackground();
+    </script>
+
+    <!-- Original Portfolio Content -->
+    <nav class="sticky top-0 z-50">
         <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16"> <a href="#" class="text-lg font-bold text-gray-100 hover:text-indigo-400 transition-colors">SD<span class="text-indigo-500">.</span>AI</a>
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
@@ -313,7 +402,7 @@
         <div class="max-w-4xl mx-auto px-4">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-4">Satyam Dixit</h1>
             <p class="subtitle text-lg md:text-xl font-medium mb-6">AI & Deep Learning Portfolio</p>
-            </div>
+        </div>
     </section>
 
     <section id="skills">
@@ -340,7 +429,7 @@
                             <span class="mono-tag">CUDA</span><span class="mono-tag">C++</span><span class="mono-tag">Python</span><span class="mono-tag">PyTorch</span>
                         </div>
                         <a href="https://github.com/Satyamdixit6/cuddly-octo-spoon" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on GitHub &rarr;
+                            View on GitHub →
                         </a>
                     </div>
                 </div>
@@ -360,7 +449,7 @@
                             <span class="mono-tag">RAG</span><span class="mono-tag">LLM</span><span class="mono-tag">PyTorch</span><span class="mono-tag">Transformers</span><span class="mono-tag">VectorDB</span>
                         </div>
                         <a href="https://github.com/Satyamdixit6/RAG" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on GitHub &rarr;
+                            View on GitHub →
                         </a>
                     </div>
                 </div>
@@ -380,7 +469,7 @@
                             <span class="mono-tag">CV</span><span class="mono-tag">PyTorch</span><span class="mono-tag">CNN</span><span class="mono-tag">YOLO</span>
                         </div>
                         <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on Docker Hub &rarr;
+                            View on Docker Hub →
                         </a>
                     </div>
                 </div>
@@ -512,7 +601,7 @@
                 <div class="info-box max-w-xl mx-auto text-center">
                     <p class="mb-3 text-blue-200">These tools let you download and run various models easily:</p>
                     <a href="#" class="button-like inline-block px-6 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 transition font-medium text-sm" title="Guide Coming Soon">
-                        <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally &rarr;
+                        <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally →
                     </a>
                     <p class="text-xs mt-3 text-blue-300"> (Includes info on Ollama, LM Studio, etc.)</p>
                     <p class="text-xs mt-3 border-t border-sky-700 pt-2 text-blue-300">
@@ -591,7 +680,7 @@
                 </a>
             </div>
             <p class="text-sm">
-                &copy; <span id="footerYear"></span> Satyam Dixit. All rights reserved.
+                © <span id="footerYear"></span> Satyam Dixit. All rights reserved.
             </p>
         </div>
     </footer>
@@ -746,9 +835,7 @@
                 try {
                     p7_imageGenerator = await pipeline('text-to-image', P7_MODEL_BROWSER, {
                         progress_callback: data => handleProgress(statusId, data),
-                        // Important: Specify WebGPU preference if available
-                        device: env.backends.onnx.executionProviders.includes('webgpu') ? 'webgpu' : 'cpu', // Prefer GPU, fallback to CPU (WASM)
-                        // dtype: 'fp16' // Maybe use float16 for lower memory, check model compatibility
+                        device: env.backends.onnx.executionProviders.includes('webgpu') ? 'webgpu' : 'cpu',
                     });
                     setStatus(statusId, 'Image generation pipeline ready.', 'success');
                 } catch (error) {
@@ -760,10 +847,9 @@
             return p7_imageGenerator;
         }
 
-
         // --- Tier 1: In-Browser Demo Logic ---
 
-        // Project 1: Vision Captioning (Mostly Unchanged)
+        // Project 1: Vision Captioning
         const p1_imageUpload = document.getElementById('p1_imageUpload');
         const p1_imagePreview = document.getElementById('p1_imagePreview');
         const p1_previewText = document.getElementById('p1_previewText');
@@ -798,308 +884,4 @@
             p1_generateCaptionBtn.addEventListener('click', async () => {
                 if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Please select an image first.', 'warning'); return; }
                 p1_generateCaptionBtn.disabled = true;
-                if(p1_captionResult) p1_captionResult.textContent = '';
-                setStatus(P1_STATUS_ID, `Loading model...`, 'info');
-                try {
-                    const captioner = await getCaptioner(P1_STATUS_ID);
-                    if (!captioner) throw new Error("Captioning pipeline failed to initialize.");
-                    setStatus(P1_STATUS_ID, 'Generating caption...', 'info');
-                    const output = await captioner(p1_imageDataUrl);
-                    console.log('Raw P1 output:', output);
-                    if (output && Array.isArray(output) && output.length > 0 && typeof output[0].generated_text === 'string') {
-                        if(p1_captionResult) p1_captionResult.textContent = output[0].generated_text;
-                        setStatus(P1_STATUS_ID, 'Done (Basic Model).', 'success');
-                        clearStatusDelay(P1_STATUS_ID);
-                    } else { throw new Error('Unexpected output format received.'); }
-                } catch (error) {
-                    console.error('P1 Captioning Error:', error);
-                    setStatus(P1_STATUS_ID, `Error: ${error.message || 'Caption generation failed.'}`, 'error');
-                    if(p1_captionResult) p1_captionResult.textContent = `Error. Check console (F12).`;
-                } finally { p1_generateCaptionBtn.disabled = false; }
-            });
-        }
-
-        // Project 2: Text Generation (Mostly Unchanged)
-        const p2_textPrompt = document.getElementById('p2_textPrompt');
-        const p2_generateTextBtn = document.getElementById('p2_generateTextBtn');
-        const p2_generationResult = document.getElementById('p2_generationResult');
-        const P2_STATUS_ID = 'p2_status';
-        if (p2_generateTextBtn) {
-            p2_generateTextBtn.addEventListener('click', async () => {
-                const promptText = p2_textPrompt.value.trim();
-                if (!promptText) { setStatus(P2_STATUS_ID, 'Please enter a prompt.', 'warning'); return; }
-                p2_generateTextBtn.disabled = true;
-                if(p2_generationResult) p2_generationResult.textContent = '';
-                setStatus(P2_STATUS_ID, `Loading model...`, 'info');
-                try {
-                    const generator = await getTextGenerator(P2_STATUS_ID);
-                    if (!generator) throw new Error("Text generation pipeline failed to initialize.");
-                    setStatus(P2_STATUS_ID, 'Generating text...', 'info');
-                    const output = await generator(promptText, { max_new_tokens: 75 });
-                    console.log('Raw P2 output:', output);
-                    let resultText = '';
-                    if (output && Array.isArray(output) && output.length > 0) { resultText = output[0].generated_text || output[0].translation_text || JSON.stringify(output[0]); }
-                    if (resultText && typeof resultText === 'string') {
-                        if(p2_generationResult) p2_generationResult.textContent = resultText;
-                        setStatus(P2_STATUS_ID, 'Done (Basic Model).', 'success');
-                        clearStatusDelay(P2_STATUS_ID);
-                    } else { throw new Error('Unexpected output format.'); }
-                } catch (error) {
-                    console.error('P2 Text Generation Error:', error);
-                    setStatus(P2_STATUS_ID, `Error: ${error.message || 'Text generation failed.'}`, 'error');
-                    if(p2_generationResult) p2_generationResult.textContent = 'Error. Check console (F12).';
-                } finally { p2_generateTextBtn.disabled = false; }
-            });
-        }
-
-        // NEW: Project 7: Image Generation
-        const p7_imagePrompt = document.getElementById('p7_imagePrompt');
-        const p7_generateImageBtn = document.getElementById('p7_generateImageBtn');
-        const p7_imageResult = document.getElementById('p7_imageResult');
-        const p7_imagePlaceholder = document.getElementById('p7_imagePlaceholder');
-        const P7_STATUS_ID = 'p7_status';
-
-        if (p7_generateImageBtn) {
-            p7_generateImageBtn.addEventListener('click', async () => {
-                const promptText = p7_imagePrompt.value.trim();
-                if (!promptText) {
-                    setStatus(P7_STATUS_ID, 'Please enter a prompt.', 'warning');
-                    return;
-                }
-                p7_generateImageBtn.disabled = true;
-                p7_imageResult.classList.add('hidden'); // Hide previous image
-                p7_imagePlaceholder.classList.remove('hidden'); // Show placeholder
-                p7_imagePlaceholder.textContent = 'Loading model...';
-                setStatus(P7_STATUS_ID, `Initializing Image Generator...`, 'info');
-
-                try {
-                    const generator = await getImageGenerator(P7_STATUS_ID);
-                    if (!generator) throw new Error("Image generation pipeline failed to initialize.");
-
-                    setStatus(P7_STATUS_ID, 'Generating image (this can take time & resources)...', 'warning');
-                    p7_imagePlaceholder.textContent = 'Generating... please wait.';
-
-                    // Parameters for SD Turbo (fewer steps)
-                    const generationOptions = {
-                        num_inference_steps: 4, // Turbo needs fewer steps
-                        guidance_scale: 0 // Turbo often works best with guidance 0
-                        // negative_prompt: 'low quality, blurry, deformed' // Optional
-                    };
-
-                    const output = await generator(promptText, generationOptions);
-                    console.log('Raw P7 output:', output);
-
-                    // The output is usually an object with an 'image' property containing a Tensor or similar
-                    // We need to convert this to a displayable format (Data URL)
-                    if (output && output.image) {
-                         // Transformers.js >= 2.17 has built-in toDataURL
-                        const dataUrl = await output.image.toDataURL();
-
-                        p7_imageResult.src = dataUrl;
-                        p7_imageResult.classList.remove('hidden');
-                        p7_imagePlaceholder.classList.add('hidden');
-                        setStatus(P7_STATUS_ID, 'Image generated successfully!', 'success');
-                        clearStatusDelay(P7_STATUS_ID);
-                    } else {
-                        throw new Error('Unexpected output format from image generator.');
-                    }
-                } catch (error) {
-                    console.error('P7 Image Generation Error:', error);
-                    setStatus(P7_STATUS_ID, `Error: ${error.message || 'Image generation failed.'}. Check console & resource usage.`, 'error');
-                    p7_imagePlaceholder.textContent = 'Error generating image. See console (F12).';
-                    p7_imagePlaceholder.classList.remove('hidden');
-                    p7_imageResult.classList.add('hidden');
-                } finally {
-                    p7_generateImageBtn.disabled = false; // Re-enable button
-                }
-            });
-        }
-
-
-        // --- Tier 2: Cloud API Demo Logic (Hugging Face Inference API) ---
-        const hfApiTokenInput = document.getElementById('hf_api_token');
-        // Vision API Elements
-        const p4_imageUrl = document.getElementById('p4_imageUrl');
-        const p4_vlmModelId = document.getElementById('p4_vlmModelId');
-        const p4_runVlmBtn = document.getElementById('p4_runVlmBtn');
-        const p4_vlmResult = document.getElementById('p4_vlmResult');
-        const p4_vqaPromptDiv = document.getElementById('p4_vqaPromptDiv');
-        const p4_vqaPrompt = document.getElementById('p4_vqaPrompt');
-        const P4_STATUS_ID = 'p4_vlmStatus';
-        // Language API Elements
-        const p5_lmPrompt = document.getElementById('p5_lmPrompt');
-        const p5_lmModelId = document.getElementById('p5_lmModelId');
-        const p5_runLmBtn = document.getElementById('p5_runLmBtn');
-        const p5_lmResult = document.getElementById('p5_lmResult');
-        const P5_STATUS_ID = 'p5_lmStatus';
-        // Coding API Elements
-        const p6_codePrompt = document.getElementById('p6_codePrompt');
-        const p6_coderModelId = document.getElementById('p6_coderModelId');
-        const p6_runCoderBtn = document.getElementById('p6_runCoderBtn');
-        const p6_coderResult = document.getElementById('p6_coderResult');
-        const P6_STATUS_ID = 'p6_coderStatus';
-
-        if (p4_vqaPromptDiv) p4_vqaPromptDiv.classList.remove('hidden');
-
-        /** Calls the Hugging Face Inference API. */
-        async function callHfInferenceApi(modelId, inputs, taskHint, statusId, resultElement, buttonElement) {
-            const apiToken = hfApiTokenInput.value.trim();
-            if (!apiToken) {
-                setStatus(statusId, 'Hugging Face API Token required.', 'error');
-                if (hfApiTokenInput) { hfApiTokenInput.focus(); hfApiTokenInput.style.borderColor = 'var(--warning-text)'; setTimeout(() => { hfApiTokenInput.style.borderColor = ''; }, 3000); }
-                return;
-            }
-            if (!modelId) {
-                setStatus(statusId, 'Please enter a Hugging Face Model ID.', 'error');
-                 const modelInputElement = document.getElementById(statusId.replace('_status', 'ModelId'));
-                 if (modelInputElement) { modelInputElement.focus(); modelInputElement.style.borderColor = 'var(--warning-text)'; setTimeout(() => { modelInputElement.style.borderColor = ''; }, 3000); }
-                return;
-            }
-
-            setStatus(statusId, `Calling ${modelId.split('/').pop()} API...`, 'info');
-            if (buttonElement) buttonElement.disabled = true;
-            if (resultElement) resultElement.textContent = 'Processing...';
-            const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
-            console.log(`Calling HF API: ${apiUrl} with inputs:`, inputs);
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Authorization': `Bearer ${apiToken}`, 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ inputs: inputs, options: { wait_for_model: true, use_cache: false }, parameters: { max_new_tokens: 300 } })
-                });
-
-                if (!response.ok) {
-                    let errorText = `API Error ${response.status}: ${response.statusText}`;
-                    try { const errorData = await response.json(); errorText += ` - ${errorData.error || JSON.stringify(errorData)}`; } catch (e) {}
-                    if (response.status === 401) errorText = "API Error 401: Invalid or missing API Token.";
-                    if (response.status === 404) errorText = `API Error 404: Model ID '${modelId}' not found or invalid?`;
-                    if (response.status === 503) errorText = `API Error 503: Model '${modelId}' is loading, please try again shortly.`;
-                    if (response.status === 429) errorText = `API Error 429: Rate limit exceeded. Please wait and try again.`;
-                    throw new Error(errorText);
-                }
-
-                const result = await response.json();
-                console.log(`Raw API Response (${modelId}):`, result);
-
-                let displayText = '(No standard output field found)';
-                if (Array.isArray(result)) {
-                    if (result.length > 0) {
-                        const firstResult = result[0];
-                        if ((taskHint === 'language' || taskHint === 'coding' || taskHint === 'vision-caption') && typeof firstResult.generated_text === 'string') { displayText = firstResult.generated_text; }
-                        else if (taskHint === 'vision-vqa' && typeof firstResult.answer === 'string') { displayText = firstResult.answer; }
-                        else { displayText = JSON.stringify(firstResult, null, 2); }
-                    } else { displayText = "(Empty API response array)"; }
-                } else if (typeof result === 'object' && result !== null) {
-                     if (typeof result.generated_text === 'string') displayText = result.generated_text;
-                     else if (typeof result.answer === 'string') displayText = result.answer;
-                     else displayText = JSON.stringify(result, null, 2);
-                } else { displayText = JSON.stringify(result, null, 2); }
-
-                if (resultElement) resultElement.textContent = displayText.trim();
-                setStatus(statusId, 'Result received from API.', 'success'); clearStatusDelay(statusId);
-
-            } catch (error) {
-                console.error(`API Call Error (${modelId}):`, error);
-                setStatus(statusId, `API Error: ${error.message}`, 'error');
-                if (resultElement) resultElement.textContent = `Error calling API. Check console (F12).`;
-            } finally { if (buttonElement) buttonElement.disabled = false; }
-        }
-
-        // --- Event Listeners for Cloud API Buttons ---
-        if (p4_runVlmBtn) {
-            p4_runVlmBtn.addEventListener('click', () => {
-                const imageUrl = p4_imageUrl.value.trim();
-                const selectedModel = p4_vlmModelId.value.trim();
-                const vqaPrompt = p4_vqaPrompt.value.trim();
-                const isVqaAttempt = vqaPrompt !== '';
-                if (!imageUrl) { setStatus(P4_STATUS_ID, 'Please enter an Image URL.', 'warning'); return; }
-                let apiInputs, taskType;
-                if (isVqaAttempt) {
-                    apiInputs = { image: imageUrl, question: vqaPrompt }; taskType = 'vision-vqa';
-                    if (selectedModel.toLowerCase().includes('llava')) {
-                        apiInputs = `USER: <image>\n${vqaPrompt}\nASSISTANT:`; taskType = 'language';
-                        setStatus(P4_STATUS_ID, "Note: LLaVA model selected, using text-gen format.", 'info');
-                    }
-                } else { apiInputs = imageUrl; taskType = 'vision-caption'; }
-                callHfInferenceApi(selectedModel, apiInputs, taskType, P4_STATUS_ID, p4_vlmResult, p4_runVlmBtn);
-            });
-        }
-        if (p5_runLmBtn) {
-            p5_runLmBtn.addEventListener('click', () => {
-                const prompt = p5_lmPrompt.value.trim(); const selectedModel = p5_lmModelId.value.trim();
-                if (!prompt) { setStatus(P5_STATUS_ID, 'Please enter a Prompt.', 'warning'); return; }
-                callHfInferenceApi(selectedModel, prompt, 'language', P5_STATUS_ID, p5_lmResult, p5_runLmBtn);
-            });
-        }
-        if (p6_runCoderBtn) {
-            p6_runCoderBtn.addEventListener('click', () => {
-                const prompt = p6_codePrompt.value.trim(); const selectedModel = p6_coderModelId.value.trim();
-                if (!prompt) { setStatus(P6_STATUS_ID, 'Please enter a Code Prompt.', 'warning'); return; }
-                callHfInferenceApi(selectedModel, prompt, 'coding', P6_STATUS_ID, p6_coderResult, p6_runCoderBtn);
-            });
-        }
-
-        // --- Contact Form Logic (Mailto) ---
-        const contactForm = document.getElementById('contact-form');
-        const contactStatus = document.getElementById('contact-status');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-                setStatus('contact-status', 'Preparing email...', 'info'); // Use setStatus helper
-
-                try {
-                    const name = document.getElementById('name').value;
-                    const email = document.getElementById('email').value;
-                    const subject = document.getElementById('subject').value;
-                    const message = document.getElementById('message').value;
-
-                    // Basic validation
-                    if (!name || !email || !message) {
-                         setStatus('contact-status', 'Please fill in Name, Email, and Message fields.', 'warning');
-                        return;
-                    }
-
-                    const mailtoSubject = encodeURIComponent(subject || `Contact from Portfolio Page - ${name}`);
-                    const mailtoBody = encodeURIComponent(
-                        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-                    );
-
-                    // Your email address
-                    const recipientEmail = "satyamdixit6666@gmail.com";
-
-                    // Construct the mailto link
-                    const mailtoLink = `mailto:${recipientEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
-
-                    // Attempt to open the user's email client
-                    window.location.href = mailtoLink;
-
-                    setStatus('contact-status', 'Your email client should open now.', 'success');
-                    // Optionally clear the form after a delay
-                    setTimeout(() => {
-                        contactForm.reset();
-                        setStatus('contact-status', '', 'info'); // Clear status
-                    }, 4000);
-
-                } catch (error) {
-                    console.error("Mailto link creation failed:", error);
-                     setStatus('contact-status', 'Failed to prepare email. Please contact directly.', 'error');
-                }
-            });
-        }
-
-
-        // --- General Purpose Scripts (DOM Ready) ---
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log("DOM fully loaded and parsed.");
-            const footerYear = document.getElementById('footerYear'); if (footerYear) { footerYear.textContent = new Date().getFullYear(); }
-            const mobileMenuButton = document.getElementById('mobile-menu-button'); const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); const isExpanded = !mobileMenu.classList.contains('hidden'); mobileMenuButton.setAttribute('aria-expanded', isExpanded); });
-                mobileMenu.querySelectorAll('a.mobile-nav-link').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); mobileMenuButton.setAttribute('aria-expanded', 'false'); }); });
-            }
-        }); // End DOMContentLoaded
-    </script>
-
-</body>
-</html>
+                if(p1_captionResult) p
