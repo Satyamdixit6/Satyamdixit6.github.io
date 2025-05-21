@@ -278,6 +278,8 @@
         .info-box a:hover { color: #ffffff; }
         .info-box input[type="password"] { background-color: #1d4ed8; border-color: #2563eb; color: #e0f2fe; }
         .info-box input[type="password"]::placeholder { color: #93c5fd; }
+        #hf_api_token_feedback { font-size: 0.7rem; margin-top: 0.2rem; display: block; height: 0.8rem; /* Reserve space */}
+
 
         /* --- Scrollbar --- */
         .scrollable { scrollbar-width: thin; scrollbar-color: var(--border-color) var(--bg-tertiary); }
@@ -294,6 +296,17 @@
 
         /* --- Utilities --- */
         .highlight-text { color: var(--accent-primary); }
+
+        /* Scroll Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .scroll-animate.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -398,14 +411,14 @@
         </div>
     </nav>
 
-    <section id="hero" class="text-center">
+    <section id="hero" class="text-center scroll-animate">
         <div class="max-w-4xl mx-auto px-4">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-4">Satyam Dixit</h1>
             <p class="subtitle text-lg md:text-xl font-medium mb-6">AI & Deep Learning Portfolio</p>
         </div>
     </section>
 
-    <section id="skills">
+    <section id="skills" class="scroll-animate">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-3">Featured Projects & Code</h2>
@@ -414,7 +427,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card">
+                <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
                             <i class="fas fa-microchip text-3xl text-green-400 pt-1"></i>
@@ -434,7 +447,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
                             <i class="fas fa-book-open-reader text-3xl text-indigo-400 pt-1"></i>
@@ -454,7 +467,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
                             <i class="fas fa-eye text-3xl text-purple-400 pt-1"></i>
@@ -474,7 +487,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
                             <i class="fas fa-server text-3xl text-gray-400 pt-1"></i>
@@ -495,7 +508,7 @@
         </div>
     </section>
 
-    <section id="demos">
+    <section id="demos" class="scroll-animate">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-3">AI Demonstrations</h2>
@@ -506,7 +519,7 @@
             <div class="mb-16">
                 <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Client-Side Demos (Experimental)</h3>
                 <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">These demos run ONNX models directly in your browser using WebAssembly or WebGPU. Quality/speed varies. Models download on first use. <strong class="warning-text">Check Console (F12) for errors. Image generation is very resource intensive!</strong></p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"> <div class="card p-5">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"> <div class="card p-5 scroll-animate">
                         <div class="card-content space-y-3">
                             <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-camera mr-2 text-indigo-400"></i>Vision (Captioning)</h4>
                             <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
@@ -519,7 +532,7 @@
                             <div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem] scrollable"></div>
                         </div>
                     </div>
-                    <div class="card p-5">
+                    <div class="card p-5 scroll-animate">
                           <div class="card-content space-y-3">
                               <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-comment-dots mr-2 text-purple-400"></i>Language (Text2Text)</h4>
                               <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
@@ -531,7 +544,7 @@
                               <div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem] scrollable"></div>
                           </div>
                     </div>
-                    <div class="card p-5">
+                    <div class="card p-5 scroll-animate">
                           <div class="card-content space-y-3">
                               <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-image mr-2 text-teal-400"></i>Image Generation</h4>
                               <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
@@ -549,16 +562,17 @@
                 <p class="text-xs text-gray-500 text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
             </div>
 
-            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-700">
+            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-700 scroll-animate">
                 <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Cloud API Demos (High Quality)</h3>
                 <p class="text-center text-sm text-gray-400 mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
                 <div class="max-w-xl mx-auto mb-8 p-4 info-box">
                     <label for="hf_api_token" class="block font-medium mb-2 text-sm text-blue-200">Enter HF API Token (Required):</label>
                     <input type="password" id="hf_api_token" class="w-full p-2 text-sm placeholder-gray-300" placeholder="Paste your READ token (hf_...)">
+                    <span id="hf_api_token_feedback" class="text-xs mt-1 text-blue-300"></span> <!-- Feedback element -->
                     <p class="text-xs mt-1 text-blue-300">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-6">
+                    <div class="card p-6 scroll-animate">
                         <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-indigo-400"></i>Vision (API)</h4>
                         <div class="space-y-4">
                             <div> <label for="p4_imageUrl" class="block text-gray-300 text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
@@ -570,7 +584,7 @@
                             <p class="text-xs text-gray-500 mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
                         </div>
                     </div>
-                    <div class="card p-6">
+                    <div class="card p-6 scroll-animate">
                        <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-400"></i>Language (API)</h4>
                        <div class="space-y-4">
                            <div> <label for="p5_lmPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
@@ -581,7 +595,7 @@
                            <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
                        </div>
                     </div>
-                    <div class="card p-6">
+                    <div class="card p-6 scroll-animate">
                        <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-400"></i>Coding (API)</h4>
                        <div class="space-y-4">
                            <div> <label for="p6_codePrompt" class="block text-gray-300 text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
@@ -595,7 +609,7 @@
                 </div>
             </div>
 
-            <div id="local-run" class="mb-16 pt-10 border-t border-gray-700">
+            <div id="local-run" class="mb-16 pt-10 border-t border-gray-700 scroll-animate">
                 <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 3: Running Powerful Models Locally</h3>
                 <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p>
                 <div class="info-box max-w-xl mx-auto text-center">
@@ -610,7 +624,7 @@
                 </div>
              </div>
 
-            <div id="image-gen-cloud" class="pt-10 border-t border-gray-700"> <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
+            <div id="image-gen-cloud" class="pt-10 border-t border-gray-700 scroll-animate"> <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
                 <p class="text-center text-sm text-gray-400 mb-8 max-w-xl mx-auto">Top-tier image generation typically requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p>
                 <div class="text-center p-10 bg-gray-700 rounded-lg border border-dashed border-gray-600 max-w-md mx-auto">
                     <i class="fas fa-palette text-4xl text-gray-500"></i> <p class="mt-2 text-gray-400">Cloud/Local Image Generation</p>
@@ -620,7 +634,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact" class="scroll-animate">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-3">Contact Me</h2>
@@ -653,7 +667,8 @@
                         </button>
                     </div>
                 </form>
-                <div id="contact-status" class="mt-4 text-center text-sm text-green-400"></div> <div class="mt-8 pt-6 border-t border-gray-700 text-center">
+                <div id="contact-status" class="mt-4 text-center text-sm"></div> <!-- Removed default color class -->
+                <div class="mt-8 pt-6 border-t border-gray-700 text-center">
                     <p class="text-sm text-gray-400 mb-3">Or reach out directly:</p>
                     <p class="text-sm text-gray-200 font-medium">
                         <i class="fas fa-envelope mr-2 text-indigo-400"></i> satyamdixit6666@gmail.com
@@ -663,7 +678,7 @@
         </div>
     </section>
 
-    <footer class="py-10">
+    <footer class="py-10 scroll-animate">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-4 space-x-6">
                 <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" title="LinkedIn">
@@ -684,6 +699,12 @@
             </p>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" title="Go to top" 
+            class="fixed bottom-5 right-5 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
 
     <script type="module">
         // Import the pipeline function and env object from Transformers.js CDN
@@ -720,25 +741,24 @@
             const element = document.getElementById(elementId);
             if (element) {
                 element.textContent = text;
-                let colorVar = 'var(--text-muted)'; // Default info color
+                element.className = 'demo-status text-xs text-center'; // Reset classes
                 switch (level) {
                     case 'error':
-                        colorVar = 'var(--error-text)';
+                        element.style.color = 'var(--error-text)';
                         console.error(`[${elementId}] ${text}`);
                         break;
                     case 'warning':
-                        colorVar = 'var(--warning-text)';
+                        element.style.color = 'var(--warning-text)';
                         console.warn(`[${elementId}] ${text}`);
                         break;
                     case 'success':
-                         colorVar = 'var(--success-primary)';
+                         element.style.color = 'var(--success-primary)';
                          console.log(`[${elementId}] ${text}`);
                          break;
                     default: // info
+                        element.style.color = 'var(--text-muted)';
                         console.log(`[${elementId}] ${text}`);
                 }
-                element.style.color = colorVar;
-                element.className = `demo-status text-xs text-center`; // Keep base class
             }
         }
 
@@ -794,7 +814,7 @@
                     setStatus(statusId, 'Captioning pipeline ready.', 'success');
                 } catch (error) {
                     console.error("Captioner pipeline init failed:", error);
-                    setStatus(statusId, `Error loading captioner: ${error.message}`, 'error');
+                    setStatus(statusId, `Error loading captioning model: ${error.message}. Please try refreshing the page.`, 'error');
                     return null;
                 }
             }
@@ -812,7 +832,7 @@
                      setStatus(statusId, 'Text pipeline ready.', 'success');
                 } catch (e) {
                     console.warn("text2text-generation failed, trying translation task as fallback", e);
-                    setStatus(statusId, 'Trying translation pipeline...', 'warning');
+                    setStatus(statusId, 'Fallback: Trying translation pipeline...', 'warning');
                     try {
                         p2_generator = await pipeline('translation', P2_MODEL_BROWSER, {
                             progress_callback: data => handleProgress(statusId, data)
@@ -820,7 +840,7 @@
                         setStatus(statusId, 'Translation pipeline ready.', 'success');
                     } catch (error) {
                          console.error("Text generator pipeline init failed:", error);
-                         setStatus(statusId, `Error loading text generator: ${error.message}`, 'error');
+                         setStatus(statusId, `Error loading text generation model: ${error.message}. Please try refreshing the page.`, 'error');
                          return null;
                     }
                 }
@@ -835,12 +855,12 @@
                 try {
                     p7_imageGenerator = await pipeline('text-to-image', P7_MODEL_BROWSER, {
                         progress_callback: data => handleProgress(statusId, data),
-                        device: env.backends.onnx.executionProviders.includes('webgpu') ? 'webgpu' : 'cpu',
+                        device: env.backends.onnx.executionProviders.includes('webgpu') ? 'webgpu' : 'cpu', // Prefer WebGPU
                     });
-                    setStatus(statusId, 'Image generation pipeline ready.', 'success');
+                    setStatus(statusId, 'Image generation pipeline ready. You can now enter a prompt.', 'success');
                 } catch (error) {
                     console.error("Image generator pipeline init failed:", error);
-                    setStatus(statusId, `Error loading image generator: ${error.message}. Ensure WebGPU is enabled/supported.`, 'error');
+                    setStatus(statusId, `Error loading image generator: ${error.message}. Ensure WebGPU is enabled/supported, or try refreshing the page.`, 'error');
                     return null;
                 }
             }
@@ -861,11 +881,14 @@
         if (p1_imageUpload) {
             p1_imageUpload.addEventListener('change', (event) => {
                 const file = event.target.files[0];
+                // Streamline Image Input: Clear previous results and reset UI
                 p1_imageDataUrl = null;
+                p1_imagePreview.src = '#'; // Clear previous image data
                 p1_imagePreview.classList.add('hidden');
                 p1_previewText.classList.remove('hidden');
-                if(p1_captionResult) p1_captionResult.textContent = '';
-                setStatus(P1_STATUS_ID, 'Ready.', 'info');
+                if (p1_captionResult) p1_captionResult.textContent = '';
+                setStatus(P1_STATUS_ID, 'Select an image to generate a caption.', 'info'); // Reset status
+
                 if (file && file.type.startsWith('image/')) {
                     const reader = new FileReader();
                     reader.onload = (e) => {
@@ -873,15 +896,534 @@
                         p1_imagePreview.src = p1_imageDataUrl;
                         p1_imagePreview.classList.remove('hidden');
                         p1_previewText.classList.add('hidden');
-                        setStatus(P1_STATUS_ID, 'Image loaded.', 'info');
+                        setStatus(P1_STATUS_ID, 'Image loaded. Ready to generate caption.', 'info');
                     };
-                    reader.onerror = (e) => { setStatus(P1_STATUS_ID, 'Error reading file.', 'error'); console.error("FileReader error:", e); };
+                    reader.onerror = (e) => { setStatus(P1_STATUS_ID, 'Error reading image file. Please try again.', 'error'); console.error("FileReader error:", e); };
                     reader.readAsDataURL(file);
-                } else if (file) { setStatus(P1_STATUS_ID, 'Error: Please select an image file.', 'error'); event.target.value = ''; }
+                } else if (file) {
+                    setStatus(P1_STATUS_ID, 'Error: Invalid file type. Please select an image (e.g., JPG, PNG).', 'error');
+                    event.target.value = ''; // Clear the file input to allow re-selection of the same file if needed
+                }
             });
         }
+
         if (p1_generateCaptionBtn) {
+            const originalBtnText = p1_generateCaptionBtn.innerHTML; // Store original button text
             p1_generateCaptionBtn.addEventListener('click', async () => {
-                if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Please select an image first.', 'warning'); return; }
+                if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Please select an image first to generate a caption.', 'warning'); return; }
+
                 p1_generateCaptionBtn.disabled = true;
-                if(p1_captionResult) p
+                p1_generateCaptionBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
+                if(p1_captionResult) p1_captionResult.textContent = ''; // Clear previous result
+                setStatus(P1_STATUS_ID, 'Initializing captioning model...', 'info');
+
+                try {
+                    const captioner = await getCaptioner(P1_STATUS_ID);
+                    if (!captioner) {
+                        // Error already set by getCaptioner more specifically
+                        return; // Button re-enabled in finally
+                    }
+                    setStatus(P1_STATUS_ID, 'Generating caption for the image...', 'info');
+                    const output = await captioner(p1_imageDataUrl, {
+                        max_new_tokens: 200,
+                        temperature: 0.7,
+                        repetition_penalty: 1.2
+                    });
+                    const caption = output[0]?.generated_text || "No caption could be generated for this image.";
+                    if (p1_captionResult) p1_captionResult.textContent = caption;
+                    setStatus(P1_STATUS_ID, 'Caption generated successfully!', 'success');
+                } catch (error) {
+                    console.error("Caption generation error:", error);
+                    setStatus(P1_STATUS_ID, `Caption generation failed: ${error.message}. Please try another image or refresh.`, 'error');
+                    if (p1_captionResult) p1_captionResult.textContent = 'Caption generation failed. See status for details.';
+                } finally {
+                    p1_generateCaptionBtn.disabled = false;
+                    p1_generateCaptionBtn.innerHTML = originalBtnText; // Restore original button text
+                    clearStatusDelay(P1_STATUS_ID);
+                }
+            });
+        }
+
+        // Project 2: Language (Text2Text Generation)
+        const p2_textPrompt = document.getElementById('p2_textPrompt');
+        const p2_generateTextBtn = document.getElementById('p2_generateTextBtn');
+        const p2_generationResult = document.getElementById('p2_generationResult');
+        const P2_STATUS_ID = 'p2_status';
+
+        if (p2_generateTextBtn) {
+            const originalBtnText = p2_generateTextBtn.innerHTML; // Store original button text
+            p2_generateTextBtn.addEventListener('click', async () => {
+                const promptText = p2_textPrompt.value.trim();
+                if (!promptText) { setStatus(P2_STATUS_ID, 'Please enter a prompt to generate text.', 'warning'); return; }
+
+                p2_generateTextBtn.disabled = true;
+                p2_generateTextBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
+                if(p2_generationResult) p2_generationResult.textContent = ''; // Clear previous
+                setStatus(P2_STATUS_ID, 'Initializing text generation model...', 'info');
+
+                try {
+                    const generator = await getTextGenerator(P2_STATUS_ID);
+                    if (!generator) {
+                        // Error set by getTextGenerator
+                        return; // Button re-enabled in finally
+                    }
+                    setStatus(P2_STATUS_ID, 'Generating text based on your prompt...', 'info');
+                    const output = await generator(promptText, {
+                        max_new_tokens: 150,
+                        temperature: 0.8,
+                        num_beams: 4,
+                        early_stopping: true
+                    });
+                    const generatedText = output[0]?.generated_text || "No text could be generated for this prompt.";
+                    if (p2_generationResult) p2_generationResult.textContent = generatedText;
+                    setStatus(P2_STATUS_ID, 'Text generated successfully!', 'success');
+                } catch (error) {
+                    console.error("Text generation error:", error);
+                    setStatus(P2_STATUS_ID, `Text generation failed: ${error.message}. Please try a different prompt or refresh.`, 'error');
+                    if (p2_generationResult) p2_generationResult.textContent = 'Text generation failed. Please see status for details.';
+                } finally {
+                    p2_generateTextBtn.disabled = false;
+                    p2_generateTextBtn.innerHTML = originalBtnText; // Restore original button text
+                    clearStatusDelay(P2_STATUS_ID);
+                }
+            });
+        }
+
+        // Project 7: Image Generation (Client-Side)
+        const p7_imagePrompt = document.getElementById('p7_imagePrompt');
+        const p7_generateImageBtn = document.getElementById('p7_generateImageBtn');
+        const p7_imageResultContainer = document.getElementById('p7_imageResultContainer');
+        const p7_imageResult = document.getElementById('p7_imageResult');
+        const p7_imagePlaceholder = document.getElementById('p7_imagePlaceholder');
+        const P7_STATUS_ID = 'p7_status';
+
+        if (p7_generateImageBtn) {
+            const originalBtnText = p7_generateImageBtn.innerHTML; // Store original button text
+            p7_generateImageBtn.addEventListener('click', async () => {
+                const promptText = p7_imagePrompt.value.trim();
+                if (!promptText) { setStatus(P7_STATUS_ID, 'Please enter a prompt for image generation.', 'warning'); return; }
+
+                p7_generateImageBtn.disabled = true;
+                p7_generateImageBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
+                p7_imageResult.classList.add('hidden');
+                p7_imageResult.src = '#'; // Clear previous image
+                p7_imagePlaceholder.classList.remove('hidden');
+                p7_imagePlaceholder.textContent = 'Initializing image model...';
+                setStatus(P7_STATUS_ID, 'Initializing image generation model (this may take a while)...', 'warning');
+
+                try {
+                    const imageGenerator = await getImageGenerator(P7_STATUS_ID);
+                    if (!imageGenerator) {
+                        // Error set by getImageGenerator
+                        p7_imagePlaceholder.textContent = 'Generator failed to load. See status for details.';
+                        return; // Button re-enabled in finally
+                    }
+
+                    setStatus(P7_STATUS_ID, 'Generating image (this can take some time, please wait)...', 'warning');
+                    p7_imagePlaceholder.textContent = 'Generating image, please wait... This can be resource intensive.';
+                    const output = await imageGenerator(promptText, {
+                        num_inference_steps: 1, // Turbo model specific
+                        guidance_scale: 0.0,    // Turbo model specific
+                    });
+
+                    let imageUrl = null;
+                    // Standard HF pipeline output for text-to-image is often a base64 encoded image in an array
+                    if (output && output.images && Array.isArray(output.images) && output.images.length > 0) {
+                        imageUrl = `data:image/jpeg;base64,${output.images[0]}`;
+                    } else if (output && output.image) { // Some pipelines might output a direct image object (e.g. data URL)
+                        imageUrl = output.image;
+                    }
+
+
+                    if (imageUrl) {
+                        p7_imageResult.src = imageUrl;
+                        p7_imageResult.classList.remove('hidden');
+                        p7_imagePlaceholder.classList.add('hidden');
+                        setStatus(P7_STATUS_ID, 'Image generated successfully! Note: Quality may vary with client-side models.', 'success');
+                    } else {
+                        throw new Error('Image data not found or in an unexpected format in pipeline output. Check console.');
+                    }
+                } catch (error) {
+                    console.error("Image generation error:", error);
+                    setStatus(P7_STATUS_ID, `Image generation failed: ${error.message}. Check console for details or try a simpler prompt. This is resource intensive.`, 'error');
+                    p7_imagePlaceholder.textContent = 'Image generation failed. See status for details.';
+                    p7_imagePlaceholder.classList.remove('hidden'); // Ensure placeholder is visible on error
+                    p7_imageResult.classList.add('hidden'); // Hide image element on error
+                } finally {
+                    p7_generateImageBtn.disabled = false;
+                    p7_generateImageBtn.innerHTML = originalBtnText; // Restore original button text
+                    clearStatusDelay(P7_STATUS_ID, 8000); // Longer delay for image gen status
+                }
+            });
+        }
+
+
+        // --- Tier 2: Hugging Face API Demos ---
+        const hfTokenInput = document.getElementById('hf_api_token');
+        const hfTokenFeedback = document.getElementById('hf_api_token_feedback');
+
+        if (hfTokenInput && hfTokenFeedback) {
+            hfTokenInput.addEventListener('input', () => {
+                if (hfTokenInput.value.trim()) {
+                    hfTokenInput.style.borderColor = 'var(--success-primary)';
+                    hfTokenFeedback.textContent = 'Token entered.';
+                    hfTokenFeedback.style.color = 'var(--success-primary)';
+                } else {
+                    hfTokenInput.style.borderColor = 'var(--error-text)'; // Or var(--border-color) for default
+                    hfTokenFeedback.textContent = 'Token is required for API demos.';
+                     hfTokenFeedback.style.color = 'var(--warning-text)';
+                }
+            });
+             // Initial check in case of pre-filled value (e.g. browser autofill)
+            if (hfTokenInput.value.trim()) {
+                hfTokenInput.style.borderColor = 'var(--success-primary)';
+                hfTokenFeedback.textContent = 'Token entered.';
+                hfTokenFeedback.style.color = 'var(--success-primary)';
+            } else {
+                 hfTokenFeedback.textContent = 'Token is required for API demos.';
+                 hfTokenFeedback.style.color = 'var(--text-muted)'; // Initial muted color
+            }
+        }
+
+
+        // Helper to get API token & update UI if missing
+        function getApiToken(statusIdToUpdate) {
+            const token = hfTokenInput.value.trim();
+            if (!token) {
+                setStatus(statusIdToUpdate, 'Hugging Face API Token is required. Please enter it above.', 'error');
+                hfTokenInput.style.borderColor = 'var(--error-text)';
+                hfTokenFeedback.textContent = 'Token is required for API demos.';
+                hfTokenFeedback.style.color = 'var(--error-text)';
+                hfTokenInput.focus();
+                return null;
+            }
+            return token;
+        }
+
+        // Store original button texts
+        const originalButtonTexts = {};
+        ['p4_runVlmBtn', 'p5_runLmBtn', 'p6_runCoderBtn'].forEach(btnId => {
+            const button = document.getElementById(btnId);
+            if (button) originalButtonTexts[btnId] = button.innerHTML;
+        });
+
+        // Generic function to run HF Inference API
+        async function runHfInference(modelId, inputs, task, statusId, resultElementId, buttonId, resultType = 'text') {
+            const apiToken = getApiToken(statusId); // Pass statusId for error message
+            if (!apiToken) return;
+
+            const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
+            const button = document.getElementById(buttonId);
+            
+            if(button) {
+                button.disabled = true;
+                button.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Running...`;
+            }
+
+            setStatus(statusId, `Sending request for ${modelId}...`, 'info');
+            const resultEl = document.getElementById(resultElementId);
+            if (resultEl) {
+                resultEl.textContent = (resultType === 'text' || resultType === 'code') ? '' : 'Result will appear here.';
+                if (resultType === 'image_vlm') {
+                    resultEl.innerHTML = ''; // Clear previous image/text
+                }
+            }
+
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${apiToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ inputs: inputs, options: { wait_for_model: true } })
+                });
+
+                if (!response.ok) {
+                    let errorMsg = `API Error (${response.status})`;
+                    try {
+                        const errorBody = await response.json();
+                        if (errorBody.error) {
+                             errorMsg += `: ${errorBody.error}`;
+                        }
+                        if (errorBody.estimated_time) {
+                            errorMsg = `Model ${modelId} is loading. Est. time: ${Math.round(errorBody.estimated_time)}s. Try again.`;
+                            setStatus(statusId, errorMsg, 'warning');
+                        } else {
+                            setStatus(statusId, errorMsg, 'error');
+                        }
+                    } catch (e) {
+                        // JSON parsing failed or errorBody doesn't have .error
+                        errorMsg += `: ${response.statusText || 'Failed to get error details.'}`;
+                        setStatus(statusId, errorMsg, 'error');
+                    }
+                    if(resultEl) resultEl.textContent = `Request failed. ${errorMsg}`;
+                    return;
+                }
+
+                setStatus(statusId, 'Processing response...', 'info');
+                const result = await response.json();
+
+                if (resultEl) {
+                    if (resultType === 'text' || resultType === 'code') {
+                        resultEl.textContent = result[0]?.generated_text || JSON.stringify(result, null, 2);
+                    } else if (resultType === 'image_vlm') {
+                         if (Array.isArray(result) && result.length > 0) {
+                            if (result[0].generated_text) {
+                                resultEl.textContent = result[0].generated_text;
+                            } else if (result[0].answer) {
+                                resultEl.textContent = `Answer: ${result[0].answer} (Score: ${(result[0].score * 100).toFixed(1)}%)`;
+                            } else {
+                                 resultEl.textContent = JSON.stringify(result, null, 2);
+                            }
+                        } else {
+                             resultEl.textContent = JSON.stringify(result, null, 2);
+                        }
+                    }
+                }
+                setStatus(statusId, 'Result received successfully.', 'success');
+
+            } catch (error) { // Network errors or other fetch issues
+                console.error(`HF Inference API error for ${modelId}:`, error);
+                const networkErrorMsg = "Network error or unable to reach API. Check connection/token.";
+                setStatus(statusId, networkErrorMsg, 'error');
+                if(resultEl) resultEl.textContent = networkErrorMsg;
+            } finally {
+                 if(button) {
+                    button.disabled = false;
+                    button.innerHTML = originalButtonTexts[buttonId] || 'Run via API'; // Fallback if original text not found
+                }
+                clearStatusDelay(statusId);
+            }
+        }
+
+
+        // Project 4: Vision API (VLM - Captioning/VQA)
+        const p4_imageUrl = document.getElementById('p4_imageUrl');
+        const p4_vlmModelId = document.getElementById('p4_vlmModelId');
+        const p4_vqaPrompt = document.getElementById('p4_vqaPrompt');
+        const p4_runVlmBtn = document.getElementById('p4_runVlmBtn');
+        const P4_VLM_STATUS_ID = 'p4_vlmStatus';
+        const P4_VLM_RESULT_ID = 'p4_vlmResult';
+        const P4_BUTTON_ID = 'p4_runVlmBtn';
+
+        if(p4_runVlmBtn) {
+            p4_runVlmBtn.addEventListener('click', async () => {
+                const imageUrl = p4_imageUrl.value.trim();
+                const modelId = p4_vlmModelId.value.trim() || 'Salesforce/blip-image-captioning-large';
+                const question = p4_vqaPrompt.value.trim();
+
+                if (!imageUrl) { setStatus(P4_VLM_STATUS_ID, 'Please enter an image URL.', 'warning'); return; }
+                if (!modelId) { setStatus(P4_VLM_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+
+                let inputs;
+                let taskType = 'image-to-text';
+                if (question || modelId.toLowerCase().includes('vqa') || modelId.toLowerCase().includes('visual-question-answering')) {
+                    taskType = 'visual-question-answering';
+                    inputs = { image_url: imageUrl, question: question || "What is in this image?" };
+                } else {
+                    inputs = { image_url: imageUrl };
+                }
+                if (!p4_vlmModelId.value.trim()) p4_vlmModelId.value = modelId;
+
+                await runHfInference(modelId, inputs, taskType, P4_VLM_STATUS_ID, P4_VLM_RESULT_ID, P4_BUTTON_ID, 'image_vlm');
+            });
+        }
+
+
+        // Project 5: Language Model API
+        const p5_lmPrompt = document.getElementById('p5_lmPrompt');
+        const p5_lmModelId = document.getElementById('p5_lmModelId');
+        const p5_runLmBtn = document.getElementById('p5_runLmBtn');
+        const P5_LM_STATUS_ID = 'p5_lmStatus';
+        const P5_LM_RESULT_ID = 'p5_lmResult';
+        const P5_BUTTON_ID = 'p5_runLmBtn';
+
+
+       if(p5_runLmBtn) {
+           p5_runLmBtn.addEventListener('click', async () => {
+               const prompt = p5_lmPrompt.value.trim();
+               const modelId = p5_lmModelId.value.trim() || 'microsoft/Phi-3-mini-4k-instruct';
+               if (!prompt) { setStatus(P5_LM_STATUS_ID, 'Please enter a prompt.', 'warning'); return; }
+               if (!modelId) { setStatus(P5_LM_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+               if (!p5_lmModelId.value.trim()) p5_lmModelId.value = modelId;
+
+               await runHfInference(modelId, prompt, 'text-generation', P5_LM_STATUS_ID, P5_LM_RESULT_ID, P5_BUTTON_ID, 'text');
+           });
+       }
+
+        // Project 6: Coding Model API
+        const p6_codePrompt = document.getElementById('p6_codePrompt');
+        const p6_coderModelId = document.getElementById('p6_coderModelId');
+        const p6_runCoderBtn = document.getElementById('p6_runCoderBtn');
+        const P6_CODER_STATUS_ID = 'p6_coderStatus';
+        const P6_CODER_RESULT_ID = 'p6_coderResult';
+        const P6_BUTTON_ID = 'p6_runCoderBtn';
+
+        if(p6_runCoderBtn) {
+            p6_runCoderBtn.addEventListener('click', async () => {
+                const prompt = p6_codePrompt.value.trim();
+                const modelId = p6_coderModelId.value.trim() || 'deepseek-ai/deepseek-coder-1.3b-instruct';
+                if (!prompt) { setStatus(P6_CODER_STATUS_ID, 'Please enter a code prompt.', 'warning'); return; }
+                if (!modelId) { setStatus(P6_CODER_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+                 if (!p6_coderModelId.value.trim()) p6_coderModelId.value = modelId;
+
+                await runHfInference(modelId, prompt, 'text-generation', P6_CODER_STATUS_ID, P6_CODER_RESULT_ID, P6_BUTTON_ID, 'code');
+            });
+        }
+
+
+        // --- General UI Enhancements ---
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.querySelector('i').classList.toggle('fa-bars');
+                mobileMenuButton.querySelector('i').classList.toggle('fa-times');
+            });
+            // Close menu when a link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('i').classList.add('fa-bars');
+                    mobileMenuButton.querySelector('i').classList.remove('fa-times');
+                });
+            });
+        }
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+
+        // Footer Year
+        const footerYear = document.getElementById('footerYear');
+        if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+        // Contact Form
+        const contactForm = document.getElementById('contact-form');
+        const contactStatus = document.getElementById('contact-status');
+        if (contactForm && contactStatus) {
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalSubmitButtonText = submitButton ? submitButton.innerHTML : "Send Message via Email";
+
+            contactForm.addEventListener('submit', async function(event) {
+                event.preventDefault();
+                contactStatus.textContent = ''; // Clear previous status
+                contactStatus.className = 'mt-4 text-center text-sm'; // Reset class
+
+                if (submitButton) {
+                    submitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
+                    submitButton.disabled = true;
+                }
+
+                try {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value || "Portfolio Contact"; // Default subject
+                    const message = document.getElementById('message').value;
+
+                    if (name && email && message) {
+                        // Simulate sending delay for mailto, as it's instant
+                        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate 1 second delay
+
+                        const mailtoLink = `mailto:satyamdixit6666@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
+                        
+                        contactStatus.textContent = "Message prepared! Please complete sending via your email client.";
+                        contactStatus.style.color = 'var(--success-primary)';
+                        contactForm.reset(); // Clear form fields on success
+                        
+                        // Attempt to open mailto link. This might be blocked by popup blockers in some cases.
+                        // Consider adding a note if window.open returns null or throws an error.
+                        try {
+                            const mailWindow = window.open(mailtoLink, '_blank');
+                            if (!mailWindow) {
+                                 contactStatus.textContent += " (Popup blocked? Please check your browser settings if email client didn't open.)";
+                            }
+                        } catch (e) {
+                             contactStatus.textContent += " (Could not open email client automatically.)";
+                             console.warn("Could not open mailto link:", e);
+                        }
+
+                    } else {
+                        contactStatus.textContent = "Please fill out all required fields.";
+                        contactStatus.style.color = 'var(--error-text)';
+                    }
+                } catch (error) {
+                    console.error("Contact form submission error:", error);
+                    contactStatus.textContent = "An unexpected error occurred. Please try again or contact me directly.";
+                    contactStatus.style.color = 'var(--error-text)';
+                } finally {
+                    if (submitButton) {
+                        submitButton.innerHTML = originalSubmitButtonText;
+                        submitButton.disabled = false;
+                    }
+                    setTimeout(() => {
+                        // Clear status only if it's not an error requiring user attention for longer
+                        if (contactStatus.style.color !== 'var(--error-text)') {
+                             contactStatus.textContent = "";
+                             contactStatus.className = 'mt-4 text-center text-sm';
+                        }
+                    }, 7000);
+                }
+            });
+        }
+
+        // Scroll to Top Button Logic
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+        if (scrollToTopBtn) {
+            const handleScroll = () => {
+                if (window.pageYOffset > 300) { // Show button after scrolling 300px
+                    scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    scrollToTopBtn.classList.add('opacity-100');
+                } else {
+                    scrollToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                    scrollToTopBtn.classList.remove('opacity-100');
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check on page load
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Scroll Animations with Intersection Observer
+        const animatedElements = document.querySelectorAll('.scroll-animate');
+        if (animatedElements.length > 0) {
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            animatedElements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+         console.log("Portfolio JavaScript enhancements loaded.");
+    </script>
+</body>
+</html>
+
+[end of index.html]
