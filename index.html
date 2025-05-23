@@ -10,23 +10,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Elegant Dark Theme - Refined & Cooler */
+        /* Light Theme */
         :root {
-            --bg-primary: #111827; /* Gray 900 */
-            --bg-secondary: #1f2937; /* Gray 800 */
-            --bg-tertiary: #374151; /* Gray 700 */
-            --border-color: #4b5563; /* Gray 600 */
-            --text-primary: #f3f4f6; /* Gray 100 */
-            --text-secondary: #d1d5db; /* Gray 300 */
-            --text-muted: #9ca3af; /* Gray 400 */
-            --accent-primary: #6366f1; /* Indigo 500 */
-            --accent-secondary: #818cf8; /* Indigo 400 */
-            --accent-dark: #4f46e5; /* Indigo 600 */
-            --accent-hover: #4338ca; /* Indigo 700 */
-            --success-primary: #10b981; /* Emerald 500 */
-            --success-dark: #059669; /* Emerald 600 */
-            --warning-text: #fb7185; /* Rose 400 */
-            --error-text: #f43f5e; /* Rose 500 */
+            --bg-primary: #F8F9FA;
+            --bg-secondary: #FFFFFF;
+            --bg-tertiary: #E9ECEF;
+            --border-color: #DEE2E6;
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-muted: #6C757D;
+            --accent-primary: #007BFF;
+            --accent-secondary: #4DA3FF; /* Used for lighter accents, can be button hover bg or nav link hover text */
+            --accent-dark: #0069D9; /* Used for primary button hover background */
+            --accent-hover: #0056b3; /* Potentially for stronger hover or active states */
+            --success-primary: #28A745;
+            --success-dark: #1E7E34;
+            --warning-text: #FD7E14; /* Orange, better for text visibility than yellow on light bg */
+            --error-text: #DC3545;
         }
 
         html { scroll-behavior: smooth; }
@@ -48,7 +48,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4; /* Subtle to avoid distraction */
+            opacity: 0.2; /* Adjusted for light theme */
             pointer-events: none; /* Prevent interaction */
         }
 
@@ -62,7 +62,7 @@
         /* --- Navigation --- */
         nav {
             height: 4rem; /* 64px */
-            background-color: rgba(31, 41, 55, 0.8); /* bg-gray-800 with opacity */
+            background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s ease;
@@ -82,26 +82,26 @@
             bottom: -4px; /* Position below text */
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--accent-secondary);
+            background-color: var(--accent-primary); /* Updated */
             transition: width 0.3s ease;
         }
         nav a:hover {
-            color: var(--accent-secondary);
+            color: var(--accent-primary); /* Updated */
             transform: translateY(-1px); /* Slight lift */
         }
         nav a:hover::after { width: 80%; } /* Animate underline */
         #mobile-menu { background-color: var(--bg-secondary); border-top-color: var(--border-color); }
-        #mobile-menu a:hover { background-color: var(--bg-tertiary); color: var(--accent-secondary); }
+        #mobile-menu a:hover { background-color: var(--bg-tertiary); color: var(--accent-primary); } /* Updated */
 
         /* --- Hero Section --- */
         #hero {
             padding-top: 5rem; /* Increased padding */
             padding-bottom: 4rem;
-            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%); /* Subtle light gradient */
             border-bottom: 1px solid var(--border-color);
         }
         #hero h1 { color: var(--text-primary); }
-        #hero p.subtitle { color: var(--accent-secondary); } /* Specific style for subtitle */
+        #hero p.subtitle { color: var(--text-secondary); } /* Updated for readability */
 
         /* --- Sections --- */
         section {
@@ -122,10 +122,10 @@
 
         /* --- Cards --- */
         .card {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-secondary); /* White */
             border: 1px solid var(--border-color);
             border-radius: 0.75rem; /* Larger radius */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Softer shadow for light theme */
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -134,21 +134,21 @@
         }
         .card:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
-            border-color: var(--accent-secondary);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Softer hover shadow */
+            border-color: var(--accent-primary); /* Use primary accent for hover */
         }
         .card-content { flex-grow: 1; padding: 1.5rem; /* p-6 */ }
         .card-footer {
             margin-top: auto;
             padding: 1rem 1.5rem; /* px-6 py-4 */
             border-top: 1px solid var(--border-color);
-            background-color: rgba(55, 65, 81, 0.3); /* Slightly different bg for footer */
+            background-color: var(--bg-primary); /* Light gray footer */
         }
 
         /* --- Tags --- */
         .mono-tag {
             font-family: 'Roboto Mono', monospace;
-            background-color: var(--bg-tertiary);
+            background-color: var(--bg-tertiary); /* Light gray */
             color: var(--text-secondary);
             padding: 0.25rem 0.6rem; /* Adjusted padding */
             border-radius: 0.375rem; /* rounded-md */
@@ -157,12 +157,12 @@
             margin: 0.15rem; /* Adjusted margin */
             line-height: 1.3;
             border: 1px solid var(--border-color);
-            transition: background-color 0.2s ease, color 0.2s ease;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
         }
         .mono-tag:hover {
              background-color: var(--accent-primary);
-             color: var(--text-primary);
-             border-color: var(--accent-secondary);
+             color: #FFFFFF; /* White text on blue bg */
+             border-color: var(--accent-dark);
         }
 
         /* --- Buttons --- */
@@ -174,58 +174,64 @@
             cursor: pointer;
             display: inline-block; /* Ensure proper layout for links */
         }
-        button:focus, .button-like:focus { outline: none; box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4); }
-        button:disabled { opacity: 0.5; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); } /* More distinct disabled style */
+        button:focus, .button-like:focus { outline: none; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); } /* Adjusted shadow color */
+        button:disabled { opacity: 0.65; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); }
 
         .btn-primary {
             padding: 0.6rem 1rem; /* Adjusted padding */
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
-            color: var(--text-primary);
-            border: 1px solid transparent;
+            background: var(--accent-primary);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-primary);
         }
         .btn-primary:hover:not(:disabled) {
-            background: linear-gradient(to right, var(--accent-dark), var(--accent-hover));
-            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2); /* Adjusted shadow */
             transform: translateY(-1px);
         }
 
         .btn-success {
             padding: 0.6rem 1rem;
-            background: linear-gradient(to right, var(--success-primary), var(--success-dark));
-            color: var(--text-primary);
-            border: 1px solid transparent;
+            background: var(--success-primary);
+            color: #FFFFFF;
+            border: 1px solid var(--success-primary);
         }
         .btn-success:hover:not(:disabled) {
-            background: linear-gradient(to right, var(--success-dark), #047857); /* Emerald 700 */
-            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+            background: var(--success-dark);
+            border-color: var(--success-dark);
+            color: #FFFFFF;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2); /* Adjusted shadow */
             transform: translateY(-1px);
         }
 
         #contact-form button[type="submit"] {
             padding: 0.75rem 2rem; /* py-3 px-8 */
-            background: linear-gradient(to right, var(--accent-primary), var(--accent-dark));
-            color: white;
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+            background: var(--accent-primary);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-primary);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.15);
         }
         #contact-form button[type="submit"]:hover {
-            background: linear-gradient(to right, var(--accent-dark), var(--accent-hover));
-            box-shadow: 0 6px 15px rgba(99, 102, 241, 0.3);
+            background: var(--accent-dark);
+            border-color: var(--accent-dark);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
             transform: translateY(-2px);
         }
 
         /* --- Forms & Inputs --- */
         input:focus, textarea:focus, button:focus, select:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
-            border-color: var(--accent-secondary);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Adjusted shadow color */
+            border-color: var(--accent-primary); /* Use primary accent for focus */
         }
         input[type="text"], input[type="email"], textarea, select, input[type="password"], input[type="url"] {
             border: 1px solid var(--border-color);
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-secondary); /* White background */
             border-radius: 0.375rem;
             padding: 0.7rem 0.9rem; /* Slightly more padding */
             color: var(--text-primary);
-            transition: border-color 0.2s ease, background-color 0.2s ease;
+            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
             font-size: 0.875rem;
             width: 100%; /* Ensure full width */
         }
@@ -233,8 +239,8 @@
             color: var(--text-muted);
         }
         input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus, input[type="password"]:focus, input[type="url"]:focus {
-            border-color: var(--accent-secondary);
-            background-color: var(--bg-tertiary);
+            border-color: var(--accent-primary); /* Use primary accent for focus */
+            background-color: var(--bg-secondary); /* Keep white on focus */
         }
         input[type="file"] {
             border-radius: 0.375rem; border: 1px solid var(--border-color);
@@ -252,7 +258,7 @@
 
         /* --- Demo Specific --- */
         .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem; transition: color 0.3s ease; }
-        .result-box { background-color: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-secondary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
+        .result-box { background-color: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
         .image-result-box {
              background-color: var(--bg-tertiary); border: 1px solid var(--border-color);
              min-height: 12rem; /* Taller for image */
@@ -273,11 +279,11 @@
         .error-text { color: var(--error-text); } /* For critical errors */
 
         /* --- Info Box --- */
-        .info-box { background-color: #1e3a8a; border: 1px solid #3b82f6; color: #bfdbfe; padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
-        .info-box a { color: #93c5fd; font-weight: 500; text-decoration: underline; }
-        .info-box a:hover { color: #ffffff; }
-        .info-box input[type="password"] { background-color: #1d4ed8; border-color: #2563eb; color: #e0f2fe; }
-        .info-box input[type="password"]::placeholder { color: #93c5fd; }
+        .info-box { background-color: #E6F2FF; border: 1px solid var(--accent-secondary); color: var(--text-primary); padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
+        .info-box a { color: var(--accent-dark); font-weight: 500; text-decoration: underline; }
+        .info-box a:hover { color: var(--accent-hover); }
+        .info-box input[type="password"] { background-color: #FFFFFF; border-color: var(--accent-primary); color: var(--text-primary); }
+        .info-box input[type="password"]::placeholder { color: var(--text-muted); } /* Adjusted placeholder color */
         #hf_api_token_feedback { font-size: 0.7rem; margin-top: 0.2rem; display: block; height: 0.8rem; /* Reserve space */}
 
 
@@ -286,12 +292,12 @@
         .scrollable::-webkit-scrollbar { width: 8px; }
         .scrollable::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 4px; }
         .scrollable::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; border: 2px solid var(--bg-tertiary); }
-        .scrollable::-webkit-scrollbar-thumb:hover { background: #6b7280; } /* Gray 500 */
+        .scrollable::-webkit-scrollbar-thumb:hover { background: #ADB5BD; } /* Slightly darker gray */
 
         /* --- Footer --- */
-        footer { border-top: 1px solid var(--border-color); background-color: var(--bg-secondary); }
+        footer { border-top: 1px solid var(--border-color); background-color: var(--bg-tertiary); } /* Light gray */
         footer a { color: var(--text-muted); transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
-        footer a:hover { color: var(--accent-secondary); transform: scale(1.1); }
+        footer a:hover { color: var(--accent-primary); transform: scale(1.1); } /* Use primary accent for hover */
         footer p { color: var(--text-muted); }
 
         /* --- Utilities --- */
@@ -315,20 +321,21 @@
 
     <!-- Background Animation Script -->
     <script>
-        // Connecting Neurons Animation
+        // Connecting Neurons Animation Light Theme Adjustments
         const bgCanvas = document.getElementById('backgroundCanvas');
         const ctx = bgCanvas.getContext('2d');
+        let neurons = []; // Changed from orbs
 
         // Resize canvas to fit window
         function resizeCanvas() {
             bgCanvas.width = window.innerWidth;
             bgCanvas.height = window.innerHeight;
         }
-        // Initial resize and event listener for dynamic resizing
+        window.addEventListener('resize', resizeCanvas);
         resizeCanvas(); // Call on load
-        window.addEventListener('resize', () => {
+        window.addEventListener('resize', () => { // Add resize listener for neurons too
             resizeCanvas();
-            initNeurons(bgCanvas); // Re-initialize neurons on resize
+            initNeurons(bgCanvas); 
         });
         
         // Neuron class
@@ -336,14 +343,14 @@
             constructor(x, y, radius, color) {
                 this.x = x;
                 this.y = y;
-                this.radius = radius || Math.random() * 3 + 2; // Default 2-5px
-                this.color = color || 'rgba(100, 100, 255, 0.7)';
-                this.velocityX = Math.random() * 0.4 - 0.2; // -0.2 to 0.2
-                this.velocityY = Math.random() * 0.4 - 0.2;
+                this.radius = radius || Math.random() * 2 + 1; // Slightly smaller for light theme: 1-3px
+                this.color = color || getComputedStyle(document.documentElement).getPropertyValue('--accent-primary') + '99'; // Get --accent-primary and add alpha (e.g., 0.6)
+                this.velocityX = Math.random() * 0.3 - 0.15; // Slower movement
+                this.velocityY = Math.random() * 0.3 - 0.15;
                 this.connections = []; // To store indices of connected neurons
                 this.isFiring = false; // For wave effect
                 this.fireProgress = 0; // For wave animation
-                this.fireDuration = 100; // How many frames a fire wave lasts
+                this.fireDuration = 75; // How many frames a fire wave lasts (adjusted from 100)
             }
 
             draw(ctx) {
@@ -367,26 +374,57 @@
                     if (this.fireProgress >= this.fireDuration) {
                         this.isFiring = false;
                         this.fireProgress = 0;
+                        // Chain reaction: Trigger some connected neurons
+                        let firedCount = 0;
+                        const maxToFire = 1; // Fire 1 connected neuron
+                        // Shuffle connections to fire random ones
+                        const shuffledConnections = [...this.connections].sort(() => 0.5 - Math.random());
+                        for (const connectedNeuronIndex of shuffledConnections) {
+                            if (firedCount >= maxToFire) break;
+                            const connectedNeuron = neurons[connectedNeuronIndex];
+                            if (connectedNeuron && !connectedNeuron.isFiring) {
+                                connectedNeuron.isFiring = true;
+                                connectedNeuron.fireProgress = 0;
+                                firedCount++;
+                            }
+                        }
                     }
                 }
             }
         }
 
         // Global Variables and Initialization
-        let neurons = [];
-        const numNeurons = 70; // Adjustable
-        const connectionDistance = 100; // Max distance to connect, adjustable
-        const waveColor = 'rgba(150, 150, 255, 0.8)';
+        // let neurons = []; // already defined above
+        const numNeurons = 60; // Slightly fewer for potentially better performance/aesthetics on light bg
+        const connectionDistance = 110; // Max distance to connect, adjustable
+        // waveColor will be derived from CSS var --accent-dark
+        let waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark') + 'B3'; // Add alpha (e.g., 0.7)
 
         // Initialize neurons
         function initNeurons(canvas) {
             neurons = [];
+             // Update waveColor in case CSS variables change dynamically (though unlikely for this setup)
+            waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim() + 'B3'; // .trim() is important
+            const neuronBaseColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '99';
+
+
             for (let i = 0; i < numNeurons; i++) {
                 const x = Math.random() * canvas.width;
                 const y = Math.random() * canvas.height;
-                neurons.push(new Neuron(x, y));
+                neurons.push(new Neuron(x, y, undefined, neuronBaseColor));
             }
             updateConnections(); // Call after creating all neurons
+
+            // Initially fire a few neurons to start the chain reaction
+            if (neurons.length > 0) {
+                for (let i = 0; i < Math.min(3, neurons.length); i++) { // Fire up to 3 neurons
+                    const randomIndex = Math.floor(Math.random() * neurons.length);
+                    if (neurons[randomIndex]) { // Ensure neuron exists
+                        neurons[randomIndex].isFiring = true;
+                        neurons[randomIndex].fireProgress = 0;
+                    }
+                }
+            }
         }
 
         // Update connections between neurons
@@ -406,6 +444,8 @@
         
         // Draw connections between neurons
         function drawConnections(ctx) {
+            const baseConnectionColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '33'; // ~0.2 alpha
+
             for (let i = 0; i < neurons.length; i++) {
                 const neuronA = neurons[i];
                 for (let k = 0; k < neuronA.connections.length; k++) {
@@ -417,14 +457,30 @@
                     ctx.lineTo(neuronB.x, neuronB.y);
 
                     // Default line style
-                    ctx.strokeStyle = 'rgba(120, 120, 200, 0.3)';
-                    ctx.lineWidth = 0.5;
+                    ctx.strokeStyle = baseConnectionColor; 
+                    ctx.lineWidth = 0.4; // Thinner lines for a lighter feel
 
                     // Wave Effect
                     if (neuronA.isFiring) {
-                        const waveOpacity = Math.max(0, 0.7 - (neuronA.fireProgress / neuronA.fireDuration) * 0.7);
-                        ctx.strokeStyle = waveColor.replace('0.8', waveOpacity.toFixed(2));
-                        ctx.lineWidth = 1.5; // Make firing connections thicker
+                        const waveOpacityFactor = Math.max(0, 0.6 - (neuronA.fireProgress / neuronA.fireDuration) * 0.6);
+                        // Assuming waveColor is already in 'rgba(r,g,b,alpha)' or hex+alpha format from init.
+                        // If waveColor is hex+alpha (e.g., #RRGGBBAA), we need to parse and reconstruct.
+                        // For simplicity, if waveColor is set like '--accent-dark' + 'B3', we adjust the 'B3' part.
+                        // This part might need more robust color manipulation if CSS var is not simple hex.
+                        // For now, let's assume waveColor is 'rgba(r,g,b,a)' and we reconstruct it with new alpha.
+                        let currentWaveColor = waveColor; // Use the globally set waveColor
+                        if (currentWaveColor.startsWith('#')) { // hex to rgba for opacity manipulation
+                             let r = parseInt(currentWaveColor.slice(1,3), 16);
+                             let g = parseInt(currentWaveColor.slice(3,5), 16);
+                             let b = parseInt(currentWaveColor.slice(5,7), 16);
+                             ctx.strokeStyle = `rgba(${r},${g},${b},${waveOpacityFactor.toFixed(2)})`;
+                        } else if (currentWaveColor.startsWith('rgba')) { // if already rgba
+                            ctx.strokeStyle = currentWaveColor.replace(/[\d\.]+\)$/g, `${waveOpacityFactor.toFixed(2)})`);
+                        } else {
+                             // Fallback if color format is unexpected, though CSS vars should give consistent format
+                             ctx.strokeStyle = `rgba(0, 105, 217, ${waveOpacityFactor.toFixed(2)})`;
+                        }
+                        ctx.lineWidth = 1.2; // Make firing connections slightly thicker
                     }
                     ctx.stroke();
                 }
@@ -442,12 +498,18 @@
                 neuron.draw(ctx);
             });
 
-            // Randomly trigger neuron firing for wave effect
-            if (Math.random() < 0.005 && neurons.length > 0) { // Adjust probability as needed
-                const randomIndex = Math.floor(Math.random() * neurons.length);
-                if (!neurons[randomIndex].isFiring) {
-                    neurons[randomIndex].isFiring = true;
-                    neurons[randomIndex].fireProgress = 0;
+            // Reseeding logic if animation dies out
+            let currentlyFiringCount = 0;
+            for (const neuron of neurons) { if (neuron.isFiring) currentlyFiringCount++; }
+
+            if (currentlyFiringCount === 0 && neurons.length > 0) {
+                const numToReseed = Math.min(2, neurons.length); // Reseed 1 or 2 neurons
+                for (let i = 0; i < numToReseed; i++) {
+                    const randomIndex = Math.floor(Math.random() * neurons.length);
+                    if (neurons[randomIndex] && !neurons[randomIndex].isFiring) { // Check again, just in case
+                        neurons[randomIndex].isFiring = true;
+                        neurons[randomIndex].fireProgress = 0;
+                    }
                 }
             }
             
@@ -462,29 +524,34 @@
     <!-- Original Portfolio Content -->
     <nav class="sticky top-0 z-50">
         <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16"> <a href="#" class="text-lg font-bold text-gray-100 hover:text-indigo-400 transition-colors">SD<span class="text-indigo-500">.</span>AI</a>
+            <!-- Text colors for nav items are handled by nav a {} rule -->
+            <div class="flex justify-between items-center h-16"> <a href="#" class="text-lg font-bold text-gray-800 hover:text-blue-600 transition-colors">SD<span class="text-blue-500">.</span>AI</a>
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
                     <a href="#skills">Projects & Code</a>
                     <a href="#demos">AI Demos</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none p-2 rounded-md hover:bg-gray-700 transition">
+                    <!-- Mobile menu button text color should be dark enough -->
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
+        <!-- Mobile menu text colors are handled by #mobile-menu a {} rule -->
         <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 w-full shadow-lg py-3 z-40">
-            <a href="#skills" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">Projects & Code</a>
-            <a href="#demos" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">AI Demos</a>
-            <a href="#contact" class="mobile-nav-link block px-4 py-2 text-base text-gray-300">Contact</a>
+            <a href="#skills" class="mobile-nav-link block px-4 py-2 text-base">Projects & Code</a>
+            <a href="#demos" class="mobile-nav-link block px-4 py-2 text-base">AI Demos</a>
+            <a href="#contact" class="mobile-nav-link block px-4 py-2 text-base">Contact</a>
         </div>
     </nav>
 
     <section id="hero" class="text-center scroll-animate">
         <div class="max-w-4xl mx-auto px-4">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-100 mb-4">Satyam Dixit</h1>
+            <!-- h1 color is var(--text-primary) by default -->
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Satyam Dixit</h1>
+            <!-- p.subtitle color is var(--text-secondary) as per new rule -->
             <p class="subtitle text-lg md:text-xl font-medium mb-6">AI & Deep Learning Portfolio</p>
         </div>
     </section>
@@ -492,19 +559,22 @@
     <section id="skills" class="scroll-animate">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
+                <!-- h2 color is var(--text-primary) -->
                 <h2 class="text-3xl font-bold mb-3">Featured Projects & Code</h2>
-                <p class="text-gray-400 max-w-xl mx-auto">Highlights of technical implementations and solutions.</p>
-                <div class="section-divider"></div>
+                <!-- p color is var(--text-secondary) -->
+                <p class="max-w-xl mx-auto">Highlights of technical implementations and solutions.</p>
+                <div class="section-divider"></div> <!-- Uses var(--accent-primary) -->
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card text colors (h4, p) will use var(--text-primary) and var(--text-secondary) -->
                 <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-microchip text-3xl text-green-400 pt-1"></i>
+                            <i class="fas fa-microchip text-3xl text-green-500 pt-1"></i> <!-- Adjusted icon color for light theme -->
                             <h4 class="text-lg font-semibold">CUDA Optimizations</h4>
                         </div>
-                        <p class="text-gray-400 text-sm">
+                        <p class="text-sm">
                             Examples of accelerating deep learning components using NVIDIA CUDA. Includes kernel implementations and performance analysis.
                         </p>
                     </div>
@@ -521,10 +591,10 @@
                 <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-book-open-reader text-3xl text-indigo-400 pt-1"></i>
+                            <i class="fas fa-book-open-reader text-3xl text-blue-500 pt-1"></i> <!-- Adjusted icon color -->
                             <h4 class="text-lg font-semibold">RAG Implementation</h4>
                         </div>
-                        <p class="text-gray-400 text-sm">
+                        <p class="text-sm">
                             Implementing Retrieval-Augmented Generation pipelines to enhance LLM responses with external knowledge. Explores vector databases and prompt engineering.
                         </p>
                     </div>
@@ -541,10 +611,10 @@
                 <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-eye text-3xl text-purple-400 pt-1"></i>
+                            <i class="fas fa-eye text-3xl text-purple-500 pt-1"></i> <!-- Adjusted icon color -->
                             <h4 class="text-lg font-semibold">Computer Vision Systems</h4>
                         </div>
-                        <p class="text-gray-400 text-sm">
+                        <p class="text-sm">
                             Developing systems for image classification, object detection (YOLO), and segmentation. Includes data handling and evaluation.
                         </p>
                     </div>
@@ -561,10 +631,10 @@
                 <div class="card scroll-animate">
                     <div class="card-content space-y-4">
                         <div class="flex items-start space-x-3">
-                            <i class="fas fa-server text-3xl text-gray-400 pt-1"></i>
+                            <i class="fas fa-server text-3xl text-gray-500 pt-1"></i> <!-- Adjusted icon color -->
                             <h4 class="text-lg font-semibold">API & Deployment</h4>
                         </div>
-                        <p class="text-gray-400 text-sm">
+                        <p class="text-sm">
                             Building and deploying ML models as scalable APIs (FastAPI/Flask), containerization (Docker), and cloud deployment concepts.
                         </p>
                     </div>
@@ -583,122 +653,123 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold mb-3">AI Demonstrations</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Explore different AI interaction methods and their trade-offs.</p>
+                <p class="max-w-2xl mx-auto">Explore different AI interaction methods and their trade-offs.</p>
                 <div class="section-divider"></div>
             </div>
 
             <div class="mb-16">
-                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Client-Side Demos (Experimental)</h3>
-                <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">These demos run ONNX models directly in your browser using WebAssembly or WebGPU. Quality/speed varies. Models download on first use. <strong class="warning-text">Check Console (F12) for errors. Image generation is very resource intensive!</strong></p>
+                <h3 class="text-xl font-semibold mb-3 text-center">Client-Side Demos (Experimental)</h3>
+                <p class="text-center text-sm mb-8 max-w-2xl mx-auto">These demos run ONNX models directly in your browser using WebAssembly or WebGPU. Quality/speed varies. Models download on first use. <strong class="warning-text">Check Console (F12) for errors. Image generation is very resource intensive!</strong></p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"> <div class="card p-5 scroll-animate">
                         <div class="card-content space-y-3">
-                            <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-camera mr-2 text-indigo-400"></i>Vision (Captioning)</h4>
-                            <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
+                            <h4 class="text-base font-semibold"><i class="fas fa-camera mr-2 text-blue-500"></i>Vision (Captioning)</h4>
+                            <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
                             <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-xs"></div>
-                            <div class="w-full h-28 bg-gray-700 rounded border border-gray-600 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
+                            <div class="w-full h-28 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
                         </div>
-                        <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                        <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
                             <button id="p1_generateCaptionBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
-                            <div id="p1_status" class="demo-status text-gray-400"></div>
+                            <div id="p1_status" class="demo-status"></div>
                             <div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem] scrollable"></div>
                         </div>
                     </div>
                     <div class="card p-5 scroll-animate">
                           <div class="card-content space-y-3">
-                              <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-comment-dots mr-2 text-purple-400"></i>Language (Text2Text)</h4>
-                              <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
-                              <div><label for="p2_textPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div>
+                              <h4 class="text-base font-semibold"><i class="fas fa-comment-dots mr-2 text-purple-500"></i>Language (Text2Text)</h4>
+                              <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
+                              <div><label for="p2_textPrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div>
                           </div>
-                          <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                          <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
                               <button id="p2_generateTextBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
-                              <div id="p2_status" class="demo-status text-gray-400"></div>
+                              <div id="p2_status" class="demo-status"></div>
                               <div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem] scrollable"></div>
                           </div>
                     </div>
                     <div class="card p-5 scroll-animate">
                           <div class="card-content space-y-3">
-                              <h4 class="text-base font-semibold text-gray-200"><i class="fas fa-image mr-2 text-teal-400"></i>Image Generation</h4>
-                              <p class="text-gray-400 text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
-                              <div><label for="p7_imagePrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label><textarea id="p7_imagePrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="A photo of an astronaut riding a horse on the moon"></textarea></div>
+                              <h4 class="text-base font-semibold"><i class="fas fa-image mr-2 text-teal-500"></i>Image Generation</h4>
+                              <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
+                              <div><label for="p7_imagePrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p7_imagePrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="A photo of an astronaut riding a horse on the moon"></textarea></div>
                           </div>
-                          <div class="card-footer mt-3 pt-3 border-t border-gray-700 space-y-2 !px-5 !py-3">
+                          <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
                               <button id="p7_generateImageBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate Image</button>
-                              <div id="p7_status" class="demo-status text-gray-400"></div>
+                              <div id="p7_status" class="demo-status"></div>
                               <div id="p7_imageResultContainer" class="image-result-box"> <span id="p7_imagePlaceholder">Result will appear here</span>
                                   <img id="p7_imageResult" src="#" alt="Generated Image" class="hidden"/>
                               </div>
                           </div>
                     </div>
                 </div>
-                <p class="text-xs text-gray-500 text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
+                <p class="text-xs text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
             </div>
 
-            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-700 scroll-animate">
-                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Cloud API Demos (High Quality)</h3>
-                <p class="text-center text-sm text-gray-400 mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
+            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-200 scroll-animate"> <!-- Adjusted border -->
+                <h3 class="text-xl font-semibold mb-3 text-center">Cloud API Demos (High Quality)</h3>
+                <p class="text-center text-sm mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
+                <!-- Info box styles updated in :root and .info-box specific rules -->
                 <div class="max-w-xl mx-auto mb-8 p-4 info-box">
-                    <label for="hf_api_token" class="block font-medium mb-2 text-sm text-blue-200">Enter HF API Token (Required):</label>
-                    <input type="password" id="hf_api_token" class="w-full p-2 text-sm placeholder-gray-300" placeholder="Paste your READ token (hf_...)">
-                    <span id="hf_api_token_feedback" class="text-xs mt-1 text-blue-300"></span> <!-- Feedback element -->
-                    <p class="text-xs mt-1 text-blue-300">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
+                    <label for="hf_api_token" class="block font-medium mb-2 text-sm">Enter HF API Token (Required):</label>
+                    <input type="password" id="hf_api_token" class="w-full p-2 text-sm" placeholder="Paste your READ token (hf_...)">
+                    <span id="hf_api_token_feedback" class="text-xs mt-1"></span> <!-- Feedback element -->
+                    <p class="text-xs mt-1">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="card p-6 scroll-animate">
-                        <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-indigo-400"></i>Vision (API)</h4>
+                        <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-blue-500"></i>Vision (API)</h4>
                         <div class="space-y-4">
-                            <div> <label for="p4_imageUrl" class="block text-gray-300 text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
-                            <div> <label for="p4_vlmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" placeholder="e.g., Salesforce/blip-image-captioning-large"> </div>
-                            <div id="p4_vqaPromptDiv"> <label for="p4_vqaPrompt" class="block text-gray-300 text-xs font-medium mb-1">Question (Optional - for VQA models):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="What is in the image?"> </div>
+                            <div> <label for="p4_imageUrl" class="block text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
+                            <div> <label for="p4_vlmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" placeholder="e.g., Salesforce/blip-image-captioning-large"> </div>
+                            <div id="p4_vqaPromptDiv"> <label for="p4_vqaPrompt" class="block text-xs font-medium mb-1">Question (Optional - for VQA models):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="What is in the image?"> </div>
                             <button id="p4_runVlmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                            <div id="p4_vlmStatus" class="demo-status text-gray-400"></div>
+                            <div id="p4_vlmStatus" class="demo-status"></div>
                             <div id="p4_vlmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                            <p class="text-xs text-gray-500 mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
+                            <p class="text-xs mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
                         </div>
                     </div>
                     <div class="card p-6 scroll-animate">
-                       <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-400"></i>Language (API)</h4>
+                       <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-500"></i>Language (API)</h4>
                        <div class="space-y-4">
-                           <div> <label for="p5_lmPrompt" class="block text-gray-300 text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
-                           <div> <label for="p5_lmModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" placeholder="e.g., microsoft/Phi-3-mini-4k-instruct"></div>
+                           <div> <label for="p5_lmPrompt" class="block text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
+                           <div> <label for="p5_lmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" placeholder="e.g., microsoft/Phi-3-mini-4k-instruct"></div>
                            <button id="p5_runLmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                           <div id="p5_lmStatus" class="demo-status text-gray-400"></div>
+                           <div id="p5_lmStatus" class="demo-status"></div>
                            <div id="p5_lmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                           <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
+                           <p class="text-xs mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
                        </div>
                     </div>
                     <div class="card p-6 scroll-animate">
-                       <h4 class="text-lg font-semibold text-gray-100 mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-400"></i>Coding (API)</h4>
+                       <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-500"></i>Coding (API)</h4>
                        <div class="space-y-4">
-                           <div> <label for="p6_codePrompt" class="block text-gray-300 text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
-                           <div> <label for="p6_coderModelId" class="block text-gray-300 text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" placeholder="e.g., deepseek-ai/deepseek-coder-1.3b-instruct"> </div>
+                           <div> <label for="p6_codePrompt" class="block text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
+                           <div> <label for="p6_coderModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" placeholder="e.g., deepseek-ai/deepseek-coder-1.3b-instruct"> </div>
                            <button id="p6_runCoderBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                           <div id="p6_coderStatus" class="demo-status text-gray-400"></div>
+                           <div id="p6_coderStatus" class="demo-status"></div>
                            <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono scrollable"></div>
-                           <p class="text-xs text-gray-500 mt-1">Enter valid HF model ID for 'text-generation' (code-focused) available on Inference API.</p>
+                           <p class="text-xs mt-1">Enter valid HF model ID for 'text-generation' (code-focused) available on Inference API.</p>
                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="local-run" class="mb-16 pt-10 border-t border-gray-700 scroll-animate">
-                <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 3: Running Powerful Models Locally</h3>
-                <p class="text-center text-sm text-gray-400 mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p>
-                <div class="info-box max-w-xl mx-auto text-center">
-                    <p class="mb-3 text-blue-200">These tools let you download and run various models easily:</p>
-                    <a href="#" class="button-like inline-block px-6 py-2 bg-sky-600 text-white rounded-md hover:bg-sky-700 transition font-medium text-sm" title="Guide Coming Soon">
+            <div id="local-run" class="mb-16 pt-10 border-t border-gray-200 scroll-animate"> <!-- Adjusted border -->
+                <h3 class="text-xl font-semibold mb-3 text-center">Tier 3: Running Powerful Models Locally</h3>
+                <p class="text-center text-sm mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p>
+                <div class="info-box max-w-xl mx-auto text-center"> <!-- Info box styles updated -->
+                    <p class="mb-3">These tools let you download and run various models easily:</p>
+                    <a href="#" class="button-like inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-medium text-sm" title="Guide Coming Soon"> <!-- Adjusted button color -->
                         <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally →
                     </a>
-                    <p class="text-xs mt-3 text-blue-300"> (Includes info on Ollama, LM Studio, etc.)</p>
-                    <p class="text-xs mt-3 border-t border-sky-700 pt-2 text-blue-300">
+                    <p class="text-xs mt-3"> (Includes info on Ollama, LM Studio, etc.)</p>
+                    <p class="text-xs mt-3 border-t border-blue-300 pt-2"> <!-- Adjusted border -->
                         <i class="fab fa-docker"></i> Note: A Dockerfile for self-hosting a backend API (alternative to cloud APIs) may be available in the project repo (Docker Hub: satyamdixit6666).
                     </p>
                 </div>
              </div>
 
-            <div id="image-gen-cloud" class="pt-10 border-t border-gray-700 scroll-animate"> <h3 class="text-xl font-semibold text-gray-100 mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
-                <p class="text-center text-sm text-gray-400 mb-8 max-w-xl mx-auto">Top-tier image generation typically requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p>
-                <div class="text-center p-10 bg-gray-700 rounded-lg border border-dashed border-gray-600 max-w-md mx-auto">
-                    <i class="fas fa-palette text-4xl text-gray-500"></i> <p class="mt-2 text-gray-400">Cloud/Local Image Generation</p>
+            <div id="image-gen-cloud" class="pt-10 border-t border-gray-200 scroll-animate"> <h3 class="text-xl font-semibold mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
+                <p class="text-center text-sm mb-8 max-w-xl mx-auto">Top-tier image generation typically requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p>
+                <div class="text-center p-10 bg-gray-100 rounded-lg border border-dashed border-gray-300 max-w-md mx-auto"> <!-- Adjusted colors -->
+                    <i class="fas fa-palette text-4xl text-gray-400"></i> <p class="mt-2 text-gray-600">Cloud/Local Image Generation</p>
                     <p class="text-xs text-gray-500 mt-1">Requires dedicated setup or API key.</p>
                 </div>
             </div>
@@ -709,27 +780,27 @@
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold mb-3">Contact Me</h2>
-                <p class="text-gray-400">Let's discuss AI, potential collaborations, or just connect!</p>
+                <p>Let's discuss AI, potential collaborations, or just connect!</p>
                 <div class="section-divider"></div>
             </div>
-            <div class="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
+            <div class="bg-white p-8 rounded-lg shadow-xl border border-gray-200"> <!-- Adjusted colors -->
                 <form id="contact-form">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div>
-                            <label for="name" class="block text-gray-300 font-medium mb-2 text-sm">Name</label>
+                            <label for="name" class="block font-medium mb-2 text-sm">Name</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-300 font-medium mb-2 text-sm">Email</label>
+                            <label for="email" class="block font-medium mb-2 text-sm">Email</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                     <div class="mb-6">
-                        <label for="subject" class="block text-gray-300 font-medium mb-2 text-sm">Subject</label>
+                        <label for="subject" class="block font-medium mb-2 text-sm">Subject</label>
                         <input type="text" id="subject" name="subject">
                     </div>
                     <div class="mb-6">
-                        <label for="message" class="block text-gray-300 font-medium mb-2 text-sm">Message</label>
+                        <label for="message" class="block font-medium mb-2 text-sm">Message</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
                     <div class="text-center">
@@ -738,18 +809,18 @@
                         </button>
                     </div>
                 </form>
-                <div id="contact-status" class="mt-4 text-center text-sm"></div> <!-- Removed default color class -->
-                <div class="mt-8 pt-6 border-t border-gray-700 text-center">
-                    <p class="text-sm text-gray-400 mb-3">Or reach out directly:</p>
-                    <p class="text-sm text-gray-200 font-medium">
-                        <i class="fas fa-envelope mr-2 text-indigo-400"></i> satyamdixit6666@gmail.com
+                <div id="contact-status" class="mt-4 text-center text-sm"></div>
+                <div class="mt-8 pt-6 border-t border-gray-200 text-center"> <!-- Adjusted border -->
+                    <p class="text-sm mb-3">Or reach out directly:</p>
+                    <p class="text-sm font-medium">
+                        <i class="fas fa-envelope mr-2 text-blue-500"></i> satyamdixit6666@gmail.com
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-10 scroll-animate">
+    <footer class="py-10 scroll-animate"> <!-- Footer styles updated -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="mb-4 space-x-6">
                 <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" title="LinkedIn">
@@ -771,11 +842,20 @@
         </div>
     </footer>
 
-    <!-- Scroll to Top Button -->
+    <!-- Scroll to Top Button --> <!-- Styles updated -->
     <button id="scrollToTopBtn" title="Go to top" 
-            class="fixed bottom-5 right-5 p-3 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+            class="fixed bottom-5 right-5 p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-opacity duration-300 opacity-0 pointer-events-none z-50"
+            style="background-color: var(--accent-primary); color: #FFFFFF;">
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
+    <style>
+        #scrollToTopBtn:hover {
+            background-color: var(--accent-dark) !important; /* Important to override Tailwind if needed */
+        }
+        #scrollToTopBtn:focus {
+             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4) !important; /* Match other focus styles */
+        }
+    </style>
 
     <script type="module">
         // Import the pipeline function and env object from Transformers.js CDN
