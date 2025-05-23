@@ -48,7 +48,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.2; /* Adjusted for light theme */
+            opacity: 0.5; /* Increased opacity for better visibility */
             pointer-events: none; /* Prevent interaction */
         }
 
@@ -326,6 +326,14 @@
         const ctx = bgCanvas.getContext('2d');
         let neurons = []; // Changed from orbs
 
+        // Helper function to convert hex to rgba
+        function hexToRgba(hex, alpha) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
         // Resize canvas to fit window
         function resizeCanvas() {
             bgCanvas.width = window.innerWidth;
@@ -344,7 +352,7 @@
                 this.x = x;
                 this.y = y;
                 this.radius = radius || Math.random() * 2 + 1; // Slightly smaller for light theme: 1-3px
-                this.color = color || getComputedStyle(document.documentElement).getPropertyValue('--accent-primary') + '99'; // Get --accent-primary and add alpha (e.g., 0.6)
+                this.color = color || hexToRgba(getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim(), 0.6);
                 this.velocityX = Math.random() * 0.3 - 0.15; // Slower movement
                 this.velocityY = Math.random() * 0.3 - 0.15;
                 this.connections = []; // To store indices of connected neurons
@@ -397,16 +405,16 @@
         // let neurons = []; // already defined above
         const numNeurons = 60; // Slightly fewer for potentially better performance/aesthetics on light bg
         const connectionDistance = 110; // Max distance to connect, adjustable
-        // waveColor will be derived from CSS var --accent-dark
-        let waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark') + 'B3'; // Add alpha (e.g., 0.7)
+        let waveColor; // Will be set in initNeurons using hexToRgba
 
         // Initialize neurons
         function initNeurons(canvas) {
             neurons = [];
-             // Update waveColor in case CSS variables change dynamically (though unlikely for this setup)
-            waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim() + 'B3'; // .trim() is important
-            const neuronBaseColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '99';
-
+            const accentPrimaryHex = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
+            const accentDarkHex = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim();
+            
+            const neuronBaseColor = hexToRgba(accentPrimaryHex, 0.6);
+            waveColor = hexToRgba(accentDarkHex, 0.7); // Set global waveColor
 
             for (let i = 0; i < numNeurons; i++) {
                 const x = Math.random() * canvas.width;
@@ -444,7 +452,8 @@
         
         // Draw connections between neurons
         function drawConnections(ctx) {
-            const baseConnectionColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '33'; // ~0.2 alpha
+            const accentPrimaryHexForConn = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim();
+            const baseConnectionColor = hexToRgba(accentPrimaryHexForConn, 0.2);
 
             for (let i = 0; i < neurons.length; i++) {
                 const neuronA = neurons[i];
@@ -467,19 +476,8 @@
                         // If waveColor is hex+alpha (e.g., #RRGGBBAA), we need to parse and reconstruct.
                         // For simplicity, if waveColor is set like '--accent-dark' + 'B3', we adjust the 'B3' part.
                         // This part might need more robust color manipulation if CSS var is not simple hex.
-                        // For now, let's assume waveColor is 'rgba(r,g,b,a)' and we reconstruct it with new alpha.
-                        let currentWaveColor = waveColor; // Use the globally set waveColor
-                        if (currentWaveColor.startsWith('#')) { // hex to rgba for opacity manipulation
-                             let r = parseInt(currentWaveColor.slice(1,3), 16);
-                             let g = parseInt(currentWaveColor.slice(3,5), 16);
-                             let b = parseInt(currentWaveColor.slice(5,7), 16);
-                             ctx.strokeStyle = `rgba(${r},${g},${b},${waveOpacityFactor.toFixed(2)})`;
-                        } else if (currentWaveColor.startsWith('rgba')) { // if already rgba
-                            ctx.strokeStyle = currentWaveColor.replace(/[\d\.]+\)$/g, `${waveOpacityFactor.toFixed(2)})`);
-                        } else {
-                             // Fallback if color format is unexpected, though CSS vars should give consistent format
-                             ctx.strokeStyle = `rgba(0, 105, 217, ${waveOpacityFactor.toFixed(2)})`;
-                        }
+                        // waveColor is now guaranteed to be in rgba format.
+                        ctx.strokeStyle = waveColor.replace(/[\d\.]+\)$/g, `${waveOpacityFactor.toFixed(2)})`);
                         ctx.lineWidth = 1.2; // Make firing connections slightly thicker
                     }
                     ctx.stroke();
