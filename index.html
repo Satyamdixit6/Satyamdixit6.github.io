@@ -10,23 +10,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        /* Light Theme */
+        /* --- VISUALLY STUNNING DARK THEME --- */
         :root {
-            --bg-primary: #F8F9FA;
-            --bg-secondary: #FFFFFF;
-            --bg-tertiary: #E9ECEF;
-            --border-color: #DEE2E6;
-            --text-primary: #212529;
-            --text-secondary: #495057;
-            --text-muted: #6C757D;
-            --accent-primary: #007BFF;
-            --accent-secondary: #4DA3FF; /* Used for lighter accents, can be button hover bg or nav link hover text */
-            --accent-dark: #0069D9; /* Used for primary button hover background */
-            --accent-hover: #0056b3; /* Potentially for stronger hover or active states */
-            --success-primary: #28A745;
-            --success-dark: #1E7E34;
-            --warning-text: #FD7E14; /* Orange, better for text visibility than yellow on light bg */
-            --error-text: #DC3545;
+            --bg-primary: #0F172A;      /* Slate 900 */
+            --bg-secondary: #1E293B;    /* Slate 800 */
+            --bg-tertiary: #334155;    /* Slate 700 */
+            --border-color: #475569;    /* Slate 600 */
+            --text-primary: #F1F5F9;      /* Slate 100 */
+            --text-secondary: #94A3B8;    /* Slate 400 */
+            --text-muted: #64748B;      /* Slate 500 */
+            --accent-primary: #22D3EE;   /* Cyan 400 */
+            --accent-secondary: #67E8F9; /* Cyan 300 */
+            --accent-dark: #06B6D4;    /* Cyan 500 */
+            --accent-glow: rgba(34, 211, 238, 0.2); /* For glowing shadows */
+            --success-primary: #10B981; /* Emerald 500 */
+            --success-dark: #059669;    /* Emerald 600 */
+            --warning-text: #F59E0B;   /* Amber 500 */
+            --error-text: #EF4444;    /* Red 500 */
         }
 
         html { scroll-behavior: smooth; }
@@ -36,211 +36,214 @@
             background-color: var(--bg-primary);
             color: var(--text-secondary);
             line-height: 1.7;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            position: relative; /* Ensure canvas positioning */
+            overflow-x: hidden;
+            position: relative;
         }
 
         /* Dynamic Background Canvas */
         canvas#backgroundCanvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0.2; /* Adjusted for light theme */
-            pointer-events: none; /* Prevent interaction */
+            opacity: 0.35; /* Increased opacity for better visibility on dark bg */
+            pointer-events: none;
         }
 
         /* --- Typography --- */
-        h1, h2, h3, h4, h5, h6 { color: var(--text-primary); font-weight: 600; }
-        h2 { font-size: 1.875rem; line-height: 2.25rem; font-weight: 700; margin-bottom: 0.75rem; }
-        h3 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; margin-bottom: 1rem; }
-        h4 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; }
+        h1, h2, h3, h4, h5, h6 { color: var(--text-primary); font-weight: 700; letter-spacing: -0.025em; }
+        h2 { font-size: 2.25rem; line-height: 2.5rem; margin-bottom: 0.75rem; }
+        h3 { font-size: 1.5rem; line-height: 2rem; margin-bottom: 1rem; color: var(--text-primary); }
+        h4 { font-size: 1.125rem; line-height: 1.75rem; font-weight: 600; color: var(--text-primary); }
         p { color: var(--text-secondary); }
 
         /* --- Navigation --- */
         nav {
-            height: 4rem; /* 64px */
-            background-color: rgba(255, 255, 255, 0.8); /* White with opacity */
-            backdrop-filter: blur(10px);
+            height: 4rem;
+            background-color: rgba(15, 23, 42, 0.75); /* --bg-primary with opacity */
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
             transition: background-color 0.3s ease;
         }
         nav a {
-            padding-top: 0.25rem; padding-bottom: 0.25rem;
-            font-size: 0.875rem; /* text-sm */
+            font-size: 0.875rem;
             color: var(--text-secondary);
-            transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-            position: relative; /* For pseudo-element */
-        }
-        nav a::after { /* Underline effect */
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px; /* Position below text */
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--accent-primary); /* Updated */
-            transition: width 0.3s ease;
+            transition: color 0.2s ease-in-out, text-shadow 0.3s ease;
+            position: relative;
         }
         nav a:hover {
-            color: var(--accent-primary); /* Updated */
-            transform: translateY(-1px); /* Slight lift */
+            color: var(--accent-primary);
+            text-shadow: 0 0 8px var(--accent-glow);
         }
-        nav a:hover::after { width: 80%; } /* Animate underline */
-        #mobile-menu { background-color: var(--bg-secondary); border-top-color: var(--border-color); }
-        #mobile-menu a:hover { background-color: var(--bg-tertiary); color: var(--accent-primary); } /* Updated */
+        #mobile-menu { background-color: var(--bg-secondary); border-bottom: 1px solid var(--border-color); }
+        #mobile-menu a:hover { background-color: var(--bg-tertiary); color: var(--accent-primary); }
 
         /* --- Hero Section --- */
         #hero {
-            padding-top: 5rem; /* Increased padding */
-            padding-bottom: 4rem;
-            background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%); /* Subtle light gradient */
+            padding: 6rem 0;
             border-bottom: 1px solid var(--border-color);
+            position: relative;
         }
-        #hero h1 { color: var(--text-primary); }
-        #hero p.subtitle { color: var(--text-secondary); } /* Updated for readability */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 80%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        #hero h1 {
+            background: linear-gradient(120deg, var(--accent-secondary) 0%, var(--text-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         /* --- Sections --- */
         section {
-            scroll-margin-top: 70px; /* Adjust for sticky nav */
-            padding-top: 5rem; /* 80px */
-            padding-bottom: 5rem; /* 80px */
+            scroll-margin-top: 70px;
+            padding: 6rem 0;
         }
-        section:nth-of-type(odd) { background-color: var(--bg-primary); }
-        section:nth-of-type(even) { background-color: var(--bg-secondary); }
         .section-divider {
-            width: 3rem; /* 48px */
-            height: 3px; /* Increased thickness */
-            background-color: var(--accent-primary);
-            margin-left: auto; margin-right: auto;
-            margin-top: 1rem; /* 16px */
+            width: 4rem; height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            margin: 1.5rem auto 0;
             border-radius: 999px;
+            opacity: 0.8;
         }
 
         /* --- Cards --- */
         .card {
-            background-color: var(--bg-secondary); /* White */
+            background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
-            border-radius: 0.75rem; /* Larger radius */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Softer shadow for light theme */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            overflow: hidden; /* Ensure content stays within rounded corners */
+            display: flex; flex-direction: column; height: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .card::before { /* Gradient border effect container */
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--border-color), var(--border-color));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            transition: background 0.4s ease;
+            pointer-events: none;
         }
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Softer hover shadow */
-            border-color: var(--accent-primary); /* Use primary accent for hover */
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -5px var(--accent-glow), 0 8px 10px -6px var(--accent-glow);
         }
-        .card-content { flex-grow: 1; padding: 1.5rem; /* p-6 */ }
+        .card:hover::before {
+             background: linear-gradient(135deg, var(--accent-primary), var(--bg-tertiary));
+        }
+        .card-content { flex-grow: 1; padding: 1.5rem; }
         .card-footer {
             margin-top: auto;
-            padding: 1rem 1.5rem; /* px-6 py-4 */
+            padding: 1.25rem 1.5rem;
             border-top: 1px solid var(--border-color);
-            background-color: var(--bg-primary); /* Light gray footer */
+            background-color: rgba(15, 23, 42, 0.5); /* Slightly transparent dark bg */
         }
 
         /* --- Tags --- */
         .mono-tag {
             font-family: 'Roboto Mono', monospace;
-            background-color: var(--bg-tertiary); /* Light gray */
+            background-color: var(--bg-tertiary);
             color: var(--text-secondary);
-            padding: 0.25rem 0.6rem; /* Adjusted padding */
-            border-radius: 0.375rem; /* rounded-md */
-            font-size: 0.75rem; /* text-xs */
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
             display: inline-block;
-            margin: 0.15rem; /* Adjusted margin */
-            line-height: 1.3;
-            border: 1px solid var(--border-color);
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            margin: 0.15rem;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
         }
         .mono-tag:hover {
-             background-color: var(--accent-primary);
-             color: #FFFFFF; /* White text on blue bg */
-             border-color: var(--accent-dark);
+            color: var(--text-primary);
+            background-color: var(--accent-dark);
+            border-color: var(--accent-secondary);
+            text-shadow: 0 0 5px var(--accent-glow);
         }
 
         /* --- Buttons --- */
-        button, .button-like { /* Apply to buttons and styled links */
+        .button-like {
             transition: all 0.2s ease-in-out;
-            border-radius: 0.375rem; /* rounded-md */
-            font-weight: 500; /* medium */
-            text-align: center;
-            cursor: pointer;
-            display: inline-block; /* Ensure proper layout for links */
+            border-radius: 0.375rem;
+            font-weight: 600; text-align: center;
+            cursor: pointer; display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        button:focus, .button-like:focus { outline: none; box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); } /* Adjusted shadow color */
-        button:disabled { opacity: 0.65; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); }
+        .button-like:before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            z-index: -1;
+        }
+        .button-like:hover:before { left: 100%; }
+        .button-like:focus { outline: none; box-shadow: 0 0 0 3px var(--accent-glow); }
+        .button-like:disabled { opacity: 0.5; cursor: not-allowed; background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-muted); }
 
         .btn-primary {
-            padding: 0.6rem 1rem; /* Adjusted padding */
-            background: var(--accent-primary);
-            color: #FFFFFF;
-            border: 1px solid var(--accent-primary);
+            background: var(--accent-dark);
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            box-shadow: 0 2px 10px -2px var(--accent-glow);
         }
         .btn-primary:hover:not(:disabled) {
-            background: var(--accent-dark);
-            border-color: var(--accent-dark);
-            color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2); /* Adjusted shadow */
-            transform: translateY(-1px);
+            background: var(--accent-primary);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 4px 15px -2px var(--accent-glow);
+            transform: translateY(-2px);
         }
-
         .btn-success {
-            padding: 0.6rem 1rem;
-            background: var(--success-primary);
+            background: var(--success-dark);
             color: #FFFFFF;
-            border: 1px solid var(--success-primary);
+            border-color: var(--success-primary);
         }
         .btn-success:hover:not(:disabled) {
-            background: var(--success-dark);
+            background: var(--success-primary);
             border-color: var(--success-dark);
-            color: #FFFFFF;
-            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2); /* Adjusted shadow */
             transform: translateY(-1px);
         }
-
         #contact-form button[type="submit"] {
-            padding: 0.75rem 2rem; /* py-3 px-8 */
-            background: var(--accent-primary);
-            color: #FFFFFF;
-            border: 1px solid var(--accent-primary);
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.15);
-        }
-        #contact-form button[type="submit"]:hover {
-            background: var(--accent-dark);
-            border-color: var(--accent-dark);
-            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
-            transform: translateY(-2px);
+            background: linear-gradient(45deg, var(--accent-dark), var(--accent-primary));
         }
 
         /* --- Forms & Inputs --- */
         input:focus, textarea:focus, button:focus, select:focus {
             outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Adjusted shadow color */
-            border-color: var(--accent-primary); /* Use primary accent for focus */
+            box-shadow: 0 0 0 3px var(--accent-glow);
+            border-color: var(--accent-primary);
         }
         input[type="text"], input[type="email"], textarea, select, input[type="password"], input[type="url"] {
             border: 1px solid var(--border-color);
-            background-color: var(--bg-secondary); /* White background */
-            border-radius: 0.375rem;
-            padding: 0.7rem 0.9rem; /* Slightly more padding */
+            background-color: var(--bg-primary);
+            border-radius: 0.375rem; padding: 0.7rem 0.9rem;
             color: var(--text-primary);
-            transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-            font-size: 0.875rem;
-            width: 100%; /* Ensure full width */
+            transition: all 0.2s ease;
+            font-size: 0.875rem; width: 100%;
         }
-        input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder, input[type="password"]::placeholder, input[type="url"]::placeholder {
-            color: var(--text-muted);
-        }
-        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus, input[type="password"]:focus, input[type="url"]:focus {
-            border-color: var(--accent-primary); /* Use primary accent for focus */
-            background-color: var(--bg-secondary); /* Keep white on focus */
+        input[type="text"]::placeholder, input[type="email"]::placeholder, textarea::placeholder { color: var(--text-muted); }
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus, select:focus {
+            border-color: var(--accent-primary);
+            background-color: var(--bg-secondary);
         }
         input[type="file"] {
             border-radius: 0.375rem; border: 1px solid var(--border-color);
@@ -257,61 +260,53 @@
         input[type="file"]::file-selector-button:hover { background-color: var(--border-color); }
 
         /* --- Demo Specific --- */
-        .demo-status { min-height: 1.25rem; font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem; transition: color 0.3s ease; }
-        .result-box { background-color: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-primary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
-        .image-result-box {
-             background-color: var(--bg-tertiary); border: 1px solid var(--border-color);
-             min-height: 12rem; /* Taller for image */
-             max-height: 20rem;
-             display: flex; align-items: center; justify-content: center;
-             padding: 0.5rem; border-radius: 0.375rem; margin-top: 0.5rem;
-             overflow: hidden; /* Hide potential overflow */
-        }
-        .image-result-box img {
-            max-width: 100%; max-height: 100%; object-fit: contain; display: block;
-            border-radius: 0.25rem; /* Slightly rounded corners for image */
-        }
-        .image-result-box span { /* Placeholder text */
-            color: var(--text-muted); font-size: 0.8rem;
-        }
-        canvas { max-width: 100%; border: 1px solid var(--border-color); background-color: var(--bg-tertiary); border-radius: 0.25rem;}
+        .demo-status { min-height: 1.25rem; font-size: 0.8rem; text-align: center; color: var(--text-muted); margin-top: 0.5rem; transition: color 0.3s ease; font-weight: 500; }
+        .result-box { background-color: var(--bg-primary); border: 1px solid var(--border-color); color: var(--text-primary); min-height: 5rem; max-height: 15rem; overflow-y: auto; padding: 0.75rem; border-radius: 0.375rem; white-space: pre-wrap; font-size: 0.8rem; margin-top: 0.5rem; }
+        .image-result-box { background-color: var(--bg-primary); border: 1px solid var(--border-color); min-height: 12rem; max-height: 20rem; display: flex; align-items: center; justify-content: center; padding: 0.5rem; border-radius: 0.375rem; margin-top: 0.5rem; overflow: hidden; }
+        .image-result-box img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; border-radius: 0.25rem; }
+        .image-result-box span { color: var(--text-muted); font-size: 0.8rem; }
         .warning-text { color: var(--warning-text); }
-        .error-text { color: var(--error-text); } /* For critical errors */
+        .error-text { color: var(--error-text); }
 
         /* --- Info Box --- */
-        .info-box { background-color: #E6F2FF; border: 1px solid var(--accent-secondary); color: var(--text-primary); padding: 1rem; border-radius: 0.5rem; font-size: 0.875rem; }
-        .info-box a { color: var(--accent-dark); font-weight: 500; text-decoration: underline; }
-        .info-box a:hover { color: var(--accent-hover); }
-        .info-box input[type="password"] { background-color: #FFFFFF; border-color: var(--accent-primary); color: var(--text-primary); }
-        .info-box input[type="password"]::placeholder { color: var(--text-muted); } /* Adjusted placeholder color */
-        #hf_api_token_feedback { font-size: 0.7rem; margin-top: 0.2rem; display: block; height: 0.8rem; /* Reserve space */}
-
+        .info-box { background-color: rgba(30, 41, 59, 0.8); border: 1px solid var(--accent-dark); color: var(--text-primary); padding: 1.25rem; border-radius: 0.5rem; font-size: 0.875rem; }
+        .info-box a { color: var(--accent-secondary); font-weight: 600; text-decoration: underline; text-decoration-color: var(--accent-glow); }
+        .info-box a:hover { color: var(--accent-primary); }
+        .info-box input[type="password"] { background-color: var(--bg-primary); border-color: var(--accent-primary); color: var(--text-primary); }
 
         /* --- Scrollbar --- */
-        .scrollable { scrollbar-width: thin; scrollbar-color: var(--border-color) var(--bg-tertiary); }
-        .scrollable::-webkit-scrollbar { width: 8px; }
-        .scrollable::-webkit-scrollbar-track { background: var(--bg-tertiary); border-radius: 4px; }
-        .scrollable::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; border: 2px solid var(--bg-tertiary); }
-        .scrollable::-webkit-scrollbar-thumb:hover { background: #ADB5BD; } /* Slightly darker gray */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--border-color); }
 
         /* --- Footer --- */
-        footer { border-top: 1px solid var(--border-color); background-color: var(--bg-tertiary); } /* Light gray */
-        footer a { color: var(--text-muted); transition: color 0.2s ease, transform 0.2s ease; display: inline-block; }
-        footer a:hover { color: var(--accent-primary); transform: scale(1.1); } /* Use primary accent for hover */
-        footer p { color: var(--text-muted); }
+        footer { border-top: 1px solid var(--border-color); background-color: var(--bg-primary); }
+        footer a { color: var(--text-secondary); transition: all 0.2s ease; display: inline-block; }
+        footer a:hover { color: var(--accent-primary); transform: scale(1.1) translateY(-2px); text-shadow: 0 0 10px var(--accent-glow); }
+        footer p { color: var(--text-secondary); }
 
-        /* --- Utilities --- */
-        .highlight-text { color: var(--accent-primary); }
-
-        /* Scroll Animation Classes */
+        /* --- Scroll Animation Classes --- */
         .scroll-animate {
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(30px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .scroll-animate.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* --- Scroll to Top Button --- */
+        #scrollToTopBtn {
+            background: var(--accent-dark);
+            color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        #scrollToTopBtn:hover {
+            background: var(--accent-primary);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--accent-glow);
         }
     </style>
 </head>
@@ -319,543 +314,404 @@
     <!-- Dynamic Background Canvas -->
     <canvas id="backgroundCanvas"></canvas>
 
-    <!-- Background Animation Script -->
+    <!-- Background Animation Script (Updated for Dark Theme) -->
     <script>
-        // Connecting Neurons Animation Light Theme Adjustments
-        const bgCanvas = document.getElementById('backgroundCanvas');
-        const ctx = bgCanvas.getContext('2d');
-        let neurons = []; // Changed from orbs
+        document.addEventListener('DOMContentLoaded', () => {
+            const bgCanvas = document.getElementById('backgroundCanvas');
+            if (!bgCanvas) return;
+            const ctx = bgCanvas.getContext('2d');
+            let neurons = [];
 
-        // Resize canvas to fit window
-        function resizeCanvas() {
-            bgCanvas.width = window.innerWidth;
-            bgCanvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas(); // Call on load
-        window.addEventListener('resize', () => { // Add resize listener for neurons too
-            resizeCanvas();
-            initNeurons(bgCanvas); 
-        });
-        
-        // Neuron class
-        class Neuron {
-            constructor(x, y, radius, color) {
-                this.x = x;
-                this.y = y;
-                this.radius = radius || Math.random() * 2 + 1; // Slightly smaller for light theme: 1-3px
-                this.color = color || getComputedStyle(document.documentElement).getPropertyValue('--accent-primary') + '99'; // Get --accent-primary and add alpha (e.g., 0.6)
-                this.velocityX = Math.random() * 0.3 - 0.15; // Slower movement
-                this.velocityY = Math.random() * 0.3 - 0.15;
-                this.connections = []; // To store indices of connected neurons
-                this.isFiring = false; // For wave effect
-                this.fireProgress = 0; // For wave animation
-                this.fireDuration = 75; // How many frames a fire wave lasts (adjusted from 100)
+            function getCssVar(varName) {
+                return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
             }
 
-            draw(ctx) {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+            function resizeCanvas() {
+                bgCanvas.width = window.innerWidth;
+                bgCanvas.height = window.innerHeight;
             }
 
-            update(canvas) {
-                this.x += this.velocityX;
-                this.y += this.velocityY;
+            class Neuron {
+                constructor(x, y, radius, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.radius = radius || Math.random() * 2 + 1.5;
+                    this.baseColor = color || getCssVar('--accent-primary') + '99'; // with alpha
+                    this.color = this.baseColor;
+                    this.velocityX = Math.random() * 0.4 - 0.2; // Slightly faster
+                    this.velocityY = Math.random() * 0.4 - 0.2;
+                    this.connections = [];
+                    this.isFiring = false;
+                    this.fireProgress = 0;
+                    this.fireDuration = 80;
+                }
 
-                // Boundary check (bounce off edges)
-                if (this.x <= this.radius || this.x >= canvas.width - this.radius) this.velocityX *= -1;
-                if (this.y <= this.radius || this.y >= canvas.height - this.radius) this.velocityY *= -1;
-                
-                // Update firing state for wave
-                if (this.isFiring) {
-                    this.fireProgress++;
-                    if (this.fireProgress >= this.fireDuration) {
-                        this.isFiring = false;
-                        this.fireProgress = 0;
-                        // Chain reaction: Trigger some connected neurons
-                        let firedCount = 0;
-                        const maxToFire = 1; // Fire 1 connected neuron
-                        // Shuffle connections to fire random ones
-                        const shuffledConnections = [...this.connections].sort(() => 0.5 - Math.random());
-                        for (const connectedNeuronIndex of shuffledConnections) {
-                            if (firedCount >= maxToFire) break;
-                            const connectedNeuron = neurons[connectedNeuronIndex];
-                            if (connectedNeuron && !connectedNeuron.isFiring) {
-                                connectedNeuron.isFiring = true;
-                                connectedNeuron.fireProgress = 0;
-                                firedCount++;
+                draw(ctx) {
+                    ctx.beginPath();
+                    const currentRadius = this.isFiring ? this.radius * (1 + (this.fireProgress / this.fireDuration) * 1.5) : this.radius;
+                    ctx.arc(this.x, this.y, currentRadius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+
+                update(canvas) {
+                    this.x += this.velocityX;
+                    this.y += this.velocityY;
+
+                    if (this.x <= this.radius || this.x >= canvas.width - this.radius) this.velocityX *= -1;
+                    if (this.y <= this.radius || this.y >= canvas.height - this.radius) this.velocityY *= -1;
+
+                    if (this.isFiring) {
+                        this.fireProgress++;
+                        const waveColor = getCssVar('--accent-secondary');
+                        const progressRatio = this.fireProgress / this.fireDuration;
+                        const opacity = Math.max(0, 1 - progressRatio).toString(16).slice(2, 4).padStart(2, '0');
+                        this.color = `${waveColor}${opacity}`;
+
+                        if (this.fireProgress >= this.fireDuration) {
+                            this.isFiring = false;
+                            this.fireProgress = 0;
+                            this.color = this.baseColor;
+                            
+                            const shuffledConnections = [...this.connections].sort(() => 0.5 - Math.random());
+                            if (shuffledConnections.length > 0) {
+                                const connectedNeuron = neurons[shuffledConnections[0]];
+                                if (connectedNeuron && !connectedNeuron.isFiring) {
+                                    connectedNeuron.isFiring = true;
+                                    connectedNeuron.fireProgress = 0;
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        // Global Variables and Initialization
-        // let neurons = []; // already defined above
-        const numNeurons = 60; // Slightly fewer for potentially better performance/aesthetics on light bg
-        const connectionDistance = 110; // Max distance to connect, adjustable
-        // waveColor will be derived from CSS var --accent-dark
-        let waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark') + 'B3'; // Add alpha (e.g., 0.7)
+            let animationFrameId;
+            function initNeurons() {
+                cancelAnimationFrame(animationFrameId); // Stop previous loop
+                resizeCanvas();
+                neurons = [];
+                const numNeurons = Math.floor((bgCanvas.width * bgCanvas.height) / 25000); // Responsive number
+                const neuronBaseColor = getCssVar('--accent-primary') + '99';
 
-        // Initialize neurons
-        function initNeurons(canvas) {
-            neurons = [];
-             // Update waveColor in case CSS variables change dynamically (though unlikely for this setup)
-            waveColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-dark').trim() + 'B3'; // .trim() is important
-            const neuronBaseColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '99';
-
-
-            for (let i = 0; i < numNeurons; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                neurons.push(new Neuron(x, y, undefined, neuronBaseColor));
-            }
-            updateConnections(); // Call after creating all neurons
-
-            // Initially fire a few neurons to start the chain reaction
-            if (neurons.length > 0) {
-                for (let i = 0; i < Math.min(3, neurons.length); i++) { // Fire up to 3 neurons
-                    const randomIndex = Math.floor(Math.random() * neurons.length);
-                    if (neurons[randomIndex]) { // Ensure neuron exists
-                        neurons[randomIndex].isFiring = true;
-                        neurons[randomIndex].fireProgress = 0;
-                    }
+                for (let i = 0; i < numNeurons; i++) {
+                    neurons.push(new Neuron(Math.random() * bgCanvas.width, Math.random() * bgCanvas.height, undefined, neuronBaseColor));
                 }
-            }
-        }
+                updateConnections();
 
-        // Update connections between neurons
-        function updateConnections() {
-            for (let i = 0; i < neurons.length; i++) {
-                neurons[i].connections = []; // Clear old connections
-                for (let j = i + 1; j < neurons.length; j++) {
-                    const dx = neurons[i].x - neurons[j].x;
-                    const dy = neurons[i].y - neurons[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < connectionDistance) {
-                        neurons[i].connections.push(j); // Store index of connected neuron
-                    }
-                }
-            }
-        }
-        
-        // Draw connections between neurons
-        function drawConnections(ctx) {
-            const baseConnectionColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-primary').trim() + '33'; // ~0.2 alpha
-
-            for (let i = 0; i < neurons.length; i++) {
-                const neuronA = neurons[i];
-                for (let k = 0; k < neuronA.connections.length; k++) {
-                    const j_index = neuronA.connections[k];
-                    const neuronB = neurons[j_index];
-
-                    ctx.beginPath();
-                    ctx.moveTo(neuronA.x, neuronA.y);
-                    ctx.lineTo(neuronB.x, neuronB.y);
-
-                    // Default line style
-                    ctx.strokeStyle = baseConnectionColor; 
-                    ctx.lineWidth = 0.4; // Thinner lines for a lighter feel
-
-                    // Wave Effect
-                    if (neuronA.isFiring) {
-                        const waveOpacityFactor = Math.max(0, 0.6 - (neuronA.fireProgress / neuronA.fireDuration) * 0.6);
-                        // Assuming waveColor is already in 'rgba(r,g,b,alpha)' or hex+alpha format from init.
-                        // If waveColor is hex+alpha (e.g., #RRGGBBAA), we need to parse and reconstruct.
-                        // For simplicity, if waveColor is set like '--accent-dark' + 'B3', we adjust the 'B3' part.
-                        // This part might need more robust color manipulation if CSS var is not simple hex.
-                        // For now, let's assume waveColor is 'rgba(r,g,b,a)' and we reconstruct it with new alpha.
-                        let currentWaveColor = waveColor; // Use the globally set waveColor
-                        if (currentWaveColor.startsWith('#')) { // hex to rgba for opacity manipulation
-                             let r = parseInt(currentWaveColor.slice(1,3), 16);
-                             let g = parseInt(currentWaveColor.slice(3,5), 16);
-                             let b = parseInt(currentWaveColor.slice(5,7), 16);
-                             ctx.strokeStyle = `rgba(${r},${g},${b},${waveOpacityFactor.toFixed(2)})`;
-                        } else if (currentWaveColor.startsWith('rgba')) { // if already rgba
-                            ctx.strokeStyle = currentWaveColor.replace(/[\d\.]+\)$/g, `${waveOpacityFactor.toFixed(2)})`);
-                        } else {
-                             // Fallback if color format is unexpected, though CSS vars should give consistent format
-                             ctx.strokeStyle = `rgba(0, 105, 217, ${waveOpacityFactor.toFixed(2)})`;
+                if (neurons.length > 0) {
+                    for (let i = 0; i < Math.min(3, neurons.length); i++) {
+                        const randomIndex = Math.floor(Math.random() * neurons.length);
+                        if (neurons[randomIndex]) {
+                            neurons[randomIndex].isFiring = true;
                         }
-                        ctx.lineWidth = 1.2; // Make firing connections slightly thicker
                     }
-                    ctx.stroke();
                 }
+                animateBackground(); // Start new loop
             }
-        }
 
-        // Animate neurons and connections
-        function animateBackground() {
-            ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-            
-            drawConnections(ctx); // Draw connections first
-
-            neurons.forEach(neuron => {
-                neuron.update(bgCanvas);
-                neuron.draw(ctx);
-            });
-
-            // Reseeding logic if animation dies out
-            let currentlyFiringCount = 0;
-            for (const neuron of neurons) { if (neuron.isFiring) currentlyFiringCount++; }
-
-            if (currentlyFiringCount === 0 && neurons.length > 0) {
-                const numToReseed = Math.min(2, neurons.length); // Reseed 1 or 2 neurons
-                for (let i = 0; i < numToReseed; i++) {
-                    const randomIndex = Math.floor(Math.random() * neurons.length);
-                    if (neurons[randomIndex] && !neurons[randomIndex].isFiring) { // Check again, just in case
-                        neurons[randomIndex].isFiring = true;
-                        neurons[randomIndex].fireProgress = 0;
+            function updateConnections() {
+                const connectionDistance = 120;
+                for (let i = 0; i < neurons.length; i++) {
+                    neurons[i].connections = [];
+                    for (let j = i + 1; j < neurons.length; j++) {
+                        const distance = Math.hypot(neurons[i].x - neurons[j].x, neurons[i].y - neurons[j].y);
+                        if (distance < connectionDistance) {
+                            neurons[i].connections.push(j);
+                        }
                     }
                 }
             }
-            
-            requestAnimationFrame(animateBackground);
-        }
 
-        // Initial calls
-        initNeurons(bgCanvas); // Initialize neurons after canvas is ready
-        animateBackground(); // Start the animation loop
+            function drawConnections(ctx) {
+                const baseConnectionColor = getCssVar('--accent-primary') + '33'; // ~0.2 alpha
+                const firingConnectionColor = getCssVar('--accent-secondary');
+
+                for (let i = 0; i < neurons.length; i++) {
+                    const neuronA = neurons[i];
+                    for (const j_index of neuronA.connections) {
+                        const neuronB = neurons[j_index];
+                        if(!neuronB) continue;
+
+                        ctx.beginPath();
+                        ctx.moveTo(neuronA.x, neuronA.y);
+                        ctx.lineTo(neuronB.x, neuronB.y);
+
+                        if (neuronA.isFiring || neuronB.isFiring) {
+                            const firingNeuron = neuronA.isFiring ? neuronA : neuronB;
+                            const progress = firingNeuron.fireProgress / firingNeuron.fireDuration;
+                            const opacity = Math.sin(progress * Math.PI); // Fades in and out
+                            ctx.strokeStyle = `rgba(${parseInt(firingConnectionColor.slice(1,3),16)}, ${parseInt(firingConnectionColor.slice(3,5),16)}, ${parseInt(firingConnectionColor.slice(5,7),16)}, ${opacity * 0.8})`;
+                            ctx.lineWidth = 1;
+                        } else {
+                            ctx.strokeStyle = baseConnectionColor;
+                            ctx.lineWidth = 0.5;
+                        }
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            function animateBackground() {
+                ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+                drawConnections(ctx);
+                neurons.forEach(neuron => {
+                    neuron.update(bgCanvas);
+                    neuron.draw(ctx);
+                });
+
+                const currentlyFiringCount = neurons.filter(n => n.isFiring).length;
+                if (currentlyFiringCount === 0 && neurons.length > 0) {
+                     const numToReseed = Math.min(2, neurons.length);
+                     for (let i = 0; i < numToReseed; i++) {
+                        const randomIndex = Math.floor(Math.random() * neurons.length);
+                        if (neurons[randomIndex]) neurons[randomIndex].isFiring = true;
+                     }
+                }
+                animationFrameId = requestAnimationFrame(animateBackground);
+            }
+
+            window.addEventListener('resize', initNeurons);
+            initNeurons();
+        });
     </script>
 
-    <!-- Original Portfolio Content -->
+    <!-- Portfolio Content -->
     <nav class="sticky top-0 z-50">
-        <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Text colors for nav items are handled by nav a {} rule -->
-            <div class="flex justify-between items-center h-16"> <a href="#" class="text-lg font-bold text-gray-800 hover:text-blue-600 transition-colors">SD<span class="text-blue-500">.</span>AI</a>
-                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <a href="#skills">Projects & Code</a>
-                    <a href="#demos">AI Demos</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <!-- Mobile menu button text color should be dark enough -->
-                    <button id="mobile-menu-button" class="text-gray-600 hover:text-gray-800 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition">
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile menu text colors are handled by #mobile-menu a {} rule -->
-        <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 w-full shadow-lg py-3 z-40">
-            <a href="#skills" class="mobile-nav-link block px-4 py-2 text-base">Projects & Code</a>
-            <a href="#demos" class="mobile-nav-link block px-4 py-2 text-base">AI Demos</a>
-            <a href="#contact" class="mobile-nav-link block px-4 py-2 text-base">Contact</a>
-        </div>
-    </nav>
+      <div class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+              <a href="#" class="text-xl font-bold text-white hover:text-cyan-400 transition-colors">SD<span class="text-cyan-400">.</span>AI</a>
+              <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                  <a href="#skills">Projects & Code</a>
+                  <a href="#demos">AI Demos</a>
+                  <a href="#contact">Contact</a>
+              </div>
+              <div class="md:hidden flex items-center">
+                  <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none p-2 rounded-md hover:bg-slate-700 transition">
+                      <i class="fas fa-bars text-xl"></i>
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div id="mobile-menu" class="md:hidden hidden absolute top-16 left-0 w-full shadow-lg py-3 z-40">
+          <a href="#skills" class="mobile-nav-link block px-4 py-3 text-base">Projects & Code</a>
+          <a href="#demos" class="mobile-nav-link block px-4 py-3 text-base">AI Demos</a>
+          <a href="#contact" class="mobile-nav-link block px-4 py-3 text-base">Contact</a>
+      </div>
+  </nav>
 
-    <section id="hero" class="text-center scroll-animate">
-        <div class="max-w-4xl mx-auto px-4">
-            <!-- h1 color is var(--text-primary) by default -->
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Satyam Dixit</h1>
-            <!-- p.subtitle color is var(--text-secondary) as per new rule -->
-            <p class="subtitle text-lg md:text-xl font-medium mb-6">AI & Deep Learning Portfolio</p>
-        </div>
-    </section>
+  <section id="hero" class="text-center scroll-animate">
+      <div class="max-w-4xl mx-auto px-4">
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4">Satyam Dixit</h1>
+          <p class="subtitle text-lg md:text-xl font-medium mb-6 max-w-2xl mx-auto">An AI & Deep Learning portfolio exploring the intersection of high-performance computing and intelligent systems.</p>
+      </div>
+  </section>
 
-    <section id="skills" class="scroll-animate">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <!-- h2 color is var(--text-primary) -->
-                <h2 class="text-3xl font-bold mb-3">Featured Projects & Code</h2>
-                <!-- p color is var(--text-secondary) -->
-                <p class="max-w-xl mx-auto">Highlights of technical implementations and solutions.</p>
-                <div class="section-divider"></div> <!-- Uses var(--accent-primary) -->
-            </div>
+  <section id="skills" class="scroll-animate">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+              <h2 class="text-4xl font-bold mb-3">Featured Projects & Code</h2>
+              <p class="max-w-xl mx-auto">Highlights of technical implementations and solutions.</p>
+              <div class="section-divider"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div class="card scroll-animate" style="animation-delay: 100ms;">
+                  <div class="card-content space-y-4">
+                      <div class="flex items-center space-x-4">
+                          <i class="fas fa-microchip text-4xl text-emerald-400"></i>
+                          <h4 class="text-lg font-semibold">CUDA Optimizations</h4>
+                      </div>
+                      <p class="text-sm">Examples of accelerating deep learning components using NVIDIA CUDA. Includes kernel implementations and performance analysis.</p>
+                  </div>
+                  <div class="card-footer">
+                      <div><span class="mono-tag">CUDA</span><span class="mono-tag">C++</span><span class="mono-tag">Python</span><span class="mono-tag">PyTorch</span></div>
+                      <a href="https://github.com/Satyamdixit6/cuddly-octo-spoon" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">View on GitHub →</a>
+                  </div>
+              </div>
+              <div class="card scroll-animate" style="animation-delay: 200ms;">
+                  <div class="card-content space-y-4">
+                      <div class="flex items-center space-x-4">
+                          <i class="fas fa-book-open-reader text-4xl text-sky-400"></i>
+                          <h4 class="text-lg font-semibold">RAG Implementation</h4>
+                      </div>
+                      <p class="text-sm">Implementing Retrieval-Augmented Generation pipelines to enhance LLM responses with external knowledge. Explores vector databases and prompt engineering.</p>
+                  </div>
+                  <div class="card-footer">
+                      <div><span class="mono-tag">RAG</span><span class="mono-tag">LLM</span><span class="mono-tag">PyTorch</span><span class="mono-tag">Transformers</span><span class="mono-tag">VectorDB</span></div>
+                      <a href="https://github.com/Satyamdixit6/RAG" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">View on GitHub →</a>
+                  </div>
+              </div>
+              <div class="card scroll-animate" style="animation-delay: 300ms;">
+                  <div class="card-content space-y-4">
+                      <div class="flex items-center space-x-4">
+                          <i class="fas fa-eye text-4xl text-violet-400"></i>
+                          <h4 class="text-lg font-semibold">Computer Vision Systems</h4>
+                      </div>
+                      <p class="text-sm">Developing systems for image classification, object detection (YOLO), and segmentation. Includes data handling and evaluation.</p>
+                  </div>
+                  <div class="card-footer">
+                      <div><span class="mono-tag">CV</span><span class="mono-tag">PyTorch</span><span class="mono-tag">CNN</span><span class="mono-tag">YOLO</span></div>
+                      <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">View on Docker Hub →</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card text colors (h4, p) will use var(--text-primary) and var(--text-secondary) -->
-                <div class="card scroll-animate">
-                    <div class="card-content space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-microchip text-3xl text-green-500 pt-1"></i> <!-- Adjusted icon color for light theme -->
-                            <h4 class="text-lg font-semibold">CUDA Optimizations</h4>
-                        </div>
-                        <p class="text-sm">
-                            Examples of accelerating deep learning components using NVIDIA CUDA. Includes kernel implementations and performance analysis.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <span class="mono-tag">CUDA</span><span class="mono-tag">C++</span><span class="mono-tag">Python</span><span class="mono-tag">PyTorch</span>
-                        </div>
-                        <a href="https://github.com/Satyamdixit6/cuddly-octo-spoon" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on GitHub →
-                        </a>
-                    </div>
-                </div>
+  <section id="demos" class="bg-slate-900/50 scroll-animate">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+              <h2 class="text-4xl font-bold mb-3">Interactive AI Demos</h2>
+              <p class="max-w-2xl mx-auto">Explore live AI models, from lightweight browser-based inference to powerful cloud APIs.</p>
+              <div class="section-divider"></div>
+          </div>
+          <div class="mb-16">
+              <h3 class="text-2xl font-semibold mb-3 text-center">Client-Side Demos (Experimental)</h3>
+              <p class="text-center text-sm mb-8 max-w-3xl mx-auto">These demos run ONNX models directly in your browser. Performance depends heavily on your device and browser support for WebGPU. Models are downloaded on first use. <strong class="warning-text">Image generation is VERY resource intensive and may be slow or crash the browser tab.</strong></p>
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                  <div class="card scroll-animate">
+                      <div class="card-content space-y-3">
+                          <h4 class="text-base font-semibold"><i class="fas fa-camera mr-2 text-sky-400"></i>Vision (Captioning)</h4>
+                          <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
+                          <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-xs"></div>
+                          <div class="w-full h-32 bg-slate-900 rounded border border-slate-700 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-slate-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
+                      </div>
+                      <div class="card-footer mt-auto space-y-2">
+                          <button id="p1_generateCaptionBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
+                          <div id="p1_status" class="demo-status"></div>
+                          <div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem]"></div>
+                      </div>
+                  </div>
+                  <div class="card scroll-animate">
+                      <div class="card-content space-y-3">
+                          <h4 class="text-base font-semibold"><i class="fas fa-comment-dots mr-2 text-violet-400"></i>Language (Text2Text)</h4>
+                          <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
+                          <div><label for="p2_textPrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div>
+                      </div>
+                      <div class="card-footer mt-auto space-y-2">
+                          <button id="p2_generateTextBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
+                          <div id="p2_status" class="demo-status"></div>
+                          <div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem]"></div>
+                      </div>
+                  </div>
+                  <div class="card scroll-animate">
+                      <div class="card-content space-y-3">
+                          <h4 class="text-base font-semibold"><i class="fas fa-image mr-2 text-teal-400"></i>Image Generation</h4>
+                          <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
+                          <div><label for="p7_imagePrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p7_imagePrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="A photo of an astronaut riding a horse on the moon"></textarea></div>
+                      </div>
+                      <div class="card-footer mt-auto space-y-2">
+                          <button id="p7_generateImageBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate Image</button>
+                          <div id="p7_status" class="demo-status"></div>
+                          <div id="p7_imageResultContainer" class="image-result-box"><span id="p7_imagePlaceholder">Result will appear here</span><img id="p7_imageResult" src="#" alt="Generated Image" class="hidden"/></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-                <div class="card scroll-animate">
-                    <div class="card-content space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-book-open-reader text-3xl text-blue-500 pt-1"></i> <!-- Adjusted icon color -->
-                            <h4 class="text-lg font-semibold">RAG Implementation</h4>
-                        </div>
-                        <p class="text-sm">
-                            Implementing Retrieval-Augmented Generation pipelines to enhance LLM responses with external knowledge. Explores vector databases and prompt engineering.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <span class="mono-tag">RAG</span><span class="mono-tag">LLM</span><span class="mono-tag">PyTorch</span><span class="mono-tag">Transformers</span><span class="mono-tag">VectorDB</span>
-                        </div>
-                        <a href="https://github.com/Satyamdixit6/RAG" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on GitHub →
-                        </a>
-                    </div>
-                </div>
+          <div id="powerful-models" class="mb-16 pt-10 border-t border-slate-700/70 scroll-animate">
+              <h3 class="text-2xl font-semibold mb-3 text-center">Cloud API Demos (High Quality)</h3>
+              <p class="text-center text-sm mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
+              <div class="max-w-xl mx-auto mb-8 p-5 info-box">
+                  <label for="hf_api_token" class="block font-medium mb-2 text-sm">Enter HF API Token (Required):</label>
+                  <input type="password" id="hf_api_token" class="w-full p-2 text-sm" placeholder="Paste your READ token (hf_...)">
+                  <span id="hf_api_token_feedback" class="text-xs mt-1"></span>
+                  <p class="text-xs mt-2 opacity-80">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. The token is only used by your browser to make API calls.</p>
+              </div>
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  <div class="card p-6 scroll-animate">
+                      <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-sky-400"></i>Vision (API)</h4>
+                      <div class="space-y-4">
+                          <div><label for="p4_imageUrl" class="block text-xs font-medium mb-1">Image URL:</label><input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."></div>
+                          <div><label for="p4_vlmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label><input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" value="Salesforce/blip-image-captioning-large"></div>
+                          <div id="p4_vqaPromptDiv"><label for="p4_vqaPrompt" class="block text-xs font-medium mb-1">Question (Optional - for VQA models):</label><input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="e.g., What color is the car?"></div>
+                          <button id="p4_runVlmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                          <div id="p4_vlmStatus" class="demo-status"></div>
+                          <div id="p4_vlmResult" class="w-full p-2 result-box text-xs"></div>
+                      </div>
+                  </div>
+                  <div class="card p-6 scroll-animate">
+                      <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-comments mr-2 text-violet-400"></i>Language (API)</h4>
+                      <div class="space-y-4">
+                          <div><label for="p5_lmPrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain the concept of Retrieval-Augmented Generation in simple terms."></textarea></div>
+                          <div><label for="p5_lmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label><input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" value="microsoft/Phi-3-mini-4k-instruct"></div>
+                          <button id="p5_runLmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                          <div id="p5_lmStatus" class="demo-status"></div>
+                          <div id="p5_lmResult" class="w-full p-2 result-box text-xs"></div>
+                      </div>
+                  </div>
+                  <div class="card p-6 scroll-animate">
+                      <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-emerald-400"></i>Coding (API)</h4>
+                      <div class="space-y-4">
+                          <div><label for="p6_codePrompt" class="block text-xs font-medium mb-1">Code Prompt:</label><textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write a python function to compute the Fibonacci sequence."></textarea></div>
+                          <div><label for="p6_coderModelId" class="block text-xs font-medium mb-1">HF Model ID:</label><input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" value="deepseek-ai/deepseek-coder-1.3b-instruct"></div>
+                          <button id="p6_runCoderBtn" class="button-like btn-success w-full text-sm">Run via API</button>
+                          <div id="p6_coderStatus" class="demo-status"></div>
+                          <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
 
-                <div class="card scroll-animate">
-                    <div class="card-content space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-eye text-3xl text-purple-500 pt-1"></i> <!-- Adjusted icon color -->
-                            <h4 class="text-lg font-semibold">Computer Vision Systems</h4>
-                        </div>
-                        <p class="text-sm">
-                            Developing systems for image classification, object detection (YOLO), and segmentation. Includes data handling and evaluation.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div>
-                            <span class="mono-tag">CV</span><span class="mono-tag">PyTorch</span><span class="mono-tag">CNN</span><span class="mono-tag">YOLO</span>
-                        </div>
-                        <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" class="button-like btn-primary mt-4 w-full text-sm">
-                            View on Docker Hub →
-                        </a>
-                    </div>
-                </div>
+  <section id="contact" class="scroll-animate">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+              <h2 class="text-4xl font-bold mb-3">Get In Touch</h2>
+              <p>Let's discuss AI, potential collaborations, or just connect!</p>
+              <div class="section-divider"></div>
+          </div>
+          <div class="bg-slate-800/80 p-8 rounded-lg shadow-2xl border border-slate-700">
+              <form id="contact-form">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                      <div>
+                          <label for="name" class="block font-medium mb-2 text-sm">Name</label>
+                          <input type="text" id="name" name="name" required>
+                      </div>
+                      <div>
+                          <label for="email" class="block font-medium mb-2 text-sm">Email</label>
+                          <input type="email" id="email" name="email" required>
+                      </div>
+                  </div>
+                  <div class="mb-6">
+                      <label for="subject" class="block font-medium mb-2 text-sm">Subject</label>
+                      <input type="text" id="subject" name="subject">
+                  </div>
+                  <div class="mb-6">
+                      <label for="message" class="block font-medium mb-2 text-sm">Message</label>
+                      <textarea id="message" name="message" rows="5" required></textarea>
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="button-like w-full sm:w-auto font-semibold text-white">Send Message</button>
+                  </div>
+              </form>
+              <div id="contact-status" class="mt-4 text-center text-sm"></div>
+              <div class="mt-8 pt-6 border-t border-slate-700 text-center">
+                  <p class="text-sm mb-3">Or reach out directly:</p>
+                  <p class="text-base font-medium text-slate-300 hover:text-cyan-400 transition-colors">
+                      <a href="mailto:satyamdixit6666@gmail.com"><i class="fas fa-envelope mr-2 text-cyan-400"></i> satyamdixit6666@gmail.com</a>
+                  </p>
+              </div>
+          </div>
+      </div>
+  </section>
 
-                <div class="card scroll-animate">
-                    <div class="card-content space-y-4">
-                        <div class="flex items-start space-x-3">
-                            <i class="fas fa-server text-3xl text-gray-500 pt-1"></i> <!-- Adjusted icon color -->
-                            <h4 class="text-lg font-semibold">API & Deployment</h4>
-                        </div>
-                        <p class="text-sm">
-                            Building and deploying ML models as scalable APIs (FastAPI/Flask), containerization (Docker), and cloud deployment concepts.
-                        </p>
-                    </div>
-                    <div class="card-footer">
-                        <div><span class="mono-tag">API</span><span class="mono-tag">FastAPI</span><span class="mono-tag">Docker</span><span class="mono-tag">Cloud</span></div>
-                         <a href="#" class="button-like btn-primary mt-4 w-full text-sm opacity-70 cursor-not-allowed" title="Link TBD">
-                            Details Coming Soon
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <footer class="py-10 scroll-animate">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="mb-4 space-x-6">
+              <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in text-2xl"></i></a>
+              <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github text-2xl"></i></a>
+              <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter text-2xl"></i></a>
+              <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" title="Docker Hub"><i class="fab fa-docker text-2xl"></i></a>
+          </div>
+          <p class="text-sm">© <span id="footerYear"></span> Satyam Dixit. All rights reserved.</p>
+      </div>
+  </footer>
 
-    <section id="demos" class="scroll-animate">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-3">AI Demonstrations</h2>
-                <p class="max-w-2xl mx-auto">Explore different AI interaction methods and their trade-offs.</p>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="mb-16">
-                <h3 class="text-xl font-semibold mb-3 text-center">Client-Side Demos (Experimental)</h3>
-                <p class="text-center text-sm mb-8 max-w-2xl mx-auto">These demos run ONNX models directly in your browser using WebAssembly or WebGPU. Quality/speed varies. Models download on first use. <strong class="warning-text">Check Console (F12) for errors. Image generation is very resource intensive!</strong></p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"> <div class="card p-5 scroll-animate">
-                        <div class="card-content space-y-3">
-                            <h4 class="text-base font-semibold"><i class="fas fa-camera mr-2 text-blue-500"></i>Vision (Captioning)</h4>
-                            <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">vit-gpt2-img-cap</code></p>
-                            <div><input type="file" id="p1_imageUpload" accept="image/*" class="block w-full text-xs"></div>
-                            <div class="w-full h-28 bg-gray-100 rounded border border-gray-300 flex items-center justify-center overflow-hidden"><span id="p1_previewText" class="text-gray-500 text-xs px-2 text-center">Preview Area</span><img id="p1_imagePreview" src="#" alt="Preview" class="max-h-full max-w-full hidden object-contain rounded"/></div>
-                        </div>
-                        <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
-                            <button id="p1_generateCaptionBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
-                            <div id="p1_status" class="demo-status"></div>
-                            <div id="p1_captionResult" class="w-full p-1.5 result-box !text-xs !min-h-[3rem] scrollable"></div>
-                        </div>
-                    </div>
-                    <div class="card p-5 scroll-animate">
-                          <div class="card-content space-y-3">
-                              <h4 class="text-base font-semibold"><i class="fas fa-comment-dots mr-2 text-purple-500"></i>Language (Text2Text)</h4>
-                              <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">flan-t5-small</code><br/><strong class="warning-text !text-xs">Warning: Output quality is extremely basic.</strong></p>
-                              <div><label for="p2_textPrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p2_textPrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="Translate English to French: Hello"></textarea></div>
-                          </div>
-                          <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
-                              <button id="p2_generateTextBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate</button>
-                              <div id="p2_status" class="demo-status"></div>
-                              <div id="p2_generationResult" class="w-full p-1.5 result-box !text-xs !min-h-[5rem] scrollable"></div>
-                          </div>
-                    </div>
-                    <div class="card p-5 scroll-animate">
-                          <div class="card-content space-y-3">
-                              <h4 class="text-base font-semibold"><i class="fas fa-image mr-2 text-teal-500"></i>Image Generation</h4>
-                              <p class="text-xs">Model: <code class="mono-tag !text-xs !py-0.5 !px-1.5">stable-diffusion-turbo</code><br/><strong class="error-text !text-xs font-bold">WARNING: VERY High RAM/VRAM usage! May be slow or crash tab. Requires WebGPU support.</strong></p>
-                              <div><label for="p7_imagePrompt" class="block text-xs font-medium mb-1">Prompt:</label><textarea id="p7_imagePrompt" rows="2" class="w-full p-1.5 text-xs" placeholder="A photo of an astronaut riding a horse on the moon"></textarea></div>
-                          </div>
-                          <div class="card-footer mt-3 pt-3 border-t border-gray-300 space-y-2 !px-5 !py-3">
-                              <button id="p7_generateImageBtn" class="button-like btn-primary w-full !text-xs !py-1.5">Generate Image</button>
-                              <div id="p7_status" class="demo-status"></div>
-                              <div id="p7_imageResultContainer" class="image-result-box"> <span id="p7_imagePlaceholder">Result will appear here</span>
-                                  <img id="p7_imageResult" src="#" alt="Generated Image" class="hidden"/>
-                              </div>
-                          </div>
-                    </div>
-                </div>
-                <p class="text-xs text-center mt-6">Note: Client-side demos cache models for offline use after the first online run.</p>
-            </div>
-
-            <div id="powerful-models" class="mb-16 pt-10 border-t border-gray-200 scroll-animate"> <!-- Adjusted border -->
-                <h3 class="text-xl font-semibold mb-3 text-center">Cloud API Demos (High Quality)</h3>
-                <p class="text-center text-sm mb-6 max-w-xl mx-auto">Interact with larger models hosted on Hugging Face's Inference API for significantly better results.</p>
-                <!-- Info box styles updated in :root and .info-box specific rules -->
-                <div class="max-w-xl mx-auto mb-8 p-4 info-box">
-                    <label for="hf_api_token" class="block font-medium mb-2 text-sm">Enter HF API Token (Required):</label>
-                    <input type="password" id="hf_api_token" class="w-full p-2 text-sm" placeholder="Paste your READ token (hf_...)">
-                    <span id="hf_api_token_feedback" class="text-xs mt-1"></span> <!-- Feedback element -->
-                    <p class="text-xs mt-1">Needed for these demos. Get one free from <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener noreferrer">HF Settings</a>. Used only by your browser.</p>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-6 scroll-animate">
-                        <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-camera-retro mr-2 text-blue-500"></i>Vision (API)</h4>
-                        <div class="space-y-4">
-                            <div> <label for="p4_imageUrl" class="block text-xs font-medium mb-1">Image URL:</label> <input type="url" id="p4_imageUrl" class="w-full p-2 text-sm" placeholder="https://..."> </div>
-                            <div> <label for="p4_vlmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p4_vlmModelId" class="w-full p-2 text-sm" placeholder="e.g., Salesforce/blip-image-captioning-large"> </div>
-                            <div id="p4_vqaPromptDiv"> <label for="p4_vqaPrompt" class="block text-xs font-medium mb-1">Question (Optional - for VQA models):</label> <input type="text" id="p4_vqaPrompt" class="w-full p-2 text-sm" placeholder="What is in the image?"> </div>
-                            <button id="p4_runVlmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                            <div id="p4_vlmStatus" class="demo-status"></div>
-                            <div id="p4_vlmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                            <p class="text-xs mt-1">Enter a valid HF model ID for 'image-to-text' or 'visual-question-answering' available on Inference API.</p>
-                        </div>
-                    </div>
-                    <div class="card p-6 scroll-animate">
-                       <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-comments mr-2 text-purple-500"></i>Language (API)</h4>
-                       <div class="space-y-4">
-                           <div> <label for="p5_lmPrompt" class="block text-xs font-medium mb-1">Prompt:</label> <textarea id="p5_lmPrompt" rows="3" class="w-full p-2 text-sm" placeholder="Explain..."></textarea> </div>
-                           <div> <label for="p5_lmModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p5_lmModelId" class="w-full p-2 text-sm" placeholder="e.g., microsoft/Phi-3-mini-4k-instruct"></div>
-                           <button id="p5_runLmBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                           <div id="p5_lmStatus" class="demo-status"></div>
-                           <div id="p5_lmResult" class="w-full p-2 result-box text-xs scrollable"></div>
-                           <p class="text-xs mt-1">Enter valid HF model ID for 'text-generation' or 'conversational' available on Inference API.</p>
-                       </div>
-                    </div>
-                    <div class="card p-6 scroll-animate">
-                       <h4 class="text-lg font-semibold mb-4 text-center"><i class="fas fa-laptop-code mr-2 text-green-500"></i>Coding (API)</h4>
-                       <div class="space-y-4">
-                           <div> <label for="p6_codePrompt" class="block text-xs font-medium mb-1">Code Prompt:</label> <textarea id="p6_codePrompt" rows="3" class="w-full p-2 text-sm font-mono" placeholder="Write python..."></textarea> </div>
-                           <div> <label for="p6_coderModelId" class="block text-xs font-medium mb-1">HF Model ID:</label> <input type="text" id="p6_coderModelId" class="w-full p-2 text-sm" placeholder="e.g., deepseek-ai/deepseek-coder-1.3b-instruct"> </div>
-                           <button id="p6_runCoderBtn" class="button-like btn-success w-full text-sm">Run via API</button>
-                           <div id="p6_coderStatus" class="demo-status"></div>
-                           <div id="p6_coderResult" class="w-full p-2 result-box text-xs font-mono scrollable"></div>
-                           <p class="text-xs mt-1">Enter valid HF model ID for 'text-generation' (code-focused) available on Inference API.</p>
-                       </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="local-run" class="mb-16 pt-10 border-t border-gray-200 scroll-animate"> <!-- Adjusted border -->
-                <h3 class="text-xl font-semibold mb-3 text-center">Tier 3: Running Powerful Models Locally</h3>
-                <p class="text-center text-sm mb-8 max-w-2xl mx-auto">For the best performance & privacy with large models (DeepSeek, Llama 3, etc.), run them on your own PC/laptop using dedicated applications.</p>
-                <div class="info-box max-w-xl mx-auto text-center"> <!-- Info box styles updated -->
-                    <p class="mb-3">These tools let you download and run various models easily:</p>
-                    <a href="#" class="button-like inline-block px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition font-medium text-sm" title="Guide Coming Soon"> <!-- Adjusted button color -->
-                        <i class="fas fa-info-circle mr-2"></i>Learn How to Run Models Locally →
-                    </a>
-                    <p class="text-xs mt-3"> (Includes info on Ollama, LM Studio, etc.)</p>
-                    <p class="text-xs mt-3 border-t border-blue-300 pt-2"> <!-- Adjusted border -->
-                        <i class="fab fa-docker"></i> Note: A Dockerfile for self-hosting a backend API (alternative to cloud APIs) may be available in the project repo (Docker Hub: satyamdixit6666).
-                    </p>
-                </div>
-             </div>
-
-            <div id="image-gen-cloud" class="pt-10 border-t border-gray-200 scroll-animate"> <h3 class="text-xl font-semibold mb-3 text-center">Tier 4: High-Quality Image Generation</h3>
-                <p class="text-center text-sm mb-8 max-w-xl mx-auto">Top-tier image generation typically requires cloud APIs or powerful local setups (e.g., ComfyUI, Automatic1111).</p>
-                <div class="text-center p-10 bg-gray-100 rounded-lg border border-dashed border-gray-300 max-w-md mx-auto"> <!-- Adjusted colors -->
-                    <i class="fas fa-palette text-4xl text-gray-400"></i> <p class="mt-2 text-gray-600">Cloud/Local Image Generation</p>
-                    <p class="text-xs text-gray-500 mt-1">Requires dedicated setup or API key.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="scroll-animate">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-3">Contact Me</h2>
-                <p>Let's discuss AI, potential collaborations, or just connect!</p>
-                <div class="section-divider"></div>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-xl border border-gray-200"> <!-- Adjusted colors -->
-                <form id="contact-form">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label for="name" class="block font-medium mb-2 text-sm">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div>
-                            <label for="email" class="block font-medium mb-2 text-sm">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                    </div>
-                    <div class="mb-6">
-                        <label for="subject" class="block font-medium mb-2 text-sm">Subject</label>
-                        <input type="text" id="subject" name="subject">
-                    </div>
-                    <div class="mb-6">
-                        <label for="message" class="block font-medium mb-2 text-sm">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="button-like w-full sm:w-auto font-semibold">
-                            Send Message via Email
-                        </button>
-                    </div>
-                </form>
-                <div id="contact-status" class="mt-4 text-center text-sm"></div>
-                <div class="mt-8 pt-6 border-t border-gray-200 text-center"> <!-- Adjusted border -->
-                    <p class="text-sm mb-3">Or reach out directly:</p>
-                    <p class="text-sm font-medium">
-                        <i class="fas fa-envelope mr-2 text-blue-500"></i> satyamdixit6666@gmail.com
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-10 scroll-animate"> <!-- Footer styles updated -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-4 space-x-6">
-                <a href="https://linkedin.com/in/satyamdixit" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                    <i class="fab fa-linkedin-in text-xl"></i>
-                </a>
-                <a href="https://github.com/Satyamdixit6" target="_blank" rel="noopener noreferrer" title="GitHub">
-                    <i class="fab fa-github text-xl"></i>
-                </a>
-                <a href="https://twitter.com/satyamdixit" target="_blank" rel="noopener noreferrer" title="Twitter">
-                    <i class="fab fa-twitter text-xl"></i>
-                </a>
-                <a href="https://hub.docker.com/u/satyamdixit6666" target="_blank" rel="noopener noreferrer" title="Docker Hub">
-                    <i class="fab fa-docker text-xl"></i>
-                </a>
-            </div>
-            <p class="text-sm">
-                © <span id="footerYear"></span> Satyam Dixit. All rights reserved.
-            </p>
-        </div>
-    </footer>
-
-    <!-- Scroll to Top Button --> <!-- Styles updated -->
-    <button id="scrollToTopBtn" title="Go to top" 
-            class="fixed bottom-5 right-5 p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-opacity duration-300 opacity-0 pointer-events-none z-50"
-            style="background-color: var(--accent-primary); color: #FFFFFF;">
-        <i class="fas fa-arrow-up text-xl"></i>
-    </button>
-    <style>
-        #scrollToTopBtn:hover {
-            background-color: var(--accent-dark) !important; /* Important to override Tailwind if needed */
-        }
-        #scrollToTopBtn:focus {
-             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4) !important; /* Match other focus styles */
-        }
-    </style>
+  <button id="scrollToTopBtn" title="Go to top" class="fixed bottom-5 right-5 p-3 rounded-full shadow-lg focus:outline-none focus:ring-2 focus:ring-opacity-50 transition-opacity duration-300 opacity-0 pointer-events-none z-50">
+      <i class="fas fa-arrow-up text-xl"></i>
+  </button>
 
     <script type="module">
         // Import the pipeline function and env object from Transformers.js CDN
@@ -868,53 +724,33 @@
         // Configure environment settings for Transformers.js
         env.allowLocalModels = false; // Disallow loading models from local cache initially
         env.backends.onnx.executionProviders = ['webgpu', 'wasm']; // Prioritize WebGPU, fallback to WASM
-        // Optional: Increase logging level for debugging
-        // env.logLevel = 'info';
 
         // --- Model Pipeline Instances (Lazy Loaded) ---
         let p1_captioner = null;       // For Vision (Captioning) demo
         let p2_generator = null;       // For Language (Text2Text) demo
-        let p7_imageGenerator = null; // NEW: For Image Generation demo
+        let p7_imageGenerator = null; // For Image Generation demo
 
         // --- Constants for Browser Model Names ---
         const P1_MODEL_BROWSER = 'Xenova/vit-gpt2-image-captioning';
-        const P2_MODEL_BROWSER = 'Xenova/flan-t5-small'; // Basic text model
-        const P7_MODEL_BROWSER = 'Xenova/stable-diffusion-turbo'; // Faster SD variant, still demanding!
+        const P2_MODEL_BROWSER = 'Xenova/flan-t5-small';
+        const P7_MODEL_BROWSER = 'Xenova/stable-diffusion-turbo';
 
         // --- Helper Functions ---
-        /**
-         * Updates the status text for a demo element.
-         * @param {string} elementId - The ID of the status display element.
-         * @param {string} text - The message to display.
-         * @param {('info'|'error'|'warning'|'success')} [level='info'] - Severity level for styling.
-         */
         function setStatus(elementId, text, level = 'info') {
             const element = document.getElementById(elementId);
             if (element) {
                 element.textContent = text;
                 element.className = 'demo-status text-xs text-center'; // Reset classes
                 switch (level) {
-                    case 'error':
-                        element.style.color = 'var(--error-text)';
-                        console.error(`[${elementId}] ${text}`);
-                        break;
-                    case 'warning':
-                        element.style.color = 'var(--warning-text)';
-                        console.warn(`[${elementId}] ${text}`);
-                        break;
-                    case 'success':
-                         element.style.color = 'var(--success-primary)';
-                         console.log(`[${elementId}] ${text}`);
-                         break;
-                    default: // info
-                        element.style.color = 'var(--text-muted)';
-                        console.log(`[${elementId}] ${text}`);
+                    case 'error':   element.style.color = 'var(--error-text)'; console.error(`[${elementId}] ${text}`); break;
+                    case 'warning': element.style.color = 'var(--warning-text)'; console.warn(`[${elementId}] ${text}`); break;
+                    case 'success': element.style.color = 'var(--success-primary)'; console.log(`[${elementId}] ${text}`); break;
+                    default:        element.style.color = 'var(--text-muted)'; console.log(`[${elementId}] ${text}`);
                 }
             }
         }
 
-        /** Clears status after delay if not error/loading */
-        function clearStatusDelay(elementId, delay = 5000) { // Increased delay
+        function clearStatusDelay(elementId, delay = 5000) {
             setTimeout(() => {
                 const element = document.getElementById(elementId);
                 if (element && !element.textContent.toLowerCase().includes('error') && !element.textContent.toLowerCase().includes('loading') && !element.textContent.toLowerCase().includes('downloading') && !element.textContent.toLowerCase().includes('generating')) {
@@ -923,7 +759,6 @@
             }, delay);
         }
 
-        /** Handles model loading progress */
         function handleProgress(elementId, data) {
             let statusText = 'Loading model...';
             let level = 'info';
@@ -954,7 +789,6 @@
         }
 
         // --- Lazy Initialization for Browser Pipelines ---
-        /** Gets or initializes the image captioning pipeline. */
         async function getCaptioner(statusId) {
             if (!p1_captioner) {
                 setStatus(statusId, 'Loading captioning pipeline...', 'info');
@@ -972,7 +806,6 @@
             return p1_captioner;
         }
 
-        /** Gets or initializes the text generation/translation pipeline. */
         async function getTextGenerator(statusId) {
             if (!p2_generator) {
                 setStatus(statusId, 'Loading text pipeline...', 'info');
@@ -990,16 +823,15 @@
                         });
                         setStatus(statusId, 'Translation pipeline ready.', 'success');
                     } catch (error) {
-                         console.error("Text generator pipeline init failed:", error);
-                         setStatus(statusId, `Error loading text generation model: ${error.message}. Please try refreshing the page.`, 'error');
-                         return null;
+                        console.error("Text generator pipeline init failed:", error);
+                        setStatus(statusId, `Error loading text generation model: ${error.message}. Please try refreshing the page.`, 'error');
+                        return null;
                     }
                 }
             }
             return p2_generator;
         }
 
-        /** NEW: Gets or initializes the image generation pipeline. */
         async function getImageGenerator(statusId) {
             if (!p7_imageGenerator) {
                 setStatus(statusId, 'Loading image generation pipeline (this may take a while)...', 'warning');
@@ -1019,8 +851,6 @@
         }
 
         // --- Tier 1: In-Browser Demo Logic ---
-
-        // Project 1: Vision Captioning
         const p1_imageUpload = document.getElementById('p1_imageUpload');
         const p1_imagePreview = document.getElementById('p1_imagePreview');
         const p1_previewText = document.getElementById('p1_previewText');
@@ -1032,13 +862,12 @@
         if (p1_imageUpload) {
             p1_imageUpload.addEventListener('change', (event) => {
                 const file = event.target.files[0];
-                // Streamline Image Input: Clear previous results and reset UI
                 p1_imageDataUrl = null;
-                p1_imagePreview.src = '#'; // Clear previous image data
+                p1_imagePreview.src = '#';
                 p1_imagePreview.classList.add('hidden');
                 p1_previewText.classList.remove('hidden');
                 if (p1_captionResult) p1_captionResult.textContent = '';
-                setStatus(P1_STATUS_ID, 'Select an image to generate a caption.', 'info'); // Reset status
+                setStatus(P1_STATUS_ID, 'Select an image to generate a caption.', 'info');
 
                 if (file && file.type.startsWith('image/')) {
                     const reader = new FileReader();
@@ -1053,27 +882,24 @@
                     reader.readAsDataURL(file);
                 } else if (file) {
                     setStatus(P1_STATUS_ID, 'Error: Invalid file type. Please select an image (e.g., JPG, PNG).', 'error');
-                    event.target.value = ''; // Clear the file input to allow re-selection of the same file if needed
+                    event.target.value = '';
                 }
             });
         }
 
         if (p1_generateCaptionBtn) {
-            const originalBtnText = p1_generateCaptionBtn.innerHTML; // Store original button text
+            const originalBtnText = p1_generateCaptionBtn.innerHTML;
             p1_generateCaptionBtn.addEventListener('click', async () => {
                 if (!p1_imageDataUrl) { setStatus(P1_STATUS_ID, 'Please select an image first to generate a caption.', 'warning'); return; }
 
                 p1_generateCaptionBtn.disabled = true;
                 p1_generateCaptionBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
-                if(p1_captionResult) p1_captionResult.textContent = ''; // Clear previous result
+                if(p1_captionResult) p1_captionResult.textContent = '';
                 setStatus(P1_STATUS_ID, 'Initializing captioning model...', 'info');
 
                 try {
                     const captioner = await getCaptioner(P1_STATUS_ID);
-                    if (!captioner) {
-                        // Error already set by getCaptioner more specifically
-                        return; // Button re-enabled in finally
-                    }
+                    if (!captioner) return; 
                     setStatus(P1_STATUS_ID, 'Generating caption for the image...', 'info');
                     const output = await captioner(p1_imageDataUrl, {
                         max_new_tokens: 200,
@@ -1089,35 +915,31 @@
                     if (p1_captionResult) p1_captionResult.textContent = 'Caption generation failed. See status for details.';
                 } finally {
                     p1_generateCaptionBtn.disabled = false;
-                    p1_generateCaptionBtn.innerHTML = originalBtnText; // Restore original button text
+                    p1_generateCaptionBtn.innerHTML = originalBtnText;
                     clearStatusDelay(P1_STATUS_ID);
                 }
             });
         }
 
-        // Project 2: Language (Text2Text Generation)
         const p2_textPrompt = document.getElementById('p2_textPrompt');
         const p2_generateTextBtn = document.getElementById('p2_generateTextBtn');
         const p2_generationResult = document.getElementById('p2_generationResult');
         const P2_STATUS_ID = 'p2_status';
 
         if (p2_generateTextBtn) {
-            const originalBtnText = p2_generateTextBtn.innerHTML; // Store original button text
+            const originalBtnText = p2_generateTextBtn.innerHTML;
             p2_generateTextBtn.addEventListener('click', async () => {
                 const promptText = p2_textPrompt.value.trim();
                 if (!promptText) { setStatus(P2_STATUS_ID, 'Please enter a prompt to generate text.', 'warning'); return; }
 
                 p2_generateTextBtn.disabled = true;
                 p2_generateTextBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
-                if(p2_generationResult) p2_generationResult.textContent = ''; // Clear previous
+                if(p2_generationResult) p2_generationResult.textContent = '';
                 setStatus(P2_STATUS_ID, 'Initializing text generation model...', 'info');
 
                 try {
                     const generator = await getTextGenerator(P2_STATUS_ID);
-                    if (!generator) {
-                        // Error set by getTextGenerator
-                        return; // Button re-enabled in finally
-                    }
+                    if (!generator) return;
                     setStatus(P2_STATUS_ID, 'Generating text based on your prompt...', 'info');
                     const output = await generator(promptText, {
                         max_new_tokens: 150,
@@ -1134,22 +956,20 @@
                     if (p2_generationResult) p2_generationResult.textContent = 'Text generation failed. Please see status for details.';
                 } finally {
                     p2_generateTextBtn.disabled = false;
-                    p2_generateTextBtn.innerHTML = originalBtnText; // Restore original button text
+                    p2_generateTextBtn.innerHTML = originalBtnText;
                     clearStatusDelay(P2_STATUS_ID);
                 }
             });
         }
 
-        // Project 7: Image Generation (Client-Side)
         const p7_imagePrompt = document.getElementById('p7_imagePrompt');
         const p7_generateImageBtn = document.getElementById('p7_generateImageBtn');
-        const p7_imageResultContainer = document.getElementById('p7_imageResultContainer');
         const p7_imageResult = document.getElementById('p7_imageResult');
         const p7_imagePlaceholder = document.getElementById('p7_imagePlaceholder');
         const P7_STATUS_ID = 'p7_status';
 
         if (p7_generateImageBtn) {
-            const originalBtnText = p7_generateImageBtn.innerHTML; // Store original button text
+            const originalBtnText = p7_generateImageBtn.innerHTML;
             p7_generateImageBtn.addEventListener('click', async () => {
                 const promptText = p7_imagePrompt.value.trim();
                 if (!promptText) { setStatus(P7_STATUS_ID, 'Please enter a prompt for image generation.', 'warning'); return; }
@@ -1157,7 +977,7 @@
                 p7_generateImageBtn.disabled = true;
                 p7_generateImageBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Generating...`;
                 p7_imageResult.classList.add('hidden');
-                p7_imageResult.src = '#'; // Clear previous image
+                p7_imageResult.src = '#';
                 p7_imagePlaceholder.classList.remove('hidden');
                 p7_imagePlaceholder.textContent = 'Initializing image model...';
                 setStatus(P7_STATUS_ID, 'Initializing image generation model (this may take a while)...', 'warning');
@@ -1165,26 +985,23 @@
                 try {
                     const imageGenerator = await getImageGenerator(P7_STATUS_ID);
                     if (!imageGenerator) {
-                        // Error set by getImageGenerator
                         p7_imagePlaceholder.textContent = 'Generator failed to load. See status for details.';
-                        return; // Button re-enabled in finally
+                        return;
                     }
 
                     setStatus(P7_STATUS_ID, 'Generating image (this can take some time, please wait)...', 'warning');
                     p7_imagePlaceholder.textContent = 'Generating image, please wait... This can be resource intensive.';
                     const output = await imageGenerator(promptText, {
                         num_inference_steps: 1, // Turbo model specific
-                        guidance_scale: 0.0,    // Turbo model specific
+                        guidance_scale: 0.0,     // Turbo model specific
                     });
 
                     let imageUrl = null;
-                    // Standard HF pipeline output for text-to-image is often a base64 encoded image in an array
                     if (output && output.images && Array.isArray(output.images) && output.images.length > 0) {
                         imageUrl = `data:image/jpeg;base64,${output.images[0]}`;
-                    } else if (output && output.image) { // Some pipelines might output a direct image object (e.g. data URL)
+                    } else if (output && output.image) {
                         imageUrl = output.image;
                     }
-
 
                     if (imageUrl) {
                         p7_imageResult.src = imageUrl;
@@ -1198,16 +1015,15 @@
                     console.error("Image generation error:", error);
                     setStatus(P7_STATUS_ID, `Image generation failed: ${error.message}. Check console for details or try a simpler prompt. This is resource intensive.`, 'error');
                     p7_imagePlaceholder.textContent = 'Image generation failed. See status for details.';
-                    p7_imagePlaceholder.classList.remove('hidden'); // Ensure placeholder is visible on error
-                    p7_imageResult.classList.add('hidden'); // Hide image element on error
+                    p7_imagePlaceholder.classList.remove('hidden');
+                    p7_imageResult.classList.add('hidden');
                 } finally {
                     p7_generateImageBtn.disabled = false;
-                    p7_generateImageBtn.innerHTML = originalBtnText; // Restore original button text
-                    clearStatusDelay(P7_STATUS_ID, 8000); // Longer delay for image gen status
+                    p7_generateImageBtn.innerHTML = originalBtnText;
+                    clearStatusDelay(P7_STATUS_ID, 8000);
                 }
             });
         }
-
 
         // --- Tier 2: Hugging Face API Demos ---
         const hfTokenInput = document.getElementById('hf_api_token');
@@ -1220,24 +1036,21 @@
                     hfTokenFeedback.textContent = 'Token entered.';
                     hfTokenFeedback.style.color = 'var(--success-primary)';
                 } else {
-                    hfTokenInput.style.borderColor = 'var(--error-text)'; // Or var(--border-color) for default
+                    hfTokenInput.style.borderColor = 'var(--error-text)';
                     hfTokenFeedback.textContent = 'Token is required for API demos.';
                      hfTokenFeedback.style.color = 'var(--warning-text)';
                 }
             });
-             // Initial check in case of pre-filled value (e.g. browser autofill)
-            if (hfTokenInput.value.trim()) {
-                hfTokenInput.style.borderColor = 'var(--success-primary)';
-                hfTokenFeedback.textContent = 'Token entered.';
-                hfTokenFeedback.style.color = 'var(--success-primary)';
-            } else {
-                 hfTokenFeedback.textContent = 'Token is required for API demos.';
-                 hfTokenFeedback.style.color = 'var(--text-muted)'; // Initial muted color
-            }
+             if (hfTokenInput.value.trim()) {
+                 hfTokenInput.style.borderColor = 'var(--success-primary)';
+                 hfTokenFeedback.textContent = 'Token entered.';
+                 hfTokenFeedback.style.color = 'var(--success-primary)';
+             } else {
+                hfTokenFeedback.textContent = 'Token is required for API demos.';
+                hfTokenFeedback.style.color = 'var(--text-muted)';
+             }
         }
 
-
-        // Helper to get API token & update UI if missing
         function getApiToken(statusIdToUpdate) {
             const token = hfTokenInput.value.trim();
             if (!token) {
@@ -1251,16 +1064,14 @@
             return token;
         }
 
-        // Store original button texts
         const originalButtonTexts = {};
         ['p4_runVlmBtn', 'p5_runLmBtn', 'p6_runCoderBtn'].forEach(btnId => {
             const button = document.getElementById(btnId);
             if (button) originalButtonTexts[btnId] = button.innerHTML;
         });
 
-        // Generic function to run HF Inference API
         async function runHfInference(modelId, inputs, task, statusId, resultElementId, buttonId, resultType = 'text') {
-            const apiToken = getApiToken(statusId); // Pass statusId for error message
+            const apiToken = getApiToken(statusId);
             if (!apiToken) return;
 
             const apiUrl = `https://api-inference.huggingface.co/models/${modelId}`;
@@ -1274,12 +1085,8 @@
             setStatus(statusId, `Sending request for ${modelId}...`, 'info');
             const resultEl = document.getElementById(resultElementId);
             if (resultEl) {
-                resultEl.textContent = (resultType === 'text' || resultType === 'code') ? '' : 'Result will appear here.';
-                if (resultType === 'image_vlm') {
-                    resultEl.innerHTML = ''; // Clear previous image/text
-                }
+                resultEl.textContent = '';
             }
-
 
             try {
                 const response = await fetch(apiUrl, {
@@ -1305,7 +1112,6 @@
                             setStatus(statusId, errorMsg, 'error');
                         }
                     } catch (e) {
-                        // JSON parsing failed or errorBody doesn't have .error
                         errorMsg += `: ${response.statusText || 'Failed to get error details.'}`;
                         setStatus(statusId, errorMsg, 'error');
                     }
@@ -1317,9 +1123,7 @@
                 const result = await response.json();
 
                 if (resultEl) {
-                    if (resultType === 'text' || resultType === 'code') {
-                        resultEl.textContent = result[0]?.generated_text || JSON.stringify(result, null, 2);
-                    } else if (resultType === 'image_vlm') {
+                    if (resultType === 'image_vlm') {
                          if (Array.isArray(result) && result.length > 0) {
                             if (result[0].generated_text) {
                                 resultEl.textContent = result[0].generated_text;
@@ -1328,105 +1132,82 @@
                             } else {
                                  resultEl.textContent = JSON.stringify(result, null, 2);
                             }
-                        } else {
-                             resultEl.textContent = JSON.stringify(result, null, 2);
-                        }
+                         } else {
+                              resultEl.textContent = JSON.stringify(result, null, 2);
+                         }
+                    } else { // text or code
+                        resultEl.textContent = result[0]?.generated_text || JSON.stringify(result, null, 2);
                     }
                 }
                 setStatus(statusId, 'Result received successfully.', 'success');
 
-            } catch (error) { // Network errors or other fetch issues
+            } catch (error) {
                 console.error(`HF Inference API error for ${modelId}:`, error);
                 const networkErrorMsg = "Network error or unable to reach API. Check connection/token.";
                 setStatus(statusId, networkErrorMsg, 'error');
                 if(resultEl) resultEl.textContent = networkErrorMsg;
             } finally {
-                 if(button) {
+                if(button) {
                     button.disabled = false;
-                    button.innerHTML = originalButtonTexts[buttonId] || 'Run via API'; // Fallback if original text not found
+                    button.innerHTML = originalButtonTexts[buttonId] || 'Run via API';
                 }
                 clearStatusDelay(statusId);
             }
         }
 
-
-        // Project 4: Vision API (VLM - Captioning/VQA)
-        const p4_imageUrl = document.getElementById('p4_imageUrl');
-        const p4_vlmModelId = document.getElementById('p4_vlmModelId');
-        const p4_vqaPrompt = document.getElementById('p4_vqaPrompt');
         const p4_runVlmBtn = document.getElementById('p4_runVlmBtn');
-        const P4_VLM_STATUS_ID = 'p4_vlmStatus';
-        const P4_VLM_RESULT_ID = 'p4_vlmResult';
-        const P4_BUTTON_ID = 'p4_runVlmBtn';
-
         if(p4_runVlmBtn) {
             p4_runVlmBtn.addEventListener('click', async () => {
-                const imageUrl = p4_imageUrl.value.trim();
-                const modelId = p4_vlmModelId.value.trim() || 'Salesforce/blip-image-captioning-large';
-                const question = p4_vqaPrompt.value.trim();
+                const imageUrl = document.getElementById('p4_imageUrl').value.trim();
+                const modelIdInput = document.getElementById('p4_vlmModelId');
+                let modelId = modelIdInput.value.trim() || 'Salesforce/blip-image-captioning-large';
+                if (!modelIdInput.value.trim()) modelIdInput.value = modelId;
+                const question = document.getElementById('p4_vqaPrompt').value.trim();
 
-                if (!imageUrl) { setStatus(P4_VLM_STATUS_ID, 'Please enter an image URL.', 'warning'); return; }
-                if (!modelId) { setStatus(P4_VLM_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+                if (!imageUrl) { setStatus('p4_vlmStatus', 'Please enter an image URL.', 'warning'); return; }
+                if (!modelId) { setStatus('p4_vlmStatus', 'Please enter a Hugging Face Model ID.', 'warning'); return; }
 
                 let inputs;
                 let taskType = 'image-to-text';
-                if (question || modelId.toLowerCase().includes('vqa') || modelId.toLowerCase().includes('visual-question-answering')) {
+                if (question || modelId.toLowerCase().includes('vqa')) {
                     taskType = 'visual-question-answering';
                     inputs = { image_url: imageUrl, question: question || "What is in this image?" };
                 } else {
                     inputs = { image_url: imageUrl };
                 }
-                if (!p4_vlmModelId.value.trim()) p4_vlmModelId.value = modelId;
+                await runHfInference(modelId, inputs, taskType, 'p4_vlmStatus', 'p4_vlmResult', 'p4_runVlmBtn', 'image_vlm');
+            });
+        }
+        
+        const p5_runLmBtn = document.getElementById('p5_runLmBtn');
+        if(p5_runLmBtn) {
+            p5_runLmBtn.addEventListener('click', async () => {
+                const prompt = document.getElementById('p5_lmPrompt').value.trim();
+                const modelIdInput = document.getElementById('p5_lmModelId');
+                let modelId = modelIdInput.value.trim() || 'microsoft/Phi-3-mini-4k-instruct';
+                if (!modelIdInput.value.trim()) modelIdInput.value = modelId;
 
-                await runHfInference(modelId, inputs, taskType, P4_VLM_STATUS_ID, P4_VLM_RESULT_ID, P4_BUTTON_ID, 'image_vlm');
+                if (!prompt) { setStatus('p5_lmStatus', 'Please enter a prompt.', 'warning'); return; }
+                if (!modelId) { setStatus('p5_lmStatus', 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+                await runHfInference(modelId, prompt, 'text-generation', 'p5_lmStatus', 'p5_lmResult', 'p5_runLmBtn', 'text');
             });
         }
 
-
-        // Project 5: Language Model API
-        const p5_lmPrompt = document.getElementById('p5_lmPrompt');
-        const p5_lmModelId = document.getElementById('p5_lmModelId');
-        const p5_runLmBtn = document.getElementById('p5_runLmBtn');
-        const P5_LM_STATUS_ID = 'p5_lmStatus';
-        const P5_LM_RESULT_ID = 'p5_lmResult';
-        const P5_BUTTON_ID = 'p5_runLmBtn';
-
-
-       if(p5_runLmBtn) {
-           p5_runLmBtn.addEventListener('click', async () => {
-               const prompt = p5_lmPrompt.value.trim();
-               const modelId = p5_lmModelId.value.trim() || 'microsoft/Phi-3-mini-4k-instruct';
-               if (!prompt) { setStatus(P5_LM_STATUS_ID, 'Please enter a prompt.', 'warning'); return; }
-               if (!modelId) { setStatus(P5_LM_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
-               if (!p5_lmModelId.value.trim()) p5_lmModelId.value = modelId;
-
-               await runHfInference(modelId, prompt, 'text-generation', P5_LM_STATUS_ID, P5_LM_RESULT_ID, P5_BUTTON_ID, 'text');
-           });
-       }
-
-        // Project 6: Coding Model API
-        const p6_codePrompt = document.getElementById('p6_codePrompt');
-        const p6_coderModelId = document.getElementById('p6_coderModelId');
         const p6_runCoderBtn = document.getElementById('p6_runCoderBtn');
-        const P6_CODER_STATUS_ID = 'p6_coderStatus';
-        const P6_CODER_RESULT_ID = 'p6_coderResult';
-        const P6_BUTTON_ID = 'p6_runCoderBtn';
-
         if(p6_runCoderBtn) {
             p6_runCoderBtn.addEventListener('click', async () => {
-                const prompt = p6_codePrompt.value.trim();
-                const modelId = p6_coderModelId.value.trim() || 'deepseek-ai/deepseek-coder-1.3b-instruct';
-                if (!prompt) { setStatus(P6_CODER_STATUS_ID, 'Please enter a code prompt.', 'warning'); return; }
-                if (!modelId) { setStatus(P6_CODER_STATUS_ID, 'Please enter a Hugging Face Model ID.', 'warning'); return; }
-                 if (!p6_coderModelId.value.trim()) p6_coderModelId.value = modelId;
-
-                await runHfInference(modelId, prompt, 'text-generation', P6_CODER_STATUS_ID, P6_CODER_RESULT_ID, P6_BUTTON_ID, 'code');
+                const prompt = document.getElementById('p6_codePrompt').value.trim();
+                const modelIdInput = document.getElementById('p6_coderModelId');
+                let modelId = modelIdInput.value.trim() || 'deepseek-ai/deepseek-coder-1.3b-instruct';
+                if (!modelIdInput.value.trim()) modelIdInput.value = modelId;
+                
+                if (!prompt) { setStatus('p6_coderStatus', 'Please enter a code prompt.', 'warning'); return; }
+                if (!modelId) { setStatus('p6_coderStatus', 'Please enter a Hugging Face Model ID.', 'warning'); return; }
+                await runHfInference(modelId, prompt, 'text-generation', 'p6_coderStatus', 'p6_coderResult', 'p6_runCoderBtn', 'code');
             });
         }
 
-
         // --- General UI Enhancements ---
-        // Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenuButton && mobileMenu) {
@@ -1435,7 +1216,6 @@
                 mobileMenuButton.querySelector('i').classList.toggle('fa-bars');
                 mobileMenuButton.querySelector('i').classList.toggle('fa-times');
             });
-            // Close menu when a link is clicked
             document.querySelectorAll('#mobile-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -1445,7 +1225,6 @@
             });
         }
 
-        // Smooth scrolling for nav links
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1457,22 +1236,19 @@
             });
         });
 
-
-        // Footer Year
         const footerYear = document.getElementById('footerYear');
         if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-        // Contact Form
         const contactForm = document.getElementById('contact-form');
         const contactStatus = document.getElementById('contact-status');
         if (contactForm && contactStatus) {
             const submitButton = contactForm.querySelector('button[type="submit"]');
-            const originalSubmitButtonText = submitButton ? submitButton.innerHTML : "Send Message via Email";
+            const originalSubmitButtonText = submitButton ? submitButton.innerHTML : "Send Message";
 
             contactForm.addEventListener('submit', async function(event) {
                 event.preventDefault();
-                contactStatus.textContent = ''; // Clear previous status
-                contactStatus.className = 'mt-4 text-center text-sm'; // Reset class
+                contactStatus.textContent = '';
+                contactStatus.className = 'mt-4 text-center text-sm';
 
                 if (submitButton) {
                     submitButton.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Sending...`;
@@ -1482,38 +1258,34 @@
                 try {
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
-                    const subject = document.getElementById('subject').value || "Portfolio Contact"; // Default subject
+                    const subject = document.getElementById('subject').value || "Portfolio Contact";
                     const message = document.getElementById('message').value;
 
                     if (name && email && message) {
-                        // Simulate sending delay for mailto, as it's instant
-                        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate 1 second delay
+                        await new Promise(resolve => setTimeout(resolve, 1000)); 
 
                         const mailtoLink = `mailto:satyamdixit6666@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage:\n" + message)}`;
                         
-                        contactStatus.textContent = "Message prepared! Please complete sending via your email client.";
+                        contactStatus.textContent = "Message prepared! Please complete sending in your email client.";
                         contactStatus.style.color = 'var(--success-primary)';
-                        contactForm.reset(); // Clear form fields on success
+                        contactForm.reset();
                         
-                        // Attempt to open mailto link. This might be blocked by popup blockers in some cases.
-                        // Consider adding a note if window.open returns null or throws an error.
                         try {
                             const mailWindow = window.open(mailtoLink, '_blank');
                             if (!mailWindow) {
-                                 contactStatus.textContent += " (Popup blocked? Please check your browser settings if email client didn't open.)";
+                                contactStatus.textContent += " (Popup blocked?)";
                             }
                         } catch (e) {
-                             contactStatus.textContent += " (Could not open email client automatically.)";
-                             console.warn("Could not open mailto link:", e);
+                            contactStatus.textContent += " (Could not open email client.)";
+                            console.warn("Could not open mailto link:", e);
                         }
-
                     } else {
                         contactStatus.textContent = "Please fill out all required fields.";
                         contactStatus.style.color = 'var(--error-text)';
                     }
                 } catch (error) {
                     console.error("Contact form submission error:", error);
-                    contactStatus.textContent = "An unexpected error occurred. Please try again or contact me directly.";
+                    contactStatus.textContent = "An unexpected error occurred.";
                     contactStatus.style.color = 'var(--error-text)';
                 } finally {
                     if (submitButton) {
@@ -1521,22 +1293,18 @@
                         submitButton.disabled = false;
                     }
                     setTimeout(() => {
-                        // Clear status only if it's not an error requiring user attention for longer
                         if (contactStatus.style.color !== 'var(--error-text)') {
                              contactStatus.textContent = "";
-                             contactStatus.className = 'mt-4 text-center text-sm';
                         }
                     }, 7000);
                 }
             });
         }
 
-        // Scroll to Top Button Logic
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-
         if (scrollToTopBtn) {
             const handleScroll = () => {
-                if (window.pageYOffset > 300) { // Show button after scrolling 300px
+                if (window.pageYOffset > 300) {
                     scrollToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
                     scrollToTopBtn.classList.add('opacity-100');
                 } else {
@@ -1544,37 +1312,26 @@
                     scrollToTopBtn.classList.remove('opacity-100');
                 }
             };
-
             window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Initial check on page load
-
+            handleScroll();
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
 
-        // Scroll Animations with Intersection Observer
         const animatedElements = document.querySelectorAll('.scroll-animate');
         if (animatedElements.length > 0) {
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        obs.unobserve(entry.target); // Stop observing once animated
+                        obs.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.1 // Trigger when 10% of the element is visible
-            });
-
-            animatedElements.forEach(el => {
-                observer.observe(el);
-            });
+            }, { threshold: 0.1 });
+            animatedElements.forEach(el => observer.observe(el));
         }
-        
-         console.log("Portfolio JavaScript enhancements loaded.");
+       console.log("Portfolio JavaScript enhancements loaded.");
     </script>
 </body>
 </html>
-
-[end of index.html]
